@@ -22,7 +22,7 @@ new_game = Boardgame.create(
   max_player: 4,
   category:"Dungeon Crawler, Médiéval, Fantastique, Magie"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 new_game = Boardgame.create(
   title: "Gloomhaven: Jaws of the Lion",
@@ -36,7 +36,7 @@ new_game = Boardgame.create(
   max_player: 4,
   category:"Médiéval, Aventure, Fantastique, Exploration"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 new_game = Boardgame.create(
   title: "7 Wonders Duel",
@@ -50,7 +50,7 @@ new_game = Boardgame.create(
   max_player: 2,
   category:"Antiquité"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 new_game = Boardgame.create(
   title: "Horreur à Arkham: le jeu de cartes",
@@ -63,7 +63,7 @@ new_game = Boardgame.create(
   max_player: 4,
   category:"Horreur, Fantastique"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 new_game = Boardgame.create(
   title: "Everdell",
@@ -77,7 +77,7 @@ new_game = Boardgame.create(
   max_player: 4,
   category:"Animaux, Fantastique"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 new_game = Boardgame.create(
   title: "Splendor",
@@ -91,7 +91,7 @@ new_game = Boardgame.create(
   max_player: 4,
   category:"Renaissance"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 new_game = Boardgame.create(
   title: "Catan - A l'aube de l'Humanité",
@@ -106,7 +106,7 @@ new_game = Boardgame.create(
   max_player: 4,
   category:"Commerce, Développement, Préhistoire"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 new_game = Boardgame.create(
   title: "Les Tavernes de la Vallée Profonde",
@@ -120,7 +120,7 @@ new_game = Boardgame.create(
   max_player: 4,
   category:"Commerce, Développement, Médiéval"
 )
-puts new_game.title " added to the db !"
+puts "#{new_game.title } added to the db !"
 
 puts "=========================================================================="
 puts "Completed !"
