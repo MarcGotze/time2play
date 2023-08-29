@@ -8,3 +8,14 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create edit update destroy]
   resources :parties, only: %i[show edit update new create destroy]
 end
+
+# resources :boardgames, only: %i[index]
+# resources :players, only: %i[new create destroy]
+
+# resources :users %i[new create edit update destroy] do
+#   resources :game_to_users %i[new create destroy]
+# end
+
+# resources :boardgames, only: %i[show] do
+#   resources :parties, only: %i[show edit update new create destroy]
+# end
