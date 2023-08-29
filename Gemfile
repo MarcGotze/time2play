@@ -55,6 +55,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "devise"
 gem "cloudinary"
 gem "pundit"
+gem "dotenv-rails"
 
 
 group :development, :test do

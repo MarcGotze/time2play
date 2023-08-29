@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self*
  */
+
  // Graphical variables
 
 @import "config/fonts";
@@ -23,6 +24,6 @@
 @import "bootstrap";
 @import "font-awesome";
 
-// Your CSS partials
+//CSS partials
 @import "components/index";
 @import "pages/index";
