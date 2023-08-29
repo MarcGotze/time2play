@@ -1,6 +1,6 @@
 <%= link_to boardgame_path(boardgame), class: "text-decoration-none" do %>
   <div class="card-trip">
-    <img src="<%= cl_image_path @boardgame.photo, height: 300, crop: :fit %>" />
+    <img src="<%= cl_image_path @boardgame.image, height: 300, crop: :fit %>" />
     <div class="card-trip-infos">
       <div class= "content text-decoration-none">
         <h2 class= "title"><%= boardgame.title %></h2>
