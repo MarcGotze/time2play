@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :players, only: %i[new create destroy]
   resources :users, only: %i[new create edit update destroy]
   resources :parties, only: %i[show edit update new create destroy]
+  resources :game_to_users, only: %i[new create]
 end
 
 # resources :boardgames, only: %i[index]

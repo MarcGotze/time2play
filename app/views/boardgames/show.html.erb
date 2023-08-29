@@ -1,1 +1,39 @@
-<h1>show</h1>
+<div class="container">
+  <h1>show</h1>
+  <div class="top-container">
+    <h1><%= @boardgame.title %></h1>
+    <i class="fa-regular fa-bookmark"><%= link_to "Ajouter à ma collection", to: game_to_users_path %></i>
+  </div>
+  <div class="game-info-container">
+    <p><%= @boardgame.category%></p>
+    <div>
+      <div>
+        <i class="fa-solid fa-people-group"><%= @boardgame.min_player %> - <%= @boardgame.max_player %></i>
+        <%= @boardgame.age %>
+        <%= @boardgame.play_time %>
+        <%= @boardgame.rating %>
+      </div>
+      <p><%= @boardgame.description %></p>
+    </div>
+  </div>
+  <div class="party-container">
+    <h2>Mes parties</h2>
+      <h3>Mes partenaires</h3>
+    <div class="player-container">
+      <%# <%= player.avatar %>
+      <%= link_to "Ajouter un joueur", to: new_player_path %>
+    </div>
+    <div>
+      <h4>Stats du jeu</h4>
+
+    </div>
+    <div class="challenge-container">
+      <h2>Challenges</h2>
+      <ul>
+        <li>Faire 10 parties</li>
+        <li>Gagner 5 parties</li>
+        <li>Obtenir 500 points cumulés</li>
+      </ul>
+    </div>
+  </div>
+</div>
