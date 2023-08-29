@@ -1,6 +1,7 @@
 <div class="container">
   <h1>show</h1>
-  <div class="top-container" style="background-image: <%= cl_image_path @boardgame.image, height: 300, crop: :cover %>">
+  <div>
+  <img src="<%= cl_image_path @boardgame.image, height: 300, crop: :cover %>"/>
     <h1><%= @boardgame.title %></h1>
     <%= link_to game_to_users_path do%>
       <i class="fa-regular fa-bookmark"></i>
