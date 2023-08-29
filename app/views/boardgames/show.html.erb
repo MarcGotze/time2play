@@ -1,17 +1,24 @@
 <div class="container">
   <h1>show</h1>
-  <div class="top-container">
+  <div class="top-container" style="background-image: <%= cl_image_path @boardgame.image, height: 300, crop: :cover %>">
     <h1><%= @boardgame.title %></h1>
-    <i class="fa-regular fa-bookmark"><%= link_to "Ajouter à ma collection", to: game_to_users_path %></i>
+    <%= link_to game_to_users_path do%>
+      <i class="fa-regular fa-bookmark"></i>
+    <% end %>
+    <%= console %>
   </div>
   <div class="game-info-container">
-    <p><%= @boardgame.category%></p>
+    <ul>
+      <% @boardgame.category.split(',').each do |element|  %>
+        <li><%= element %></li>
+      <% end %>
+    </ul>
     <div>
       <div>
-        <i class="fa-solid fa-people-group"><%= @boardgame.min_player %> - <%= @boardgame.max_player %></i>
-        <%= @boardgame.age %>
-        <%= @boardgame.play_time %>
-        <%= @boardgame.rating %>
+        <i class="fa-solid fa-people-group"> <%= @boardgame.min_player %> - <%= @boardgame.max_player %></i>
+        <i class="fa-solid fa-child-reaching"> <%= @boardgame.age %>+</i>
+        <i class="fa-regular fa-hourglass-half"><%= @boardgame.play_time %> mn</i>
+        <i class="fa-regular fa-star"><%= @boardgame.rating %></i>
       </div>
       <p><%= @boardgame.description %></p>
     </div>
@@ -25,6 +32,7 @@
     </div>
     <div>
       <h4>Stats du jeu</h4>
+      <%# <% <h5>Dernière partie: <%= @latest_party %></h5>
 
     </div>
     <div class="challenge-container">
