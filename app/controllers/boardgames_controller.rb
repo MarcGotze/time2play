@@ -1,6 +1,9 @@
 class BoardgamesController < ApplicationController
   def index
     @boardgames = Boardgame.all
+    if params[:query].present?
+      @boardgames = @boardgames.where("title ILIKE ?", "%#{params[:query]}%")
+    end
   end
 
   def new
@@ -24,6 +27,6 @@ class BoardgamesController < ApplicationController
 
   def boardgame_params
     params.require(:boardgame).permit(:title, :description, :play_time, :age, :image,
-    :rating, :min_player, :max_player, :category)
+    :rating, :min_player, :max_player, :category, :photo)
   end
 end
