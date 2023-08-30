@@ -2,7 +2,11 @@
   <div class="container-fluid">
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span><img class="avatar avatar-bordered" src="<%= cl_image_path current_user.avatar.key, height: 50, crop: :fit %>" alt=""></span>
+      <% if user_signed_in? %>
+            <span><img class="avatar avatar-bordered" src="<%= cl_image_path current_user.avatar.key, height: 50, crop: :fit %>" alt=""></span>
+      <% else %>
+            <i class="fa-solid fa-bars fa-lg"></i>
+      <% end %>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -13,6 +17,9 @@
           </li>
           <li class="nav-item">
             <%= link_to "Messages", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", destroy_user_session_path, class: "nav-link #{ 'hidden' if user_signed_in? == false }", data: {turbo_method: :delete}%>
           </li>
           <li class="nav-item dropdown">
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
