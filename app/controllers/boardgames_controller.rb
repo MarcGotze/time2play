@@ -1,6 +1,9 @@
 class BoardgamesController < ApplicationController
   def index
     @boardgames = Boardgame.all
+    if params[:query].present?
+      @boardgames = @boardgames.where("title ILIKE ?", "%#{params[:query]}%")
+    end
   end
 
   def new
