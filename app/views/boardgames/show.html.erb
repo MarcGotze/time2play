@@ -3,15 +3,17 @@
   <div>
   <img src="<%= cl_image_path @boardgame.image, height: 300, crop: :cover %>"/>
     <h1><%= @boardgame.title %></h1>
-    <%= link_to game_to_users_path do%>
+    <%= link_to game_to_users_path do %>
       <i class="fa-regular fa-bookmark"></i>
     <% end %>
+    <%= link_to "Commencer une partie", to: new_boardgame_party_path(@boardgame) %>
+
     <%= console %>
   </div>
   <div class="game-info-container">
     <ul>
       <% @boardgame.category.split(',').each do |element|  %>
-        <li><%= element %></li>
+        <li class="category"><%= element %></li>
       <% end %>
     </ul>
     <div>
@@ -28,13 +30,21 @@
     <h2>Mes parties</h2>
       <h3>Mes partenaires</h3>
     <div class="player-container">
-      <%# <%= player.avatar %>
+      <%# <%= User.first.boardgame_players(Boardgame.first.id) %>
+      <% @boardgame.parties.last.players.each do |player| %>
+        <div>
+          <h5><%= player.username %></h5>
+          <%= player.avatar %>
+        </div>
+      <% end %>
       <%= link_to "Ajouter un joueur", to: new_player_path %>
     </div>
     <div>
       <h4>Stats du jeu</h4>
-      <%# <% <h5>Dernière partie: <%= @latest_party %></h5>
-
+      <h5>Dernière partie: <%= @boardgame.parties.last.updated_at %></h5>
+      <% @boardgame.parties.last.players.each do |player| %>
+        <%= player.score %>
+      <% end %>
     </div>
     <div class="challenge-container">
       <h2>Challenges</h2>

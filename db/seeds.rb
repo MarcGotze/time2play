@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Boardgame.destroy_all
+Player.destroy_all
 
 puts "=========================================================================="
 puts "Creating games..."
@@ -123,5 +124,37 @@ new_game = Boardgame.create(
 puts "#{new_game.title } added to the db !"
 
 puts "=========================================================================="
-puts "Completed !"
+puts "Boardgames completed !"
+puts "=========================================================================="
+
+puts "=========================================================================="
+puts "Creating parties..."
+puts "=========================================================================="
+10.times do
+  Party.create!(
+    start_time: Faker::Time.between(from: DateTime.now - 10, to: DateTime.now),
+    end_time: Faker::Time.between(from: DateTime.now - 5, to: DateTime.now),
+    boardgame: Boardgame.all.shuffle.first
+  )
+end
+puts "=========================================================================="
+puts "Parties completed !"
+puts "=========================================================================="
+
+puts "=========================================================================="
+puts "Boardgames completed !"
+puts "=========================================================================="
+
+puts "=========================================================================="
+puts "Creating players..."
+puts "=========================================================================="
+10.times do
+  Player.create!(
+    score: rand(0..500),
+    username: Faker::Name.first_name,
+    party: Party.all.shuffle.first,
+    user: User.all.shuffle.first)
+end
+puts "=========================================================================="
+puts "players completed !"
 puts "=========================================================================="

@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :players
+  has_many :players, dependent: :destroy
   has_many :parties, through: :players
 
   validates :username, presence: true
+  has_one_attached :avatar
 
   def boardgame_players(boardgame_id)
     parties_ids = parties.where(boardgame_id: boardgame_id).pluck(:id)
