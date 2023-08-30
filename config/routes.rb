@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
+
+  root to: "boardgames#index"
+  resources :boardgames, only: %i[index new create show]
   resources :boardgames, only: %i[index new create]
   resources :players, only: %i[new create destroy]
   resources :users, only: %i[show new create edit update destroy]
