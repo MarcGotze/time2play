@@ -56,6 +56,7 @@ gem "devise"
 gem "cloudinary"
 gem "pundit"
 gem "dotenv-rails"
+gem "nokogiri"
 
 
 group :development, :test do
