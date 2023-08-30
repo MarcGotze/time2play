@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  root to: "boardgames#index"
+  root to: "pages#welcome"
   resources :boardgames, only: %i[index new create show]
   resources :boardgames, only: %i[index new create]
   resources :players, only: %i[new create destroy]

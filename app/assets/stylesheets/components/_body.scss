@@ -1,5 +1,33 @@
 body {
-  height: 100%;
+  min-height: 100vh;
   background: linear-gradient(var(--middle-blue), var(--dark-blue) 80%);
   color: var(--light-font);
+}
+
+//page welcome
+.welcome {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  // filter: grayscale(40%);
+  filter: hue-rotate(260deg);
+}
+
+.welcome-title {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: .04em;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 3.6em;
+  top: 4.2em;
+  color: var(--light-font);
+  font-variant-caps: small-caps;
+}
+
+.two-title {
+  font-size: 1.3em;
+  font-weight: 300;
 }
