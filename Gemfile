@@ -56,6 +56,7 @@ gem "devise"
 gem "cloudinary"
 gem "pundit"
 gem "dotenv-rails"
+gem "faker"
 
 
 group :development, :test do
