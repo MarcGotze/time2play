@@ -5,13 +5,10 @@
   width: 100%;
   z-index: 5;
   top: 0;
+
 }
 
-.navbar-fyg, .nav-item a {
-  color: #FFF;
-}
-
-.navbar-fyg {
+.navbar-t2p {
   font-family: 'Lato', sans-serif;
   letter-spacing: .3em;
   font-size: 1.5em;
@@ -25,7 +22,7 @@
 
 .navbar-lewagon {
   justify-content: space-between;
-  background: #324A5F;
+  background-color: var(--light-orange);
 }
 
 .navbar-lewagon .navbar-collapse {
