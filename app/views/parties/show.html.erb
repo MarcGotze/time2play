@@ -1,11 +1,12 @@
 <div class="container">
   <div>
     <h2>Sélection des joueurs</h2>
-    <% @boardgame.players.each do |player| %>
+    <% @party.players.each do |player| %>
       <p><%= player.username %></p>
       <p><%= player.avatar %></p>
     <% end %>
-    <%= link_to "Ajouter un joueur", to: new_player_path %>
+    <%# <%= link_to "Ajouter un joueur", new_player_path %>
+    <%= link_to "Retour au jeu", boardgame_path(@boardgame) %>
 
   </div>
   <h2>C'est parti!</h2>
@@ -15,9 +16,6 @@
     <li>Sablier</li>
   </ul>
   <button>Terminer la partie</button>
-  <%# FORM NEW PLAYER %>
-  <%# 1. Récupérer les joueurs sélectionnés %>
-  <%# 2. Associer un score %>
-  <%# 3. Classer les joueurs selon leurs score %>
-  <%= render 'players/form', players: @player %>
+
+  <%# <%= render 'players/form', players: @player %>
 </div>

@@ -2,7 +2,9 @@ class PartiesController < ApplicationController
   before_action :set_party, only: %i[show edit update destroy]
   before_action :set_boardgame, only: %i[new create update]
 
-  def show; end
+  def show
+    @boardgame = @party.boardgame
+  end
 
   def new
     @players = @boardgame.players
