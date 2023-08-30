@@ -28,13 +28,21 @@
     <h2>Mes parties</h2>
       <h3>Mes partenaires</h3>
     <div class="player-container">
-      <%# <%= player.avatar %>
+      <%# <%= User.first.boardgame_players(Boardgame.first.id) %>
+      <% @boardgame.parties.last.players.each do |player| %>
+        <div>
+          <h5><%= player.username %></h5>
+          <%= player.avatar %>
+        </div>
+      <% end %>
       <%= link_to "Ajouter un joueur", to: new_player_path %>
     </div>
     <div>
       <h4>Stats du jeu</h4>
-      <%# <% <h5>Dernière partie: <%= @latest_party %></h5>
-
+      <h5>Dernière partie: <%= @boardgame.parties.last.updated_at %></h5>
+      <% @boardgame.parties.last.players.each do |player| %>
+        <%= player.score %>
+      <% end %>
     </div>
     <div class="challenge-container">
       <h2>Challenges</h2>
