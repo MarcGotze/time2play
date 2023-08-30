@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root to: "boardgames#index"
-  resources :boardgames, only: %i[index new create show]
   resources :boardgames, only: %i[index new create]
-  resources :players, only: %i[new create destroy]
+  resources :players, only: %i[new create destroy update]
   resources :users, only: %i[show new create edit update destroy]
   resources :parties, only: %i[show edit update destroy]
   resources :game_to_users, only: %i[new create]

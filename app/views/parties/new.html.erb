@@ -1,17 +1,9 @@
 <div class="container">
   <h1>C'est parti pour jouer à <%= @boardgame.title %></h1>
-  <div>
-    <h2>Sélection des joueurs</h2>
-    <% @boardgame.players.each do |player| %>
-      <p><%= player.username %></p>
-      <p><%= player.avatar %></p>
-    <% end %>
-  </div>
-  <h2>C'est parti!</h2>
-  <ul>
-    <li>Roulette du premier joueur</li>
-    <li>Lanceur de dès</li>
-    <li>Sablier</li>
-  </ul>
+  <%= simple_form_for [@boardgame, @party] do |f| %>
+    <%= f.input :start_time %>
+    <%= f.submit "Lancer la partie", class: "btn btn-warning"%>
+  <% end %>
 </div>
+
 <%= console %>

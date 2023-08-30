@@ -1,14 +1,17 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: %i[show edit update destroy]
+  before_action :set_boardgame, only: %i[new create update]
+
   def show; end
 
   def new
-    @boardgame = Boardgame.find(params[:boardgame_id])
+    @players = @boardgame.players
     @party = Party.new
   end
 
   def create
     @party = Party.new(party_params)
+    @party.boardgame = @boardgame
     if @party.save
       redirect_to party_path(@party)
     else
@@ -36,11 +39,15 @@ class PartiesController < ApplicationController
 
   private
 
+  def set_boardgame
+    @boardgame = Boardgame.find(params[:boardgame_id])
+  end
+
   def set_party
     @party = Party.find(params[:id])
   end
 
   def party_params
-    params.require(:party).permit(:start_time, :end_time, :boardgame_id, :score)
+    params.require(:party).permit(:start_time, :end_time, :boardgame_id, :player_id, :score)
   end
 end
