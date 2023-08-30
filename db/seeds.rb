@@ -45,7 +45,7 @@ new_game = Boardgame.create(
                 et améliorant votre civilisation sur les plans civil, scientifique et militaire.",
   play_time: 60,
   age: 10,
-  image:"https://cf.geekdo-images.com/_HhIdavYW-hid20Iq3hhmg__imagepage/img/JUEcmeR5Cm5haFjoG5f_Uv8Zlws=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5055631.jpg",
+  image:"https://cf.geekdo-images.com/zdagMskTF7wJBPjX74XsRw__imagepage/img/HdJ4d4O1P89V4UIhZnL3zoYnjow=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2576399.jpg",
   rating: 8.1,
   min_player: 2,
   max_player: 2,
