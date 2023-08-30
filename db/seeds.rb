@@ -149,7 +149,11 @@ puts "==========================================================================
 puts "Creating players..."
 puts "=========================================================================="
 10.times do
-  Player.create!(score: rand(0..500), party: Party.all.shuffle.first, user: User.all.shuffle.first)
+  Player.create!(
+    score: rand(0..500),
+    username: Faker::Name.first_name,
+    party: Party.all.shuffle.first,
+    user: User.all.shuffle.first)
 end
 puts "=========================================================================="
 puts "players completed !"
