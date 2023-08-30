@@ -1,0 +1,8 @@
+<%= link_to boardgame_path(boardgame), class: "text-decoration-none" do %>
+  <div class="card-trip">
+    <img src="<%= cl_image_path boardgame.image, height: 100, crop: :fit %>" />
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
+        <%= boardgame.title %>
+      </div>
+  </div>
+<% end %>

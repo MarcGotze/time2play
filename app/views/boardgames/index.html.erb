@@ -1,2 +1,12 @@
+<<<<<<< HEAD
 <h1>index</h1>
 <%= render "boardgames/partials/search" %>
+=======
+ <div class="container">
+    <div class="cards">
+        <% @boardgames.each do |boardgame| %>
+          <%= render "shared/card", boardgame: boardgame %>
+        <% end %>
+    </div>
+</div>
+>>>>>>> master
