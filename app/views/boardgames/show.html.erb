@@ -1,13 +1,11 @@
+<img class="show_img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
 <div class="container">
   <div>
-  <img src="<%= cl_image_path @boardgame.image, height: 300 %>"/>
     <h1><%= @boardgame.title %></h1>
     <%= link_to game_to_users_path do %>
       <i class="fa-regular fa-bookmark"></i>
     <% end %>
     <%= link_to "Commencer une partie", new_boardgame_party_path(@boardgame) %>
-
-    <%= console %>
   </div>
   <div class="game-info-container">
     <ul>
@@ -27,7 +25,7 @@
   </div>
   <div class="party-container">
     <h2>Mes parties</h2>
-      <h3>Mes partenaires</h3>
+    <h3>Mes partenaires</h3>
     <div class="player-container">
       <%# <%= User.first.boardgame_players(Boardgame.first.id) %>
       <% @boardgame.parties.last.players.each do |player| %>
