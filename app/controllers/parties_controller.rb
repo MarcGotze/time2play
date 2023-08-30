@@ -3,6 +3,7 @@ class PartiesController < ApplicationController
   def show; end
 
   def new
+    @boardgame = Boardgame.find(params[:boardgame_id])
     @party = Party.new
   end
 
