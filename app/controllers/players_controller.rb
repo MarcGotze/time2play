@@ -20,7 +20,7 @@ class PlayersController < ApplicationController
 
   def update
     # @party.id = @party
-    if @player.update!(player_params)
+    if @player.update(player_params)
       redirect_to party_path(@party)
     else
       render :new, status: :unprocessable_entity

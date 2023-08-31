@@ -22,8 +22,8 @@
     <%= render "parties/roulette", players: @players %>
   </div>
   <h2>Fin de partie!</h2>
-  <%#= link_to "Compter les scores", player_path(@player) %>
-  <%# Compter les scores ouvre l'update de player %>
   <%= render 'players/form_party', players: @player %>
+  <button>Terminer la partie</button>
+  <%= render 'form_end_party', parties: @party %>
 </div>
 <%= console %>

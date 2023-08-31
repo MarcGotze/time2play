@@ -5,7 +5,6 @@ class PartiesController < ApplicationController
   def show
     @boardgame = @party.boardgame
     @players = @party.players
-
   end
 
   def new
@@ -28,7 +27,7 @@ class PartiesController < ApplicationController
 
   def update
     if @party.update(party_params)
-      redirect_to party_path(@party)
+      redirect_to user_path(current_user)
     else
       render :new, status: :unprocessable_entity
     end
