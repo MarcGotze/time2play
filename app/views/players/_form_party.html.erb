@@ -1,10 +1,8 @@
 <h1>Renseigner les scores de la partie</h1>
-  <% @boardgame.parties.each do |party| %>
-    <% party.players.each do |player| %>
-      <%= simple_form_for [party, player]  do |f| %>
-        
+    <% @players.each do |player| %>
+      <%= simple_form_for [@party, player]  do |f| %>
+
         <%= f.input :score %>
         <%= f.submit "Valider", class: "btn btn-warning"%>
       <% end %>
     <% end %>
-  <% end %>
