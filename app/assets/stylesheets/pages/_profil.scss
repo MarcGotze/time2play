@@ -1,3 +1,26 @@
 .profil_margin{
-  margin: 100px 0px 0px 24px;
+  margin: 50px 0px 0px 24px;
+}
+
+.avatar {
+  margin-right: 15px;
+  border-radius: 25px;
+}
+
+.background_card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--light-blue);
+  border-radius: 20px;
+  width: 88%;
+  padding: 12px 0px 0px 20px;
+  text-align: center;
+  p {
+    font-size: 22px;
+  }
+}
+
+.xp {
+  color: var(--orange-thumbnail)
 }
