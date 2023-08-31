@@ -1,0 +1,8 @@
+<button id="spin">Tourner</button>
+<button data-action="click->overlay#close">Fermer</button>
+<span class="arrow"></span>
+<div class="spin-container">
+  <% players.each do |player| %>
+    <div class="player-1"><%= player.user.username %></div>
+  <% end %>
+</div>

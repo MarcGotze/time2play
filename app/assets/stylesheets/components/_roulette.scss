@@ -1,0 +1,22 @@
+.spin-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.spin-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 0;
+  opacity: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  transition: all .5s ease-in-out;
+
+  &.displayed {
+    background-color: white;
+    height: 50vh;
+    opacity: 1;
+  }
+}
