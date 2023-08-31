@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root to: "pages#welcome"
   resources :boardgames, only: %i[index new create]
-  resources :players, only: %i[new create destroy update]
+  resources :players, only: %i[destroy update]
   resources :users, only: %i[show new create edit update destroy]
   resources :parties, only: %i[show edit update destroy]
 
@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :game_to_users, only: %i[create]
     resources :players, only: :show
     resources :parties, only: %i[new create]
+  end
+
+  resources :parties, only: [] do
+    resources :players, only: %i[new create]
   end
 end
 

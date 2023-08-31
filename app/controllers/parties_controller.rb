@@ -4,6 +4,7 @@ class PartiesController < ApplicationController
 
   def show
     @boardgame = @party.boardgame
+    @players = @party.players
   end
 
   def new
