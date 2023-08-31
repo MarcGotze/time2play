@@ -1,8 +1,14 @@
-<button id="spin">Go!</button>
-<button data-action="click->overlay#close">Fermer</button>
-<span class="arrow"></span>
-<div class="spin-container">
-  <% players.each do |player| %>
-    <div class="player-1"><%= player.user.username %></div>
-  <% end %>
+<div class="buttons">
+  <button class="btn btn-primary" id="close" data-action="click->overlay#close">Fermer</button>
+</div>
+
+<div class="wrapper">
+  <div class="spin-container">
+    <canvas id="wheel"></canvas>
+    <button id="spin-btn">Spin</button>
+    <img src="spinner-arrow-.svg" alt="spinner-arrow" />
+  </div>
+  <div id="final-value">
+    <p>Click On The Spin Button To Start</p>
+  </div>
 </div>

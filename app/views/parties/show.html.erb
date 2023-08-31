@@ -1,4 +1,8 @@
-<div data-controller="overlay">
+<div data-controller="overlay"
+  data-overlay-data-value="<%= @data %>"
+  data-overlay-labels-value="<%= @labels %>"
+  data-overlay-rotation-value="<%= @rotation_values.to_json %>"
+  >
   <div class="container">
     <div>
       <h2>Sélection des joueurs</h2>
@@ -12,8 +16,8 @@
     </div>
     <h2>C'est parti!</h2>
     <ul>
-      <li>Roulette du premier joueur</li>
-      <button data-action="click->overlay#display">Roulette</button>
+      <li>Qui commence ? </li>
+      <button data-action="click->overlay#display"><i class="fa-regular fa-circle-question"></i></button>
       <li>Lanceur de dès</li>
       <li>Sablier</li>
     </ul>

@@ -5,6 +5,26 @@ class PartiesController < ApplicationController
   def show
     @boardgame = @party.boardgame
     @players = @party.players
+    @labels = @players.map(&:user).map(&:username)
+    @data = @players.map { 16 }
+    @rotation_values = []
+    @players.drop(1).each_with_index do |player, i|
+      @rotation_values << {
+        minDegree: (360 / @players.count / 2) + i * (360 / @players.count) + 1,
+        maxDegree: (360 / @players.count / 2) + (360 / @players.count * (i + 1)),
+        value: player.user.username
+      }
+    end
+    @rotation_values << {
+      minDegree: 0,
+      maxDegree: (360 / @players.count / 2),
+      value: @players.first.user.username
+    }
+    @rotation_values << {
+      minDegree: (360 / @players.count / 2) + (@players.count - 1) * (360 / @players.count) + 1,
+      maxDegree: 360,
+      value: @players.first.user.username
+    }
   end
 
   def new
