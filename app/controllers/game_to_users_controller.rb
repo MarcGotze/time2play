@@ -13,10 +13,10 @@ class GameToUsersController < ApplicationController
   end
 
   def destroy
+    @game_to_user = GameToUser.find(params[:id])
     @game_to_user.destroy
     if @game_to_user.destroy
-      # TODO
-      redirect_to user_path(current_user), status: :see_other
+      redirect_to boardgame_path(@game_to_user.boardgame), status: :see_other
     else
       puts 'destruction failed'
     end
