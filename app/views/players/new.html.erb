@@ -1,0 +1,17 @@
+<h1>Ajouter un joueur</h1>
+  <%# <% @boardgame.parties.each do |party| %>
+    <%# <% party.players.each do |player| %>
+      <%# <%= simple_form_for [player] do |f| %>
+        <%# <%= f.input :username %>
+        <%# <%= f.submit "Ajouter", class: "btn btn-warning"%>
+      <%# <% end %>
+    <%# <% end %>
+  <%# <% end %>
+
+<%= simple_form_for [@party, @player] do |f| %>
+  <%# <%= f.input :username %>
+  <%= f.association :user %>
+  <%= f.submit "Ajouter", class: "btn btn-warning"%>
+<% end %>
+
+<%= console %>
