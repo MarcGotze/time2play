@@ -1,4 +1,4 @@
-<div class="container profil_margin">
+<div class="container profil-margin">
   <div class="d-flex align-items-center">
     <%= cl_image_tag current_user.avatar.key, height: 75, width: 75, crop: :fit, class: "avatar" %>
     <h2><%= @user.username %> Level 10 /</h2>
@@ -49,14 +49,18 @@
 
   </div>
 
-  <div class="my-5 background_card">
+  <div class="my-5 background-card">
     <p>Score total: 4549pts</p>
     <p>Parties jouées: 37</p>
     <p>Parties Gagnées: 21</p>
   </div>
+</div>
 
   <div>
     <h3>Collection: </h3>
+    <div class="cards">
+        <% current_user.boardgames.each do |boardgame| %>
+          <%= render "shared/card", boardgame: boardgame %>
+        <% end %>
+    </div>
   </div>
-
-</div>

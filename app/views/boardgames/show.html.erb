@@ -1,10 +1,13 @@
-<img class="show_img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
+<div class="game-banner">
+  <img class="show-img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
+  <%= button_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate" do %>
+    <i class="fa-regular fa-square-plus fa-2xl" style="color: #5A96E3;"></i>
+  <% end %>
+</div>
+
 <div class="container">
   <div>
     <h1><%= @boardgame.title %></h1>
-    <%= link_to game_to_users_path do %>
-      <i class="fa-regular fa-bookmark"></i>
-    <% end %>
     <%= link_to "Commencer une partie", new_boardgame_party_path(@boardgame) %>
   </div>
   <div class="game-info-container">
