@@ -1,3 +1,4 @@
+
 <div class="container profil-margin">
   <div class="d-flex align-items-center">
     <%= cl_image_tag current_user.avatar.key, height: 75, width: 75, crop: :fit, class: "avatar" %>
@@ -56,11 +57,13 @@
   </div>
 </div>
 
-  <div>
-    <h3>Collection: </h3>
-    <div class="cards">
-        <% current_user.boardgames.each do |boardgame| %>
+<div class="container collection">
+  <h3>Collection: </h3>
+  <div class="cards">
+      <% current_user.boardgames.each do |boardgame| %>
+        <div>
           <%= render "shared/card", boardgame: boardgame %>
-        <% end %>
-    </div>
+        </div>
+      <% end %>
   </div>
+</div>

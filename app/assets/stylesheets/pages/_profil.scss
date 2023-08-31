@@ -1,5 +1,5 @@
 .profil-margin{
-  margin: 50px 0px 0px 24px;
+  padding: 50px 0px 0px 24px;
 }
 
 .avatar {
@@ -28,4 +28,10 @@
 .remove-submit-btn-style {
   background: none;
   border: none;
+}
+
+.collection {
+  h3 {
+    padding-left: 10px;
+  }
 }

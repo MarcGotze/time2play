@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :players, only: %i[destroy]
   resources :users, only: %i[show new create edit update destroy]
   resources :parties, only: %i[show edit update destroy]
+  resources :game_to_users, only: %i[destroy]
 
   resources :boardgames, only: :show do
     resources :game_to_users, only: %i[create]
