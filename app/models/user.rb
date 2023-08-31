@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :players, dependent: :destroy
   has_many :parties, through: :players
+  has_many :game_to_users, dependent: :destroy
+  has_many :boardgames, through: :game_to_users
 
   validates :username, presence: true
   has_one_attached :avatar
