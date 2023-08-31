@@ -1,7 +1,13 @@
 .spin-container {
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
+  background-color: var(--light-blue);
+  border-radius:50%;
+  border: 10px solid var(--middle-blue);
+  position: relative;
+  overflow: hidden;
+  transition: 5s;
 }
 
 .spin-overlay {
@@ -15,8 +21,43 @@
   transition: all .5s ease-in-out;
 
   &.displayed {
-    background-color: white;
+    background-color: var(--light-orange);
     height: 50vh;
     opacity: 1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
+}
+
+.arrow{
+	position: absolute;
+	top:0;
+	left:50%;
+	transform: translateX(-50%);
+	color:#fff;
+}
+
+.arrow::before{
+	content:"\1F817";
+	font-size:50px;
+}
+
+#spin{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	z-index: 10;
+	background-color: #e2e2e2;
+	text-transform: uppercase;
+	border: 2px solid var(--dark-blue);
+	font-weight: bold;
+	font-size: 1em;
+	color:var(--dark-blue);
+	width: 80px;
+	height:80px;
+	font-family: sans-serif;
+	border-radius: 50%;
+	outline: none;
+	letter-spacing: 1px;
 }
