@@ -1,7 +1,8 @@
 class PlayersController < ApplicationController
   def new
-    @boardgame = Boardgame.find(params[:boardgame_id])
-    @players = @boardgame.players
+    @boardgame = Boardgame.find(params[:party_id])
+    @parties = @boardgame.parties
+    @players = @parties.players
     @player = Player.new
   end
 
