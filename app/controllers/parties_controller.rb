@@ -5,6 +5,7 @@ class PartiesController < ApplicationController
   def show
     @boardgame = @party.boardgame
     @players = @party.players
+
   end
 
   def new
@@ -16,6 +17,7 @@ class PartiesController < ApplicationController
     @party = Party.new(party_params)
     @party.boardgame = @boardgame
     if @party.save
+      Player.create!(score: 0, user: current_user, party: @party)
       redirect_to party_path(@party)
     else
       render :new, status: :unprocessable_entity, notice: 'Ta partie a bien été lancée, amusez-vous bien!'

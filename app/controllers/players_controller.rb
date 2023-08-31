@@ -1,5 +1,7 @@
 class PlayersController < ApplicationController
-  before_action :set_party, only: %i[new create]
+  before_action :set_party, only: %i[new create update]
+  before_action :set_player, only: %i[edit update destroy]
+
   def new
     @player = Player.new
   end
@@ -14,9 +16,11 @@ class PlayersController < ApplicationController
     end
   end
 
+  def edit; end
+
   def update
-    @player = Player.find(params[:id])
-    if @player.update(player_params)
+    # @party.id = @party
+    if @player.update!(player_params)
       redirect_to party_path(@party)
     else
       render :new, status: :unprocessable_entity
@@ -24,15 +28,21 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    @player = Player.find(params[:id])
-    @player.destroy
-    redirect_to party_path(@party), status: :see_other
+    if @player.destroy
+      redirect_to party_path(@party), status: :see_other
+    else
+      puts "Oupsiii, la joueur n'a pas pu être supprimée"
+    end
   end
 
   private
 
   def set_party
     @party = Party.find(params[:party_id])
+  end
+
+  def set_player
+    @player = Player.find(params[:id])
   end
 
   def player_params
