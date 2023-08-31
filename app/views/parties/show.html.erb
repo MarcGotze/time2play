@@ -6,9 +6,9 @@
         <p><%= player.username %></p>
         <p><%= player.avatar %></p>
       <% end %>
-      <%# <%= link_to "Ajouter un joueur", new_player_path %>
+      <%= link_to "Ajouter un joueur", new_party_player_path(@party) %>
+      <%# <%= render 'players/new', players: @player %>
       <%= link_to "Retour au jeu", boardgame_path(@boardgame) %>
-
     </div>
     <h2>C'est parti!</h2>
     <ul>
@@ -17,12 +17,12 @@
       <li>Lanceur de dès</li>
       <li>Sablier</li>
     </ul>
-    <h2>Fin de partie!</h2>
-    <%= link_to "Compter les scores", new_player_path %>
-    <%# Compter les scores ouvre l'update de player %>
-    <%= render 'players/form', players: @player %>
-  </div>
+   </div>
   <div class="spin-overlay" data-overlay-target="overlay">
     <%= render "parties/roulette", players: @players %>
   </div>
+  <h2>Fin de partie!</h2>
+  <%#= link_to "Compter les scores", player_path(@player) %>
+  <%# Compter les scores ouvre l'update de player %>
+  <%= render 'players/form', players: @player %>
 </div>
