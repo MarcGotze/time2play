@@ -15,7 +15,8 @@
     <li>Lanceur de dès</li>
     <li>Sablier</li>
   </ul>
-  <button>Terminer la partie</button>
-
-  <%# <%= render 'players/form', players: @player %>
+  <h2>Fin de partie!</h2>
+  <%= link_to "Compter les scores", new_player_path %>
+  <%# Compter les scores ouvre l'update de player %>
+  <%= render 'players/form', players: @player %>
 </div>

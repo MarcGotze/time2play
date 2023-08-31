@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :game_to_users, only: %i[new create]
 
   resources :boardgames, only: :show do
-    resources :players, only: :show
+    resources :players, only: %i[show new]
     resources :parties, only: %i[new create]
   end
 end
