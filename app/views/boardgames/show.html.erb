@@ -1,11 +1,20 @@
-<img class="show_img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
-<div class="container">
-  <div>
-    <h1><%= @boardgame.title %></h1>
-    <%= link_to game_to_users_path do %>
-      <i class="fa-regular fa-bookmark"></i>
+<div class="game-banner">
+  <img class="show-img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
+  <% if current_user.boardgame_ids.include?(@boardgame.id) %>
+    <%= link_to game_to_user_path(GameToUser.find_by(user:current_user, boardgame:@boardgame)), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :delete} do %>
+      <i class="fa-regular fa-square-minus fa-2xl" style="color: red;"></i>
     <% end %>
     <%= link_to "Commencer une partie", new_boardgame_party_path(@boardgame) %>
+  <% else %>
+    <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
+      <i class="fa-regular fa-square-plus fa-2xl" style="color: green;"></i>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container">
+  <div>
+    <h1 class="mt-3" ><%= @boardgame.title %></h1>
   </div>
   <div class="game-info-container">
     <ul>
@@ -34,7 +43,6 @@
           <%= player.avatar %>
         </div>
       <% end %>
-      <%= link_to "Ajouter un joueur", new_player_path %>
     </div>
     <div>
       <h4>Stats du jeu</h4>

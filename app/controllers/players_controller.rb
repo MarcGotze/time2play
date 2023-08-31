@@ -1,38 +1,51 @@
 class PlayersController < ApplicationController
+  before_action :set_party, only: %i[new create update]
+  before_action :set_player, only: %i[edit update destroy]
+
   def new
-    @boardgame = Boardgame.find(params[:party_id])
-    @parties = @boardgame.parties
-    @players = @parties.players
     @player = Player.new
   end
 
   def create
     @player = Player.new(player_params)
+    @player.party = @party
     if @player.save
-      redirect_to players_path(@player)
+      redirect_to party_path(@party)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def edit; end
+
   def update
-    @player = Player.find(params[:id])
+    # @party.id = @party
     if @player.update(player_params)
-      redirect_to player_path(@player)
+      redirect_to party_path(@party)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @player = Player.find(params[:id])
-    @player.destroy
-    redirect_to party_path(@party), status: :see_other
+    if @player.destroy
+      redirect_to party_path(@party), status: :see_other
+    else
+      puts "Oupsiii, la joueur n'a pas pu être supprimée"
+    end
   end
 
   private
 
+  def set_party
+    @party = Party.find(params[:party_id])
+  end
+
+  def set_player
+    @player = Player.find(params[:id])
+  end
+
   def player_params
-    params.require(:player).permit(:user_id, :party_id, :score, :game_master, :username)
+    params.require(:player).permit(:user_id, :score, :game_master)
   end
 end

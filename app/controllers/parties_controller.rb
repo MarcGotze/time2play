@@ -36,6 +36,7 @@ class PartiesController < ApplicationController
     @party = Party.new(party_params)
     @party.boardgame = @boardgame
     if @party.save
+      Player.create!(score: 0, user: current_user, party: @party)
       redirect_to party_path(@party)
     else
       render :new, status: :unprocessable_entity, notice: 'Ta partie a bien été lancée, amusez-vous bien!'
@@ -46,7 +47,7 @@ class PartiesController < ApplicationController
 
   def update
     if @party.update(party_params)
-      redirect_to party_path(@party)
+      redirect_to user_path(current_user)
     else
       render :new, status: :unprocessable_entity
     end
