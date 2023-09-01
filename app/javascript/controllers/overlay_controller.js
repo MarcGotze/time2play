@@ -1,18 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="display-overlay"
+// Connects to data-controller="overlay"
 export default class extends Controller {
-  static targets = ["overlay"]
   static values = {
     data: Array,
     labels: Array,
     rotation: Array
   }
+  static targets = ["overlay"]
 
   connect() {
-    console.log(this.dataValue);
-    console.log(this.labelsValue);
-    console.log(this.rotationValue);
+
+
 
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spin-btn");

@@ -2,7 +2,7 @@
   <h1>C'est parti pour jouer à <%= @boardgame.title %></h1>
   <%= simple_form_for [@boardgame, @party] do |f| %>
     <%= f.input :start_time %>
-    <%= f.submit "Lancer la partie", class: "btn btn-warning"%>
+    <%= f.submit "Lancer la partie", class: "btn btn-secondary"%>
   <% end %>
 </div>
 
