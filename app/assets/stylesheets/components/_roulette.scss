@@ -22,7 +22,6 @@
   transition: all .5s ease-in-out;
 
   &.displayed {
-    background: linear-gradient(var(--light-font), var(--light-orange) 80%);
     height: 80vh;
     opacity: 1;
     border-top-left-radius: 5px;
@@ -33,6 +32,7 @@
 }
 
 .wrapper {
+  text-align: center;
   width: 90%;
   max-width: 34.37em;
   max-height: 70vh;
@@ -79,15 +79,18 @@
   font-weight: 600;
 }
 
+.spinner-arrow {
+  position: absolute;
+  width: 4em;
+  top: 45%;
+  right: -8%;
+  color: #ffcd39;
+}
+
 #final-value {
   font-size: 1.5em;
   text-align: center;
   margin-top: 1.5em;
   color: #202020;
   font-weight: 500;
-}
-@media screen and (max-width: 768px) {
-  .wrapper {
-    font-size: 12px;
-  }
 }
