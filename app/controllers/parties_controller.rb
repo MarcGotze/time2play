@@ -9,36 +9,38 @@ class PartiesController < ApplicationController
     @labels = @players.map(&:user).map(&:username)
     @data = @players.map { 16 }
     @rotation_values = []
-    @rotation_values << {
-      minDegree: 0,
-      maxDegree: (360 / @players.count / 2),
-      value: @players.second.user.username
-    }
-    @rotation_values << {
-      minDegree: (360 / @players.count / 2) + 1,
-      maxDegree: (360 / @players.count / 2) + (360 / @players.count),
-      value: @players.first.user.username
-    }
-    @players.drop(2).reverse.each_with_index do |player, i|
+
+    if @players.count >= 2
       @rotation_values << {
-        minDegree: (360 / @players.count / 2) + (i + 1) * (360 / @players.count) + 1,
-        maxDegree: (360 / @players.count / 2) + (360 / @players.count * (i + 2)),
-        value: player.user.username
+        minDegree: 0,
+        maxDegree: (360 / @players.count / 2),
+        value: @players.second.user.username
+      }
+      @rotation_values << {
+        minDegree: (360 / @players.count / 2) + 1,
+        maxDegree: (360 / @players.count / 2) + (360 / @players.count),
+        value: @players.first.user.username
+      }
+      @players.drop(2).reverse.each_with_index do |player, i|
+        @rotation_values << {
+          minDegree: (360 / @players.count / 2) + (i + 1) * (360 / @players.count) + 1,
+          maxDegree: (360 / @players.count / 2) + (360 / @players.count * (i + 2)),
+          value: player.user.username
+        }
+      end
+
+      @rotation_values << {
+        minDegree: (360 / @players.count / 2) + (@players.count - 1) * (360 / @players.count) + 1,
+        maxDegree: 360,
+        value: @players.second.user.username
       }
     end
-
-    @rotation_values << {
-      minDegree: (360 / @players.count / 2) + (@players.count - 1) * (360 / @players.count) + 1,
-      maxDegree: 360,
-      value: @players.second.user.username
-    }
   end
 
   def new
     @players = @boardgame.players
     # @party = Party.new(start_time: Time.now)
     @party = Party.new(start_time: Date.now)
-
   end
 
   def create
@@ -57,7 +59,7 @@ class PartiesController < ApplicationController
 
   def update
     @party.end_time = DateTime.current
-    if @party.update(party_params)
+    if @party.save
       redirect_to user_path(current_user)
     else
       render 'parties/show', status: :unprocessable_entity
