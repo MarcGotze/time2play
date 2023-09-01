@@ -3,31 +3,46 @@
   data-overlay-labels-value="<%= @labels %>"
   data-overlay-rotation-value="<%= @rotation_values.to_json %>"
   >
-  <div class="container">
-    <div>
-      <h2>Sélection des joueurs</h2>
-      <% @party.players.each do |player| %>
-        <p><%= player.username %></p>
-        <p><%= player.avatar %></p>
-      <% end %>
-      <%= link_to "Ajouter un joueur", new_party_player_path(@party) %>
-      <%# <%= render 'players/new', players: @player %>
-      <%= link_to "Retour au jeu", boardgame_path(@boardgame) %>
-    </div>
+  <%# =============== PLAYERS SECTION ===============%>
+
+  <h2 class="mt-3">Sélection des joueurs</h2>
+  <div class="player-container">
+    <% @party.players.each do |player| %>
+      <div>
+        <%# <h5><%= player.user.username %>
+        <% if player.user.avatar.attached? %>
+          <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+        <%# <% else %>
+            <%# <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <%= simple_form_for [@party, @player] do |f| %>
+    <%= f.association :user, label: 'Nouveau joueur ', label_method: :username, value_method: :id %>
+    <%= f.submit "Ajouter", class: "btn btn-warning"%>
+  <% end %>
+
+<%# =============== PARTIE EN COURS ===============%>
+
     <h2>C'est parti!</h2>
     <ul>
       <li>Qui commence ? </li>
       <button data-action="click->overlay#display"><i class="fa-regular fa-circle-question"></i></button>
-      <li>Lanceur de dès</li>
-      <li>Sablier</li>
+      <%# <li>Lanceur de dès</li>
+      <li>Sablier</li> %>
     </ul>
    </div>
   <div class="spin-overlay" data-overlay-target="overlay">
     <%= render "parties/roulette", players: @players %>
   </div>
-  <h2>Fin de partie!</h2>
+
+  <%# =============== PARTIE FINIE ===============%>
+
+  <h2>Scores:</h2>
   <%= render 'players/form_party', players: @player %>
-  <button>Terminer la partie</button>
-  <%= render 'form_end_party', parties: @party %>
+  <%# <%= render 'form_end_party', parties: @party %>
+  <%= link_to "Terminer", boardgame_party_path(@boardgame, @party), data: {turbo_method: :patch}  %>
+
+  <%= link_to "Retour au jeu", boardgame_path(@boardgame) %>
 </div>
-<%= console %>
