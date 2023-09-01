@@ -20,7 +20,7 @@
   </div>
   <%= simple_form_for [@party, @player] do |f| %>
     <%= f.association :user, label: 'Nouveau joueur ', label_method: :username, value_method: :id %>
-    <%= f.submit "Ajouter", class: "btn btn-warning"%>
+    <%= f.submit "Ajouter", class: "btn btn-secondary"%>
   <% end %>
 
 <%# =============== PARTIE EN COURS ===============%>
@@ -42,7 +42,7 @@
   <h2>Scores:</h2>
   <%= render 'players/form_party', players: @player %>
   <%# <%= render 'form_end_party', parties: @party %>
-  <%= link_to "Terminer", boardgame_party_path(@boardgame, @party), data: {turbo_method: :patch}  %>
+  <%= link_to "Terminer", boardgame_party_path(@boardgame, @party), data: {turbo_method: :patch}, class="btn btn-secondary"  %>
 
   <%= link_to "Retour au jeu", boardgame_path(@boardgame) %>
 </div>
