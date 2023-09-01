@@ -31,11 +31,11 @@
     <%= console %>
   </div>
 
-  <h3>Ils y jouent :</h3>
   <div class="player-container">
+  <h3>Ils y jouent :</h3>
     <% @players.each do |player| %>
       <div>
-        <h5><%= player.user.username %></h5>
+        <%# <h5><%= player.user.username %></h5>
         <% if player.user.avatar.attached? %>
           <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
         <% else %>
@@ -46,28 +46,26 @@
   </div>
 
   <div class="party-container">
-    <h2>Parties</h2>
-    <div>
-      <h5>Dernières parties :</h5>
-      <% @boardgame.parties.each do |party| %>
-        <div class="party-card">
-          <%= party.end_time %>
-          <% party.players.each do |player| %>
-            <%= player.username %>
-            <%= player.score %>
-          <% end %>
-        </div>
-      <% end %>
-      <%# Il faudrait render une card de parties qui inclue les parties du current user %>
-    </div>
-
-    <div class="challenge-container">
-      <h2>Challenges</h2>
-      <ul>
-        <li>Faire 10 parties</li>
-        <li>Gagner 5 parties</li>
-        <li>Obtenir 500 points cumulés</li>
-      </ul>
-    </div>
+    <h2>Mes dernières parties</h2>
+    <% @boardgame.parties.each do |party| %>
+      <div class="party-card">
+        <%= party.end_time %>
+        <% party.players.each do |player| %>
+          <%= player.username %>
+          <%= player.score %>
+        <% end %>
+      </div>
+    <% end %>
+    <%# Il faudrait render une card de parties qui inclue les parties du current user %>
   </div>
+
+  <div class="challenges-container">
+    <h2>Challenges</h2>
+    <ul>
+      <li class="challenge-card"><i class="fa-solid fa-circle-check"></i></i> Jouer 10 parties</li>
+      <li class="challenge-card"><i class="fa-solid fa-circle-check"></i></i> Gagner 5 parties</li>
+      <li class="challenge-card"><i class="fa-regular fa-circle-check"></i> Obtenir 500 points cumulés</li>
+    </ul>
+  </div>
+
 </div>
