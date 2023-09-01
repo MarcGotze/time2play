@@ -1,5 +1,5 @@
 <div class="game-banner">
-  <img class="show-img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>*
+  <img class="show-img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
   <% if user_signed_in? %>
     <% if current_user.boardgame_ids.include?(@boardgame.id) %>
       <%= link_to game_to_user_path(GameToUser.find_by(user:current_user, boardgame:@boardgame)), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :delete} do %>
