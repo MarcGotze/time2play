@@ -8,7 +8,7 @@
 require "open-uri"
 
 Boardgame.destroy_all
-Player.destroy_all
+User.destroy_all
 
 puts "=========================================================================="
 puts "Creating games..."
@@ -155,13 +155,70 @@ puts "==========================================================================
 puts "=========================================================================="
 puts "Creating players..."
 puts "=========================================================================="
-10.times do
-  Player.create!(
-    score: rand(0..500),
-    username: Faker::Name.first_name,
-    party: Party.all.shuffle.first,
-    user: User.all.shuffle.first)
-end
+
+patrick = URI.open("https://static1.purebreak.com/articles/5/20/05/85/@/728213-patrick-l-etoile-de-mer-sera-la-star-du-diapo-2.jpg")
+user = User.create(
+  username: "Patrick",
+  email: "patrick@gmail.com",
+  password: "azerty",
+)
+user.avatar.attach(io: patrick, filename: "728213-patrick-l-etoile-de-mer-sera-la-star-du-diapo-2.jpg", content_type: "image/jpg")
+puts user.username
+
+sandy = URI.open("https://costumesheaven.b-cdn.net/wp-content/uploads/2022/02/sandycheeks_1.jpg")
+user = User.create(
+  username: "Sandy",
+  email: "sandy@gmail.com",
+  password: "azerty",
+)
+user.avatar.attach(io: sandy, filename: "sandycheeks_1.jpg", content_type: "image/jpg")
+puts user.username
+
+carlo = URI.open("https://static.wikia.nocookie.net/bob-leponge/images/0/05/Squidward_stock_art.png/revision/latest?cb=20190801142211&path-prefix=fr")
+user = User.create(
+  username: "Carlo",
+  email: "carlo@gmail.com",
+  password: "azerty",
+)
+user.avatar.attach(io: carlo, filename: "carlo.jpg", content_type: "image/jpg")
+puts user.username
+
+krabs = URI.open("https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs.svg/1200px-Mr._Krabs.svg.png")
+user = User.create(
+  username: "Krabs",
+  email: "krabs@gmail.com",
+  password: "azerty",
+)
+user.avatar.attach(io: krabs, filename: "1200px-Mr._Krabs.svg.png", content_type: "image/png")
+puts user.username
+
+plancton = URI.open("https://static.wikia.nocookie.net/villains-fr/images/6/6b/EvilPlankton24.png/revision/latest?cb=20200807094048&path-prefix=fr")
+user = User.create(
+  username: "Plancton",
+  email: "plancton@gmail.com",
+  password: "azerty",
+)
+user.avatar.attach(io: plancton, filename: "plancton.png", content_type: "image/png")
+puts user.username
+
+kenshiro = URI.open("https://static.wikia.nocookie.net/hokuto-no-ken-le-survivant-fr/images/c/cc/T%C3%A9l%C3%A9chargement_%2831%29.jpeg/revision/latest?cb=20200806023516&path-prefix=fr")
+user = User.create(
+  username: "Kenshiro",
+  email: "kenshiro@gmail.com",
+  password: "azerty",
+)
+user.avatar.attach(io: kenshiro, filename: "kenshiro.png", content_type: "image/png")
+puts user.username
+
+bob = URI.open("https://casoar.org/wp-content/uploads/2020/10/Bob-leponge.png")
+user = User.create(
+  username: "Bob",
+  email: "bob@gmail.com",
+  password: "azerty",
+)
+user.avatar.attach(io: bob, filename: "Bob-leponge.png", content_type: "image/png")
+puts user.username
+
 puts "=========================================================================="
 puts "players completed !"
 puts "=========================================================================="
