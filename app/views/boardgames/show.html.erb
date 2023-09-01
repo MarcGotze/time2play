@@ -49,19 +49,21 @@
   </div>
 
 <%# =============== PARTIES SECTION ===============%>
-  <h2 class="mt-3">Mes dernières parties</h2>
-  <div class="party-container">
+<h2 class="mt-3">Mes dernières parties</h2>
+<div class="party-container">
+  <% @boardgame.parties.take(5).each do |party| %>
     <div class="party-card card w-80%">
-      <% @boardgame.parties.take(3).each do |party| %>
-        <div class="card-header"><%= party.end_time %></div>
+      <% if party.end_time.present? %>
+        <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y") %></div>
         <% party.players.each do |player| %>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><%= player.user.avatar.key %> : <%= player.score %> points</li>
+            <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
           </ul>
         <% end %>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <%# ============= CHALLENGES SECTION =============%>
   <div class="challenges-container">
