@@ -4,6 +4,7 @@ class PartiesController < ApplicationController
 
   def show
     @boardgame = @party.boardgame
+    @player = Player.new
     @players = @party.players
     @labels = @players.map(&:user).map(&:username)
     @data = @players.map { 16 }
@@ -35,27 +36,31 @@ class PartiesController < ApplicationController
 
   def new
     @players = @boardgame.players
-    @party = Party.new
+    # @party = Party.new(start_time: Time.now)
+    @party = Party.new(start_time: Date.now)
+
   end
 
   def create
-    @party = Party.new(party_params)
+    @party = Party.new
+    @party.start_time = DateTime.current
     @party.boardgame = @boardgame
     if @party.save
       Player.create!(score: 0, user: current_user, party: @party)
       redirect_to party_path(@party)
     else
-      render :new, status: :unprocessable_entity, notice: 'Ta partie a bien été lancée, amusez-vous bien!'
+      render 'boardgames/show', status: :unprocessable_entity, notice: 'Ta partie a bien été lancée, amusez-vous bien!'
     end
   end
 
   def edit; end
 
   def update
+    @party.end_time = DateTime.current
     if @party.update(party_params)
       redirect_to user_path(current_user)
     else
-      render :new, status: :unprocessable_entity
+      render 'parties/show', status: :unprocessable_entity
     end
   end
 

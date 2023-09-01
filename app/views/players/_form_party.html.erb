@@ -1,7 +1,6 @@
-<h1>Renseigner les scores de la partie</h1>
-    <% @players.each do |player| %>
-      <%= simple_form_for [@party, player]  do |f| %>
-        <%= f.input :score %>
-        <%= f.submit "Valider", class: "btn btn-warning"%>
-      <% end %>
+  <% @players.each do |player| %>
+    <%= simple_form_for [@party, player]  do |f| %>
+      <%= f.input :score, label: player.user.username, placeholder: 'Renseigne le score' %>
+      <%= f.submit "Valider", class: "btn btn-warning"%>
     <% end %>
+  <% end %>
