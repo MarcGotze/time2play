@@ -32,3 +32,4 @@ end
 # resources :boardgames, only: %i[show] do
 #   resources :parties, only: %i[show edit update new create destroy]
 # end
+

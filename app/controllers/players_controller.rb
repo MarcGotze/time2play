@@ -31,7 +31,7 @@ class PlayersController < ApplicationController
     if @player.destroy
       redirect_to party_path(@party), status: :see_other
     else
-      puts "Oupsiii, la joueur n'a pas pu être supprimée"
+      puts "Oupsiii, ce joueur n'a pas pu être supprimé"
     end
   end
 
