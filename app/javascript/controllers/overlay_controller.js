@@ -18,15 +18,15 @@ export default class extends Controller {
     const spinBtn = document.getElementById("spin-btn");
     const finalValue = document.getElementById("final-value");
     //Object that stores values of minimum and maximum angle for a value
-    const rotationValues = [
-      { minDegree: 0, maxDegree: 30, value: 2 },
-      { minDegree: 31, maxDegree: 90, value: 1 },
-      { minDegree: 91, maxDegree: 150, value: 6 },
-      { minDegree: 151, maxDegree: 210, value: 5 },
-      { minDegree: 211, maxDegree: 270, value: 4 },
-      { minDegree: 271, maxDegree: 330, value: 3 },
-      { minDegree: 331, maxDegree: 360, value: 2 },
-    ];
+    // const rotationValues = [
+    //   { minDegree: 0, maxDegree: 30, value: 2 },
+    //   { minDegree: 31, maxDegree: 90, value: 1 },
+    //   { minDegree: 91, maxDegree: 150, value: 6 },
+    //   { minDegree: 151, maxDegree: 210, value: 5 },
+    //   { minDegree: 211, maxDegree: 270, value: 4 },
+    //   { minDegree: 271, maxDegree: 330, value: 3 },
+    //   { minDegree: 331, maxDegree: 360, value: 2 },
+    // ];
     //Size of each piece
     const data = this.dataValue;
     //background color for each piece
@@ -75,7 +75,8 @@ export default class extends Controller {
       for (let i of this.rotationValue) {
         //if the angleValue is between min and max then display it
         if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-          finalValue.innerHTML = `<p>Value: ${i.value}</p>`;
+          console.log(angleValue);
+          finalValue.innerHTML = `<p>${i.value}</p>`;
           spinBtn.disabled = false;
           break;
         }
@@ -89,7 +90,7 @@ export default class extends Controller {
     spinBtn.addEventListener("click", () => {
       spinBtn.disabled = true;
       //Empty final value
-      finalValue.innerHTML = `<p>Good Luck!</p>`;
+      finalValue.innerHTML = `<p>Le 1er joueur est...</p>`;
       //Generate random degrees to stop at
       let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
       //Interval for rotation animation
