@@ -4,8 +4,8 @@
     <% if current_user.boardgame_ids.include?(@boardgame.id) %>
       <%= link_to game_to_user_path(GameToUser.find_by(user:current_user, boardgame:@boardgame)), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :delete} do %>
         <i class="fa-regular fa-square-minus fa-2xl" style="color: red;"></i>
+      <%= link_to "Jouer", new_boardgame_party_path(@boardgame), class: "new-game btn btn-primary" %>
       <% end %>
-      <%= link_to "Commencer une partie", new_boardgame_party_path(@boardgame) %>
     <% else %>
       <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
         <i class="fa-regular fa-square-plus fa-2xl" style="color: green;"></i>
