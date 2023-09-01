@@ -1,7 +1,8 @@
+
 <div data-controller="overlay"
-  data-overlay-data-value="<%= @data %>"
-  data-overlay-labels-value="<%= @labels %>"
-  data-overlay-rotation-value="<%= @rotation_values.to_json %>"
+     data-overlay-labels-value="<%= @labels %>"
+     data-overlay-data-value="<%= @data %>"
+     data-overlay-rotation-value="<%= @players.count > 1 ? @rotation_values.to_json : "" %>"
   >
   <%# =============== PLAYERS SECTION ===============%>
 
@@ -25,17 +26,19 @@
 
 <%# =============== PARTIE EN COURS ===============%>
 
-    <h2>C'est parti!</h2>
+  <h2>C'est parti!</h2>
+
+  <% if @players.count >= 2 %>
     <ul>
       <li>Qui commence ? </li>
       <button data-action="click->overlay#display"><i class="fa-regular fa-circle-question"></i></button>
       <%# <li>Lanceur de dès</li>
       <li>Sablier</li> %>
     </ul>
-   </div>
-  <div class="spin-overlay" data-overlay-target="overlay">
-    <%= render "parties/roulette", players: @players %>
-  </div>
+    <div class="spin-overlay" data-overlay-target="overlay">
+      <%= render "parties/roulette", players: @players %>
+    </div>
+  <% end %>
 
   <%# =============== PARTIE FINIE ===============%>
 
