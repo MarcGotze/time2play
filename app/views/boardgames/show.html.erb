@@ -35,7 +35,7 @@
 
   <div class="player-container">
   <h3>Ils y jouent :</h3>
-    <% @players.each do |player| %>
+    <% @players.take(3).each do |player| %>
       <div>
         <%# <h5><%= player.user.username %></h5>
         <% if player.user.avatar.attached? %>
@@ -47,23 +47,23 @@
     <% end %>
   </div>
 
+    <h2 class="mt-3">Mes dernières parties</h2>
   <div class="party-container">
-    <h2>Mes dernières parties</h2>
-    <% @boardgame.parties.each do |party| %>
-      <div class="party-card">
-        <%= party.end_time %>
+    <div class="party-card card w-80%">
+      <% @boardgame.parties.take(3).each do |party| %>
+        <div class="card-header"><%= party.end_time %></div>
         <% party.players.each do |player| %>
-          <%= player.username %>
-          <%= player.score %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= player.user.avatar.key %> : <%= player.score %> points</li>
+          </ul>
         <% end %>
       </div>
     <% end %>
-    <%# Il faudrait render une card de parties qui inclue les parties du current user %>
   </div>
 
   <div class="challenges-container">
     <h2>Challenges</h2>
-    <ul>
+    <ul class="mb-3">
       <li class="challenge-card"><i class="fa-solid fa-circle-check"></i></i> Jouer 10 parties</li>
       <li class="challenge-card"><i class="fa-solid fa-circle-check"></i></i> Gagner 5 parties</li>
       <li class="challenge-card"><i class="fa-regular fa-circle-check"></i> Obtenir 500 points cumulés</li>
