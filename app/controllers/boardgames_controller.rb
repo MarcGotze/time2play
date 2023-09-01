@@ -21,6 +21,7 @@ class BoardgamesController < ApplicationController
 
   def show
     @boardgame = Boardgame.find(params[:id])
+    @players = @boardgame.players
   end
 
   private

@@ -13,44 +13,54 @@
 </div>
 
 <div class="container">
-  <div>
-    <h1 class="mt-3" ><%= @boardgame.title %></h1>
-  </div>
-  <div class="game-info-container">
-    <ul>
-      <% @boardgame.category.split(',').each do |element|  %>
-        <li class="category"><%= element %></li>
-      <% end %>
-    </ul>
-    <div>
-      <div>
-        <i class="fa-solid fa-people-group"> <%= @boardgame.min_player %> - <%= @boardgame.max_player %></i>
-        <i class="fa-solid fa-child-reaching"> <%= @boardgame.age %>+</i>
-        <i class="fa-regular fa-hourglass-half"><%= @boardgame.play_time %> mn</i>
-        <i class="fa-regular fa-star"><%= @boardgame.rating %></i>
+  <div class="">
+    <h1 class="mt-3 mb-3" ><%= @boardgame.title %></h1>
+      <div class="basic-game-info-container">
+        <i class="fa-solid fa-people-group">  <%= @boardgame.min_player %> - <%= @boardgame.max_player %></i>
+        <i class="fa-solid fa-child-reaching">  <%= @boardgame.age %>+</i>
+        <i class="fa-regular fa-hourglass-half">  <%= @boardgame.play_time %> mn</i>
+        <i class="fa-regular fa-star">  <%= @boardgame.rating %></i>
       </div>
       <p><%= @boardgame.description %></p>
+      <ul class="category-container">
+        <% @boardgame.category.split(',').each do |element|  %>
+          <span class="category"><%= element %></span>
+        <% end %>
+      </ul>
     </div>
+    <%= console %>
   </div>
+
+  <h3>Ils y jouent :</h3>
+  <div class="player-container">
+    <% @players.each do |player| %>
+      <div>
+        <h5><%= player.user.username %></h5>
+        <% if player.user.avatar.attached? %>
+          <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+        <% else %>
+            <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
   <div class="party-container">
-    <h2>Mes parties</h2>
-    <h3>Mes partenaires</h3>
-    <div class="player-container">
-      <%# <%= User.first.boardgame_players(Boardgame.first.id) %>
-      <% @boardgame.parties.last.players.each do |player| %>
-        <div>
-          <h5><%= player.username %></h5>
-          <%= player.avatar %>
+    <h2>Parties</h2>
+    <div>
+      <h5>Dernières parties :</h5>
+      <% @boardgame.parties.each do |party| %>
+        <div class="party-card">
+          <%= party.end_time %>
+          <% party.players.each do |player| %>
+            <%= player.username %>
+            <%= player.score %>
+          <% end %>
         </div>
       <% end %>
+      <%# Il faudrait render une card de parties qui inclue les parties du current user %>
     </div>
-    <div>
-      <h4>Stats du jeu</h4>
-      <h5>Dernière partie: <%= @boardgame.parties.last.updated_at %></h5>
-      <% @boardgame.parties.last.players.each do |player| %>
-        <%= player.score %>
-      <% end %>
-    </div>
+
     <div class="challenge-container">
       <h2>Challenges</h2>
       <ul>
