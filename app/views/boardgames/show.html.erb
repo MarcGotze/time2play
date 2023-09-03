@@ -1,38 +1,39 @@
-<div class="game-banner">
-  <img class="show-img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
-  <% if user_signed_in? %>
-    <% if current_user.boardgame_ids.include?(@boardgame.id) %>
-      <%= link_to game_to_user_path(GameToUser.find_by(user:current_user, boardgame:@boardgame)), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :delete} do %>
-        <i class="fa-regular fa-square-minus fa-2xl" style="color: red;"></i>
-      <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-primary" %>
-      <% end %>
-    <% else %>
-      <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
-        <i class="fa-regular fa-square-plus fa-2xl" style="color: green;"></i>
+<div class="show-marging">
+  <div class="game-banner">
+    <h2 class="mt-3 mb-3 game-title" ><%= @boardgame.title %></h2>
+    <img class="show-img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
+    <% if user_signed_in? %>
+      <% if current_user.boardgame_ids.include?(@boardgame.id) %>
+        <%= link_to game_to_user_path(GameToUser.find_by(user:current_user, boardgame:@boardgame)), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :delete} do %>
+          <i class="fa-solid fa-circle-minus" style="color: #707070;"></i>
+        <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
+        <% end %>
+      <% else %>
+        <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
+          <i class="fa-solid fa-circle-plus" style="color: #579F45;--fa-animation-duration: 2s; --fa-fade-opacity: 0.6;"></i>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
-<%# =============== GAME SECTION ===============%>
-<div class="container">
-  <div class="">
-    <h1 class="mt-3 mb-3" ><%= @boardgame.title %></h1>
-      <div class="basic-game-info-container">
-        <i class="fa-solid fa-people-group">  <%= @boardgame.min_player %> - <%= @boardgame.max_player %></i>
-        <i class="fa-solid fa-child-reaching">  <%= @boardgame.age %>+</i>
-        <i class="fa-regular fa-hourglass-half">  <%= @boardgame.play_time %> mn</i>
-        <i class="fa-regular fa-star">  <%= @boardgame.rating %></i>
-      </div>
-      <p><%= @boardgame.description %></p>
-      <ul class="category-container">
-        <% @boardgame.category.split(',').each do |element|  %>
-          <span class="category"><%= element %></span>
-        <% end %>
-      </ul>
+  </div>
+  <%# =============== GAME SECTION ===============%>
+  <div class="game-container">
+    <div class="">
+        <div class="basic-game-info-container">
+          <i class="fa-solid fa-people-group">  <%= @boardgame.min_player %> - <%= @boardgame.max_player %></i>
+          <i class="fa-solid fa-child-reaching">  <%= @boardgame.age %>+</i>
+          <i class="fa-regular fa-hourglass-half">  <%= @boardgame.play_time %> mn</i>
+          <i class="fa-regular fa-star">  <%= @boardgame.rating %></i>
+        </div>
+        <p><%= @boardgame.description %></p>
+        <ul class="category-container">
+          <% @boardgame.category.split(',').each do |element|  %>
+            <span class="category"><%= element %></span>
+          <% end %>
+        </ul>
     </div>
   </div>
 
-<%# =============== PLAYERS SECTION ===============%>
+  <%# =============== PLAYERS SECTION ===============%>
   <div class="player-container">
     <h3>Ils y jouent :</h3>
     <% @players.take(3).each do |player| %>
@@ -47,22 +48,23 @@
     <% end %>
   </div>
 
-<%# =============== PARTIES SECTION ===============%>
-<h2 class="mt-3">Mes dernières parties</h2>
-<div class="party-container">
-  <% @parties.take(5).each do |party| %>
-    <div class="party-card card w-80%">
-      <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
-      <% party.players.order(:score).reverse do |player| %>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
-        </ul>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+  <%# =============== PARTIES SECTION ===============%>
+  <h2 class="mt-3">Mes dernières parties</h2>
+  <div class="party-container">
+    <% @parties.take(5).each do |party| %>
+      <div class="party-card card w-80%">
+        <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%>
+        </div>
+        <% party.players.order(:score).reverse do |player| %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
-<%# ============= CHALLENGES SECTION =============%>
+  <%# ============= CHALLENGES SECTION =============%>
   <div class="challenges-container">
     <h2>Challenges</h2>
     <ul class="mb-3">
@@ -71,6 +73,4 @@
       <li class="challenge-card"><i class="fa-regular fa-circle-check"></i> Obtenir 500 points cumulés</li>
     </ul>
   </div>
-
 </div>
-<%= console %>
