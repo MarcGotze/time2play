@@ -64,7 +64,7 @@
   <% end %>
 </div>
 
-<%# ============= CHALLENGES SECTION =============%>
+<%# ============= HARD CHALLENGES SECTION =============%>
   <div class="challenges-container">
     <h2>Challenges</h2>
     <ul class="mb-3">
@@ -73,6 +73,22 @@
       <li class="challenge-card"><i class="fa-regular fa-circle-check"></i> Obtenir 500 points cumulés</li>
     </ul>
   </div>
+
+<%# ==================================================== %>
+<%# TEST CHALLENGES DYNAMIC %>
+<%# ==================================================== %>
+<div class="challenges-container">
+  <ul class="mb-3">
+    <% @boardgame.challenges.each do |challenge| %>
+      <li class="challenge-card">🥷 <%= challenge.title %></li>
+    <% end %>
+  </ul>
+  <% if user_signed_in? %>
+  <h3>Proposer un défis</h3>
+    <%= render 'challenges/new_form', challenges: @challenge %>
+  <% end %>
+</div>
+
 
 </div>
 <%= console %>
