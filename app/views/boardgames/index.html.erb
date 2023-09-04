@@ -29,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = `https://vision.googleapis.com/v1/images:annotate`;
     const apiKey = "<%= ENV['GCLOUD_KEY'] %>";
     const apiUser = "<%= ENV['GCLOUD_USER'] %>";
-    console.log(apiKey);
-    console.log(apiUser);
+
     try {
     const response = await fetch(apiUrl, {
       method: 'POST',
