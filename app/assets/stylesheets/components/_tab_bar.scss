@@ -5,10 +5,11 @@
   position: fixed;
   bottom: 0;
   z-index: 2;
-  .active{
-    color: white;
-  }
-  .inactive{
-    color: grey;
-  }
+}
+.active{
+  color: #ffcd39;
+}
+
+.inactive{
+  color: var(--light-font);
 }

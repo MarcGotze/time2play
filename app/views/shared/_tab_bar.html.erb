@@ -1,16 +1,17 @@
-<div class="tab-bar d-flex align-items-center justify-content-center justify-content-evenly">
-  <%= link_to boardgames_path, class: "active" do %>
+<div data-controller="tabbar-active" class="tab-bar d-flex align-items-center justify-content-center justify-content-evenly">
+  <%= link_to boardgames_path, data: { action: "click->tabbar-active#touch",
+  tabbar_active_target: "tab1" } do %>
     <i class="fa-solid fa-indent fa-xl"></i>
   <% end %>
-   <%= link_to "#", class: "inactive" do %>
+   <%= link_to "#", data: { tabbar_active_target: "tab2" } do %>
     <i class="fa-solid fa-trophy fa-xl"></i>
   <% end %>
   <% if user_signed_in? %>
-    <%= link_to user_path(current_user), class: "active" do %>
+    <%= link_to user_path(current_user), data: { tabbar_active_target: "tab3" } do %>
       <i class="fa-solid fa-user fa-xl"></i>
     <% end %>
   <% else %>
-    <%= link_to new_user_session_path, class: "active" do %>
+    <%= link_to new_user_session_path, data: { tabbar_active_target: "tab4" } do %>
       <i class="fa-solid fa-user fa-xl"></i>
     <% end %>
   <% end %>

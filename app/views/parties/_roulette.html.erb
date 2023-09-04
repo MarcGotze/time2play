@@ -3,15 +3,14 @@
   <div class="spin-container">
     <canvas id="wheel"></canvas>
     <button id="spin-btn">
-      <%= image_tag "benji.png", alt: "benji", width: 48 %>
-    </button>
+<i class=" dice fa-solid fa-dice" style="color: #1C3057;"></i>    </button>
     <svg class="spinner-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
     </svg>
     <%# <img class="spinner-arrow" src="spinner-arrow.png" alt="spinner-arrow" />  %>
   </div>
   <div id="final-value">
-    <p>Appuie sur Benji pour savoir qui commence!</p>
+    <p>Appuie sur les dés pour savoir qui commence!</p>
   </div>
   <button class="btn btn-info" id="close" data-action="click->overlay#close">Fermer</button>
 </div>
