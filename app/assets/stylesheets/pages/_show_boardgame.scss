@@ -6,9 +6,8 @@
   justify-content: center;
   .category {
     background-color: var(--orange-thumbnail);
-    padding: 0.5em 0.3em;
+    padding: 0.3em;
     list-style: none;
-    border-radius: 0.3em;
   }
 }
 
@@ -16,13 +15,15 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 2em;
-  margin-bottom: 1.5em;
+  gap: .6em .2em;
+  margin: 3em auto 1em auto;
   i {
-    background-color: var(--light-blue);
+    background-color: var(--dark-blue);
     padding: 0.5em;
-    width: 8em;
+    width: 11em;
     text-align: center;
+    border-radius: 5px;
+    color: var(--light-font);
   }
 }
 

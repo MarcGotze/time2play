@@ -9,9 +9,12 @@
         <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
         <% end %>
       <% else %>
-        <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
-          <i class="fa-solid fa-circle-plus" style="color: #579F45;--fa-animation-duration: 2s; --fa-fade-opacity: 0.6;"></i>
-        <% end %>
+        <div class="add-flex">
+          <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
+          <i class="fa-solid fa-circle-plus" style="color: #ffcd39;--fa-animation-duration: 2s; --fa-fade-opacity: 0.6;"></i>
+          <% end %>
+          <p>Ajouter à mon profil</p>
+        </div>
       <% end %>
     <% end %>
   </div>
@@ -64,10 +67,14 @@
         </button>
       </h2>
       <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accordion-body accordion-background ">
+        <div class="accory.end_timebody accordion-background ">
           <% @parties.take(5).each do |party| %>
               <div class="party-card card w-80%">
-                <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
+                <% if party.end_time.nil? %>
+                 <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
+                 <% else %>
+                  <div></div>
+                <% end %>
                 <% party.players.order(:score).reverse do |player| %>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
@@ -113,7 +120,7 @@
                 <% end %>
               </ul>
               <% if user_signed_in? %>
-              <h3>Proposer un défis</h3>
+              <h3>Proposer un défi</h3>
                 <%= render 'challenges/new_form', challenges: @challenge %>
               <% end %>
             </div>
