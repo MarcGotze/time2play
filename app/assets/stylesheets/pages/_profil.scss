@@ -44,19 +44,13 @@
   color: white;
 }
 
-.new-game {
-  position: absolute;
-  bottom: 8px;
-  left: 15px;
-}
-
 .line-height-none {
   line-height: 0;
 }
 
 .animate-character
 {
-   text-transform: uppercase;
+  text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,
     #231557 0%,
