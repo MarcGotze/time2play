@@ -125,7 +125,7 @@
 
 <% @parties.take(5).each do |party| %>
   <div class="party-card card w-80%">
-    <% if party.end_time.nil? && party.players.nil?%>
+    <% if party.end_time.nil? == false || party.players.nil? == false %>
       <p>Tu n'as pas encore joué 🙈</p>
       <% else %>
       <%= cl_image_tag party.boardgame.photo.key, height: 40, width: 40, crop: :fit %>
