@@ -214,7 +214,7 @@ puts boardgame.title
 
 esw = URI.open("https://cf.geekdo-images.com/Da8TXGBq3UjKINgTRIZY9A__original/img/P7TSglbGEFsDOzWKIo8iMLOzl3c=/0x0/filters:format(jpeg)/pic1170265.jpg")
 boardgame = Boardgame.create(
-  title: "Epic Spell Wars : Baston de sorciers au Mont du Crâne Chauve",
+  title: "Epic Spell Wars : Baston de sorciers",
   description: "L’ultime bataille entre les sorciers les plus vénères du royaume fait rage ! Vous êtes l’un d’entre eux,
                alors, essayez de ne pas tout faire foirer.",
   play_time: 60,
@@ -255,6 +255,21 @@ boardgame = Boardgame.create(
   category:"Animaux, Fantastique"
 )
 boardgame.photo.attach(io: root, filename: "pic4254509.jpg", content_type: "image/png")
+puts boardgame.title
+
+bang = URI.open("https://cf.geekdo-images.com/_04xA-d-rfygm0c49HE4vA__original/img/el-4Ilu9DeYunRT3r4TVP8Vy3uk=/0x0/filters:format(jpeg)/pic1170986.jpg")
+boardgame = Boardgame.create(
+  title: "Bang !",
+  description: "Avec le jeu Bang !, devenez Shérif, Hors-la-loi ou Renégat et triomphez de vos adversaires !
+                Un jeu de cartes à l'ambiance survoltée dans l'univers du Far West !",
+  play_time: 60,
+  age: 8,
+  rating: 6.5,
+  min_player: 4,
+  max_player: 7,
+  category:"Western"
+)
+boardgame.photo.attach(io: bang, filename: "pic1170986.jpg", content_type: "image/png")
 puts boardgame.title
 
 puts "=========================================================================="

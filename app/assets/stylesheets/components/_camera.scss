@@ -1,0 +1,17 @@
+.hidden {
+  display: none;
+}
+
+.hidden-btn {
+  visibility: hidden;
+}
+
+#video, #canvas{
+  border: 3px solid white;
+  border-radius: 25px;
+  width: 90%;
+}
+
+.camera-btn {
+  width: 30%;
+}

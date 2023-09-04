@@ -6,9 +6,10 @@
               params[:query],
               class: "form-control",
               placeholder: "Rechercher un jeu...",
-              data: {action: 'keyup->search#handleSubmit', target: 'search.query'}
+              data: {action: 'keyup->search#handleSubmit', target: 'search.query'},
+              id: 'search-input'
           %>
-        <%= submit_tag "Chercher", name: "", class: "btn btn-primary" %>
+        <%= submit_tag "Chercher", name: "", class: "btn btn-primary", id: "btn-search" %>
       <% end %>
     </div>
   </div>
