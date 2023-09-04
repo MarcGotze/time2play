@@ -43,9 +43,20 @@
   <%# =============== PARTIE FINIE ===============%>
 
   <h2>Scores:</h2>
-  <%= render 'players/form_party', players: @player %>
-  <%# <%= render 'form_end_party', parties: @party %>
-  <%= link_to "Terminer", boardgame_party_path(@boardgame, @party), data: {turbo_method: :patch}, class: "btn btn-secondary"  %>
+  <div data-controller='form-party-end' >
+    <%= render 'players/form_party', players: @player %>
+    <%# <%= render 'form_end_party', parties: @party %>
 
-  <%= link_to "Retour au jeu", boardgame_path(@boardgame) %>
+    <%= simple_form_for [@party], data: { action: "submit->form-party-end#endParty" } do |f| %>
+      <%= f.hidden_field :players, data: { form_party_end_target: "hidden" } %>
+      <%= f.submit "Terminer" %>
+    <% end %>
+
+
+    <%# tu vas avoir un formulaire avec un hidden field de tes players avec leur score %>
+  </div>
+
+
+    <%= link_to "Retour au jeu", boardgame_path(@boardgame) %>
 </div>
+<%= console %>

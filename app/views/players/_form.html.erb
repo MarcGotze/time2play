@@ -2,9 +2,9 @@
   <% @boardgame.parties.each do |party| %>
     <% party.players.each do |player| %>
       <%= simple_form_for [party, player]  do |f| %>
-        
+
         <%= f.input :score %>
-        <%= f.submit "Valider", class: "btn btn-warning"%>
+        <%= f.submit "Valider", class: "btn btn-info"%>
       <% end %>
     <% end %>
   <% end %>

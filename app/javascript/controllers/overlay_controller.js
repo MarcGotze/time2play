@@ -10,9 +10,6 @@ export default class extends Controller {
   static targets = ["overlay"]
 
   connect() {
-
-
-
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spin-btn");
     const finalValue = document.getElementById("final-value");
