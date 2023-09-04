@@ -1,4 +1,51 @@
+//DIVERS
+
+// .container.party {
+//   width: 98%;
+//   border: solid red 1px;
+// }
+
+.title-party {
+  padding-bottom: .5em;
+  text-align: center;
+  font-variant-caps: small-caps;
+  letter-spacing: .02em;
+}
+
+.section-selection, .container-go,.container-scores {
+  width:90%;
+  padding: 1em 0;
+  margin: 2em auto;
+  background-color: var(--middle-blue);
+  box-shadow: 2px 2px 8px var(--anthracite);
+}
+
+//SECTION SELECTION JOUEURS
+.player-container {
+  background-color: var(--light-blue);
+}
+
+.avatar {
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+  animation: bounce 2s ease infinite;
+  @keyframes bounce {
+    70% { transform:translateY(0%); }
+    80% { transform:translateY(-15%); }
+    90% { transform:translateY(0%); }
+    95% { transform:translateY(-7%); }
+    97% { transform:translateY(0%); }
+    99% { transform:translateY(-3%); }
+    100% { transform:translateY(0); }
+  }
+}
+
+//SECTION C'EST PARTI
+
+
+//SECTION SCORES
 .score-field {
   width: 15%;
-  border: solid red 1px;
 }
+
+//END
+
