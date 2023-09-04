@@ -106,11 +106,17 @@
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
           <div class="accordion-body accordion-background ">
-            <ul class="mb-3">
-              <li class="challenge-card"><i class="fa-solid fa-circle-check"></i></i> Jouer 10 parties</li>
-              <li class="challenge-card"><i class="fa-solid fa-circle-check"></i></i> Gagner 5 parties</li>
-              <li class="challenge-card"><i class="fa-regular fa-circle-check"></i> Obtenir 500 points cumulés</li>
-            </ul>
+            <div class="challenges-container">
+              <ul class="mb-3">
+                <% @boardgame.challenges.each do |challenge| %>
+                  <li class="challenge-card">🥷 <%= challenge.title %></li>
+                <% end %>
+              </ul>
+              <% if user_signed_in? %>
+              <h3>Proposer un défis</h3>
+                <%= render 'challenges/new_form', challenges: @challenge %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

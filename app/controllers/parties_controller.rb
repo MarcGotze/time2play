@@ -39,7 +39,6 @@ class PartiesController < ApplicationController
 
   def new
     @players = @boardgame.players
-    # @party = Party.new(start_time: Time.now)
     @party = Party.new(start_time: Date.now)
   end
 

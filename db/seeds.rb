@@ -9,6 +9,7 @@ require "open-uri"
 
 Boardgame.destroy_all
 User.destroy_all
+Party.destroy_all
 
 puts "=========================================================================="
 puts "Creating games..."
@@ -343,4 +344,44 @@ puts user.username
 
 puts "=========================================================================="
 puts "players completed !"
+puts "=========================================================================="
+
+puts "=========================================================================="
+puts "Creating challenges..."
+puts "=========================================================================="
+
+challenge = Challenge.create(
+  title: "Gagner 10 parties",
+  category: "Badge",
+  boardgame: Boardgame.all.sample,
+  description: "ceci est une super description"
+)
+puts challenge.title
+
+challenge = Challenge.create(
+  title: "Gagner 5 parties",
+  category: "Badge",
+  boardgame: Boardgame.all.sample,
+  description: "ceci est une super description"
+)
+puts challenge.title
+
+challenge = Challenge.create(
+  title: "Gagner 3 parties",
+  category: "Badge",
+  boardgame: Boardgame.all.sample,
+  description: "ceci est une super description"
+)
+puts challenge.title
+
+challenge = Challenge.create(
+  title: "Gagner 5 fois de suite",
+  category: "Badge",
+  boardgame: Boardgame.all.sample,
+  description: "ceci est une super description"
+)
+puts challenge.title
+
+puts "=========================================================================="
+puts "challenges completed !"
 puts "=========================================================================="
