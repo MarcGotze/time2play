@@ -126,11 +126,11 @@
 <% @parties.take(5).each do |party| %>
   <div class="party-card card w-80%">
     <% if party.end_time.nil? == false || party.players.nil? == false %>
-      <p>Tu n'as pas encore joué 🙈</p>
-      <% else %>
       <%= cl_image_tag party.boardgame.photo.key, height: 40, width: 40, crop: :fit %>
       <%#= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
       <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
+      <% else %>
+      <p>Tu n'as pas terminé ta dernière partie 🙈</p>
     <% end %>
     <% party.players.order(:score).reverse do |player| %>
       <ul class="list-group list-group-flush">
