@@ -3,6 +3,8 @@ class ChallengesController < ApplicationController
 
   def index
     @challenges = Challenge.all
+    # @badges = Challenge.all.where(category: "badge")
+    # @user_challenges = Challenge.all.where(category: "challenge")
   end
 
   def new
