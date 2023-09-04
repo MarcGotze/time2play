@@ -1,14 +1,15 @@
 class ChallengesController < ApplicationController
   before_action :set_boardgame, only: %i[new create]
+  before_action :set_challenge, only: %i[edit update]
+
 
   def index
     @challenges = Challenge.all
-    # @badges = Challenge.all.where(category: "badge")
-    # @user_challenges = Challenge.all.where(category: "challenge")
+    @achievement = Achievement.new
   end
 
   def new
-    @boardgame = @challenge.boardgame
+    @achievement = @challenge.achievement
     @challenge = Challenge.new(boardgame: @boardgame)
   end
 
@@ -26,6 +27,10 @@ class ChallengesController < ApplicationController
 
   def set_boardgame
     @boardgame = Boardgame.find(params[:boardgame_id])
+  end
+
+  def set_challenge
+    @challenge = Challenge.find(params[:id])
   end
 
   def challenge_params

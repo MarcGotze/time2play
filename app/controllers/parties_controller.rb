@@ -2,6 +2,7 @@ class PartiesController < ApplicationController
   before_action :set_party, only: %i[show edit update destroy]
   before_action :set_boardgame, only: %i[new create]
   skip_before_action :verify_authenticity_token
+  after_action
 
   def show
     @boardgame = @party.boardgame
@@ -48,7 +49,7 @@ class PartiesController < ApplicationController
     @party.start_time = DateTime.current
     @party.boardgame = @boardgame
     if @party.save
-      Player.create!(score: 0, user: current_user, party: @party)
+      Player.create(score: 0, user: current_user, party: @party)
       redirect_to party_path(@party)
     else
       render 'boardgames/show', status: :unprocessable_entity, notice: 'Ta partie a bien été lancée, amusez-vous bien!'
@@ -58,7 +59,7 @@ class PartiesController < ApplicationController
   def edit; end
 
   def update
-    params[:party][:players].split(",").each_slice(2) do |player|
+    params[:party][:players].split(',').each_slice(2) do |player|
       p player
       @player = Player.find(player[0])
       @player.update(score: player[1])
