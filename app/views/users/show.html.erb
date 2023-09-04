@@ -102,15 +102,7 @@
    <p>Tu n'as pas encore joué 😿</p>
   <% end %>
   <%# ====================== %>
-  <%# <% def victory_amount %>
-    <%# <% @victory = 0 %> %>
-    <%# <% @user.parties.each do |party| %> %>
-      <%# <% ranked = party.players.order(:score) %> %>
-      <%# <% winner = ranked.first %> %>
-      <%# <% return @victory += 1 if winner.user = current_user %> %>
-    <%# <% end %> %>
-  <%# <% end %> %>
-  <%# <p>Parties Gagnées : <%= @user.victory_amount %></p> %>
+  <p>Parties Gagnées : <%= @victories %></p>
   <%# ====================== %>
 </div>
 
@@ -128,4 +120,3 @@
 
 <%# ==================== CHALLENGES SECTION ================== %>
 <h3>Mes défis remplis</h3>
-<%= console %>

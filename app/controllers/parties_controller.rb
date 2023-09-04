@@ -1,6 +1,7 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: %i[show edit update destroy]
-  before_action :set_boardgame, only: %i[new create update]
+  before_action :set_boardgame, only: %i[new create]
+  skip_before_action :verify_authenticity_token
 
   def show
     @boardgame = @party.boardgame
@@ -57,12 +58,22 @@ class PartiesController < ApplicationController
   def edit; end
 
   def update
-    @party.end_time = DateTime.current
-    if @party.save
-      redirect_to user_path(current_user)
-    else
-      render 'parties/show', status: :unprocessable_entity
+    params[:party][:players].split(",").each_slice(2) do |player|
+      p player
+      @player = Player.find(player[0])
+      @player.update(score: player[1])
+
     end
+    ## tu vas récupérer les players dans les params
+    # @players = @party.players
+    ## et tu les updates
+    @party.update(end_time: DateTime.current)
+    render json: { toto: "coj" }
+    # if @party.save
+    #   redirect_to user_path(current_user)
+    # else
+    #   render 'parties/show', status: :unprocessable_entity
+    # end
   end
 
   def destroy
