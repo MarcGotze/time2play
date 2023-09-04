@@ -1,0 +1,31 @@
+.login-container{
+  display: flex;
+  margin-top: 50px;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-actions {
+  button {
+    background-color: white;
+  }
+}
+
+.email {
+  margin-right: 34px
+}
+
+.password {
+  margin-right: 6px;
+}
+
+.btn-submit {
+  margin-top: 20px;
+}

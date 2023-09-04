@@ -6,7 +6,7 @@ class GameToUsersController < ApplicationController
     @game_to_user.user = current_user
     if @game_to_user.save
       # TODO
-      redirect_to boardgame_path(@boardgame), notice: "game successfully added to collection"
+      redirect_to boardgame_path(@boardgame)
     else
       render :new, status: :unprocessable_entity
     end

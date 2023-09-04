@@ -135,6 +135,128 @@ boardgame = Boardgame.create(
 boardgame.photo.attach(io: tavern, filename: "pic4873141.jpg", content_type: "image/png")
 puts boardgame.title
 
+twilight = URI.open("https://cf.geekdo-images.com/_Ppn5lssO5OaildSE-FgFA__original/img/kVpZ0Maa_LeQGWxOqsYKP3N4KUY=/0x0/filters:format(jpeg)/pic3727516.jpg")
+boardgame = Boardgame.create(
+  title: "Twilight Imperium",
+  description: "Quatrième édition de Twilight Imperium, un jeu dans lequel les joueurs devront faire du troc, comploter
+                et entrer en guerre les uns contre les autres pour remplir des objectifs.",
+  play_time: 480,
+  age: 14,
+  rating: 8.6,
+  min_player: 3,
+  max_player: 6,
+  category:"Exploration, Science Fiction, Economie, Politique"
+)
+boardgame.photo.attach(io: twilight, filename: "pic3727516.jpg", content_type: "image/png")
+puts boardgame.title
+
+pandemic = URI.open("https://cf.geekdo-images.com/-Qer2BBPG7qGGDu6KcVDIw__original/img/PlzAH7swN1nsFxOXbfUvE3TkE5w=/0x0/filters:format(png)/pic2452831.png")
+boardgame = Boardgame.create(
+  title: "Pandemic Legacy",
+  description: "Pandemic Legacy - Saison 1 (boîte rouge ou bleue) est un jeu
+                coopératif dans lequel les joueurs forment un groupe d'élite luttant contre la propagation de quatre maladies.",
+  play_time: 60,
+  age: 13,
+  rating: 8.5,
+  min_player: 2,
+  max_player: 4,
+  category:"Sciences, Contemporain"
+)
+boardgame.photo.attach(io: pandemic, filename: "pic2452831.png", content_type: "image/png")
+puts boardgame.title
+
+dune = URI.open("https://cf.geekdo-images.com/PhjygpWSo-0labGrPBMyyg__original/img/mZzaBAEEJpMlHWWmC0R6Su0OibQ=/0x0/filters:format(jpeg)/pic5666597.jpg")
+boardgame = Boardgame.create(
+  title: "Dune Imperium",
+  description: "Adapté de l'univers de Frank Herbert, Dune : Imperium est un jeu de stratégie mêlant deckbuilding
+                et placement d'ouvriers pour offrir une mécanique de jeu profondément thématique pour coller à ce
+                monument de la Science-Fiction.",
+  play_time: 120,
+  age: 14,
+  rating: 8.4,
+  min_player: 1,
+  max_player: 4,
+  category:"Science Fiction"
+)
+boardgame.photo.attach(io: dune, filename: "pic5666597.jpg", content_type: "image/png")
+puts boardgame.title
+
+scythe = URI.open("https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BUZdA__original/img/HlDb9F365w0tSP8uD1vf1pfniQE=/0x0/filters:format(jpeg)/pic3163924.jpg")
+boardgame = Boardgame.create(
+  title: "Scythe",
+  description: "Dans Scythe, prenez le contrôle de l'Usine, un territoire encore meurtri par les combats de la
+                Première Guerre Mondiale. Vivez une expérience de jeu complète et hautement stratégique et devenez
+                le peuple le plus reconnu.",
+  play_time: 115,
+  age: 14,
+  rating: 8.2,
+  min_player: 1,
+  max_player: 5,
+  category:"Science Fiction"
+)
+boardgame.photo.attach(io: scythe, filename: "pic3163924.jpg", content_type: "image/png")
+puts boardgame.title
+
+nemesis = URI.open("https://cf.geekdo-images.com/tAqLpWxQ0Oo3GaPP3MER1g__original/img/sA6r1p6BO_Tgyc3-xgIESC9Y-vg=/0x0/filters:format(jpeg)/pic5073276.jpg")
+boardgame = Boardgame.create(
+  title: "Nemesis",
+  description: "Nemesis est un jeu semi-coopératif où vous et vos camarades cherchez à survivre sur un vaisseau infesté
+                d'organismes hostiles.",
+  play_time: 180,
+  age: 12,
+  rating: 8.3,
+  min_player: 1,
+  max_player: 5,
+  category:"Horreur, Science Fiction"
+)
+boardgame.photo.attach(io: nemesis, filename: "pic5073276.jpg", content_type: "image/png")
+puts boardgame.title
+
+esw = URI.open("https://cf.geekdo-images.com/Da8TXGBq3UjKINgTRIZY9A__original/img/P7TSglbGEFsDOzWKIo8iMLOzl3c=/0x0/filters:format(jpeg)/pic1170265.jpg")
+boardgame = Boardgame.create(
+  title: "Epic Spell Wars : Baston de sorciers au Mont du Crâne Chauve",
+  description: "L’ultime bataille entre les sorciers les plus vénères du royaume fait rage ! Vous êtes l’un d’entre eux,
+               alors, essayez de ne pas tout faire foirer.",
+  play_time: 60,
+  age: 14,
+  rating: 6.5,
+  min_player: 2,
+  max_player: 6,
+  category:"Cartes, Programmation"
+)
+boardgame.photo.attach(io: esw, filename: "pic1170265.jpg", content_type: "image/png")
+puts boardgame.title
+
+wingspan = URI.open("https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__original/img/cI782Zis9cT66j2MjSHKJGnFPNw=/0x0/filters:format(jpeg)/pic4458123.jpg")
+boardgame = Boardgame.create(
+  title: "Wingspan",
+  description: "Wingspan est un jeu de collection dans lequel les joueurs incarnent des amoureux d'oiseaux, chercheurs,
+                observateurs, ornithologues ou collectionneurs, ayant pour objectif d'aménager la plus belle des volières.",
+  play_time: 70,
+  age: 10,
+  rating: 8.1,
+  min_player: 1,
+  max_player: 5,
+  category:"Animaux, Nature"
+)
+boardgame.photo.attach(io: wingspan, filename: "pic4458123.jpg", content_type: "image/png")
+puts boardgame.title
+
+root = URI.open("https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__original/img/E0s2LvtFA1L5YKk-_44D4u2VD2s=/0x0/filters:format(jpeg)/pic4254509.jpg")
+boardgame = Boardgame.create(
+  title: "Root",
+  description: "Root est un jeu asymétrique d'aventure et de guerre dans lequel les joueurs se battent pour le contrôle
+                d'une vaste région sauvage.",
+  play_time: 90,
+  age: 10,
+  rating: 8.1,
+  min_player: 2,
+  max_player: 4,
+  category:"Animaux, Fantastique"
+)
+boardgame.photo.attach(io: root, filename: "pic4254509.jpg", content_type: "image/png")
+puts boardgame.title
+
 puts "=========================================================================="
 puts "Boardgames completed !"
 puts "=========================================================================="
