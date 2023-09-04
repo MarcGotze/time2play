@@ -3,19 +3,20 @@
     <h2 class="mt-3 mb-3 game-title" ><%= @boardgame.title %></h2>
     <img class="show-img" src="<%= cl_image_path @boardgame.photo.key, height: 300, crop: :fit %>"/>
     <% if user_signed_in? %>
-      <% if current_user.boardgame_ids.include?(@boardgame.id) %>
+      <div class="add-flex">
+        <% if current_user.boardgame_ids.include?(@boardgame.id) %>
         <%= link_to game_to_user_path(GameToUser.find_by(user:current_user, boardgame:@boardgame)), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :delete} do %>
           <i class="fa-solid fa-circle-minus" style="color: #707070;"></i>
-        <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
+          <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
         <% end %>
-      <% else %>
-        <div class="add-flex">
+        <p class="grey">Ajouté au profil</p>
+        <% else %>
           <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
           <i class="fa-solid fa-circle-plus" style="color: #ffcd39;--fa-animation-duration: 2s; --fa-fade-opacity: 0.6;"></i>
-          <% end %>
-          <p>Ajouter à mon profil</p>
-        </div>
+        <% end %>
+        <p>Ajouter le jeu à mon profil</p>
       <% end %>
+      </div>
     <% end %>
   </div>
 
@@ -28,7 +29,7 @@
           <i class="fa-regular fa-hourglass-half">  <%= @boardgame.play_time %> mn</i>
           <i class="fa-regular fa-star">  <%= @boardgame.rating %></i>
         </div>
-        <p><%= @boardgame.description %></p>
+        <p class="game-description"><%= @boardgame.description %></p>
     </div>
   </div>
 
@@ -107,7 +108,7 @@
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             Challenges
           </button>
         </h2>
