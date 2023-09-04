@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_29_150732) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_03_152321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.bigint "challenge_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_achievements_on_challenge_id"
+    t.index ["user_id"], name: "index_achievements_on_user_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +65,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_150732) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "challenges", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "boardgame_id", null: false
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id"], name: "index_challenges_on_boardgame_id"
+  end
+
   create_table "game_to_users", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "boardgame_id", null: false
@@ -64,6 +83,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_150732) do
     t.datetime "updated_at", null: false
     t.index ["boardgame_id"], name: "index_game_to_users_on_boardgame_id"
     t.index ["user_id"], name: "index_game_to_users_on_user_id"
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.float "level"
+    t.integer "win_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
   create_table "parties", force: :cascade do |t|
@@ -102,10 +130,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_150732) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "achievements", "challenges"
+  add_foreign_key "achievements", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "challenges", "boardgames"
   add_foreign_key "game_to_users", "boardgames"
   add_foreign_key "game_to_users", "users"
+  add_foreign_key "histories", "users"
   add_foreign_key "parties", "boardgames"
   add_foreign_key "players", "parties"
   add_foreign_key "players", "users"

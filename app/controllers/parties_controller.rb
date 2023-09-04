@@ -4,8 +4,8 @@ class PartiesController < ApplicationController
 
   def show
     @boardgame = @party.boardgame
-    @player = Player.new
     @players = @party.players
+    @player = Player.new
     @labels = @players.map(&:user).map(&:username)
     @data = @players.map { 16 }
     @rotation_values = []
@@ -39,7 +39,6 @@ class PartiesController < ApplicationController
 
   def new
     @players = @boardgame.players
-    # @party = Party.new(start_time: Time.now)
     @party = Party.new(start_time: Date.now)
   end
 

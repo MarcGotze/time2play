@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :parties, through: :players
   has_many :game_to_users, dependent: :destroy
   has_many :boardgames, through: :game_to_users
+  has_many :achievements, dependent: :destroy
+  has_many :challenges, through: :achievements
 
   validates :username, presence: true
   has_one_attached :avatar
@@ -17,4 +19,5 @@ class User < ApplicationRecord
     user_ids    = Player.where(party_id: parties_ids).pluck(:user_id)
     User.where(id: user_ids)
   end
+
 end

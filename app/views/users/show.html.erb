@@ -3,7 +3,7 @@
   <div class="d-flex align-items-center">
     <%= cl_image_tag current_user.avatar.key, height: 75, width: 75, crop: :fit, class: "avatar" %>
     <div class="d-flex flex-column line-height-none">
-      <h2 class="animate-character">Hey <%= @user.username %> !</h2>
+      <h2 class="animate-character">Hey <%= current_user.username %> !</h2>
       <h4>Niveau 10</h4>
       <span class="xp"><em>2456xp</em></span>
     </div>
@@ -96,8 +96,22 @@
 
 <div class="container my-5 background-card">
   <p>Score total: 4549pts</p>
-  <p>Parties jouées: 37</p>
-  <p>Parties Gagnées: 21</p>
+  <% if @parties.count >= 1 %>
+    <p>Parties jouées: <%= @parties.count %></p>
+  <% else %>
+   <p>Tu n'as pas encore joué 😿</p>
+  <% end %>
+  <%# ====================== %>
+  <%# <% def victory_amount %>
+    <%# <% @victory = 0 %> %>
+    <%# <% @user.parties.each do |party| %> %>
+      <%# <% ranked = party.players.order(:score) %> %>
+      <%# <% winner = ranked.first %> %>
+      <%# <% return @victory += 1 if winner.user = current_user %> %>
+    <%# <% end %> %>
+  <%# <% end %> %>
+  <%# <p>Parties Gagnées : <%= @user.victory_amount %></p> %>
+  <%# ====================== %>
 </div>
 
 <div class="container collection">
@@ -111,3 +125,7 @@
   </div>
   <%= render "shared/logout" %>
 </div>
+
+<%# ==================== CHALLENGES SECTION ================== %>
+<h3>Mes défis remplis</h3>
+<%= console %>

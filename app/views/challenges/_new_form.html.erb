@@ -1,0 +1,6 @@
+<%= simple_form_for [@boardgame, @challenge]  do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.association :boardgame %>
+  <%= f.submit "Défier", class: "btn btn-warning"%>
+<% end %>
