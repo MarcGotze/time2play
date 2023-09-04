@@ -118,6 +118,7 @@
               <ul class="mb-3">
                 <% @boardgame.challenges.each do |challenge| %>
                   <li class="challenge-card">🥷 <%= challenge.title %></li>
+                  <%#= link_to 'Défi réalisé!', new_user_achievement_path(current_user) %>
                 <% end %>
               </ul>
               <% if user_signed_in? %>

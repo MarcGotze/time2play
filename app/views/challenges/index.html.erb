@@ -6,7 +6,7 @@
   <%= challenge.title %>
   <%= challenge.description %>
   <%# <p>Participants : <%= challenge.user %>
-  <button>Participer</button>
+  <%= button_to 'Participer', new_challenge_achievement_path(challenge) %>
 </div>
 <% end %>
 <%# <h2>Challenges</h2> %>

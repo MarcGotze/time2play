@@ -128,7 +128,7 @@
     <% if party.end_time.nil? && party.players.nil?%>
       <p>Tu n'as pas encore joué 🙈</p>
       <% else %>
-      <%= cl_image_path party.boardgame.photo.key, height: 50, crop: :fit %>
+      <%= cl_image_tag party.boardgame.photo.key, height: 40, width: 40, crop: :fit %>
       <%#= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
       <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
     <% end %>
