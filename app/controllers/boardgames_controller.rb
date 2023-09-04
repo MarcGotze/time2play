@@ -2,7 +2,11 @@ class BoardgamesController < ApplicationController
   def index
     @boardgames = Boardgame.all
     if params[:query].present?
-      @boardgames = @boardgames.where("title ILIKE ?", "%#{params[:query]}%")
+      keywords = params[:query].split(/\s+/) # Divise la recherche en mots individuels
+      conditions = keywords.map { |keyword| "title ILIKE ?" }.join(" OR ")
+      query_args = keywords.map { |keyword| "%#{keyword}%" }
+
+      @boardgames = @boardgames.where(conditions, *query_args)
     end
   end
 

@@ -13,5 +13,4 @@ export default class extends Controller {
     const query = this.queryTarget.value;
     console.log(`query: ${query}`);
   }
-
-  }
+}
