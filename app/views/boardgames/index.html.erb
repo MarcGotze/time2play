@@ -1,5 +1,8 @@
 <div class="container">
   <button id="captureButton">Prendre une photo</button>
+  <video autoplay id="video"></video>
+  <canvas id="canvas"></canvas>
+  <button id="captureImgButton">Prendre une photo</button>
 </div>
 <%= render "boardgames/partials/search" %>
 <div class="container">
@@ -13,57 +16,56 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const captureButton = document.getElementById("captureButton");
+  const capturImgButton = document.getElementById("captureImgButton");
 
-  captureButton.addEventListener("click", function() {
+  const getImgKeyWords = () => {
+
+  }
+
+  captureButton.addEventListener("click", async function() {
     // Accéder à la caméra de l'utilisateur
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(function(stream) {
-        const videoElement = document.createElement("video");
-        document.body.appendChild(videoElement);
-        videoElement.srcObject = stream;
-        videoElement.play();
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      // ok, browser supports it
+    }
 
-        // Attendre que l'utilisateur prenne la photo
-        setTimeout(function() {
-          const canvas = document.createElement("canvas");
-          canvas.width = videoElement.videoWidth;
-          canvas.height = videoElement.videoHeight;
-          canvas.getContext("2d").drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+    const constraints = {
+      video: {
+        width: {
+          min: 1280,
+          ideal: 1920,
+          max: 2560,
+        },
+        height: {
+          min: 720,
+          ideal: 1080,
+          max: 1440,
+        },
+        facingMode: "environment"
+      },
+    }
 
-          // Convertir l'image en base64
-          const imageDataUrl = canvas.toDataURL("image/png");
 
-          // Envoyer l'image à Imgur
-          fetch("https://api.imgur.com/3/upload", {
-            method: "POST",
-            headers: {
-              Authorization: `Client-ID ${process.ENV.IMGUR}`// Remplacez par votre ID client Imgur
-            },
-            body: JSON.stringify({
-              image: imageDataUrl.split(",")[1] // Supprimez le préfixe "data:image/png;base64,"
-            })
-          })
-            .then(response => response.json())
-            .then(data => {
-              // Récupérez l'URL de l'image téléchargée depuis la réponse d'Imgur
-              const imageUrl = data.data.link;
+    const video = document.querySelector('#video')
+    const videoStream = await navigator.mediaDevices.getUserMedia(constraints)
+    video.srcObject = videoStream
 
-              // Faites quelque chose avec l'URL de l'image, par exemple, l'afficher
-              console.log("URL de l'image téléchargée :", imageUrl);
-            })
-            .catch(error => {
-              console.error("Erreur lors du téléchargement de l'image sur Imgur", error);
-            });
 
-          // Arrêter la caméra et retirer l'élément vidéo
-          stream.getTracks().forEach(track => track.stop());
-          videoElement.remove();
-        }, 2000); // Temps en millisecondes pour prendre la photo
-      })
-      .catch(function(error) {
-        console.error("Erreur lors de l'accès à la caméra", error);
-      });
   });
+    captureImgButton.addEventListener("click", async function() {
+      const canvas = document.querySelector('#canvas')
+      canvas.width = video.videoWidth
+      canvas.height = video.videoHeight
+      canvas.getContext('2d').drawImage(video, 0, 0)
+
+      const img = document.createElement('img')
+      img.src = canvas.toDataURL('image/png')
+      console.log("Test")
+      const buttonValidate = document.createElement('button')
+      captureImgButton.appendChild(buttonValidate);
+      buttonValidate.innerHTML = "Send it"
+      captureImgButton.addEventListener("click", () => {
+        console.log(img.src);
+      })
+    });
 });
 </script>
