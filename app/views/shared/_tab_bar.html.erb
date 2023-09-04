@@ -3,7 +3,7 @@
   tabbar_active_target: "tab1" } do %>
     <i class="fa-solid fa-indent fa-xl"></i>
   <% end %>
-   <%= link_to "#", data: { tabbar_active_target: "tab2" } do %>
+   <%= link_to "challenges_path", data: { tabbar_active_target: "tab2" } do %>
     <i class="fa-solid fa-trophy fa-xl"></i>
   <% end %>
   <% if user_signed_in? %>

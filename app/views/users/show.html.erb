@@ -118,5 +118,54 @@
   <%= render "shared/logout" %>
 </div>
 
-<%# ==================== CHALLENGES SECTION ================== %>
-<h3>Mes défis remplis</h3>
+
+<%# ==================== WORK IN PROGRESS FOR PROFILE ================== %>
+
+<h2>Mes dernières parties</h2>
+
+<% @parties.take(5).each do |party| %>
+  <div class="party-card card w-80%">
+    <% if party.end_time.nil? && party.players.nil?%>
+      <p>Tu n'as pas encore joué 🙈</p>
+      <% else %>
+      <%= cl_image_path party.boardgame.photo.key, height: 50, crop: :fit %>
+      <%#= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
+      <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
+    <% end %>
+    <% party.players.order(:score).reverse do |player| %>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<p>Voir toute ma collection</p>
+<%# DROP DOWN POUR AFFICHER LA COLLECTION COMPLETE %>
+
+<h2>Mes stats de jeu</h2>
+<div class="container my-5 background-card">
+  <p>Score total: 4549pts</p>
+  <% if @parties.count >= 1 %>
+    <p><%= @victories %> victoire / <%= @parties.count %> parties jouées</p>
+    <p>Taux de victoire : <%= (@parties.count / @victories)*100 %> %</p>
+  <% else %>
+   <p>Tu n'as pas encore joué 😿</p>
+  <% end %>
+  <p>Temps cumulé : X minutes</p>
+</div>
+<%# Carte pour stat type de jeux pref %>
+<%# Carte pour stat jeu/temps passé %>
+<%# Carte pour stat jeu/victoire %>
+
+
+<h2>Mes badges et défis</h2>
+<div class="challenges-container">
+  <ul class="mb-3">
+    <% @challenges.each do |challenge| %>
+      <li class="challenge-card">🥷 <%= challenge.title %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= console %>
