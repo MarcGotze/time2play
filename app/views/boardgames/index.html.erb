@@ -1,6 +1,10 @@
 <%= render "boardgames/partials/search" %>
 
-<div class="container video-view d-flex align-items-center flex-column">
+<div
+  data-lens-gcloudk-value="<%= ENV['GCLOUD_KEY'] %>"
+  data-lens-gcloudu-value="<%= ENV['GCLOUD_USER'] %>"
+  data-controller="lens"
+  class="container video-view d-flex align-items-center flex-column">
   <video autoplay id="video" class="hidden"></video>
   <button id="captureButton" class="btn btn-primary btn-large">Recherche photo</button>
   <button id="captureImgButton" class="btn btn-primary btn-large camera-btn hidden mt-3"><i class="fa-solid fa-camera" style="color: #ffffff;"></i></i></button>
@@ -16,130 +20,4 @@
   </div>
 </div>
 
-<script>
-  // Attends que le DOM soit chargé, puis lance la fonction
-document.addEventListener("DOMContentLoaded", function() {
-  // import 'process';
-  // récupère l'adresse des boutons dans le DOM
-  const captureButton = document.getElementById("captureButton");
-  const capturImgButton = document.getElementById("captureImgButton");
-  const sendImgButton = document.getElementById("sendImgButton")
-
-  const getImgKeyWords = async (encodedImage) => {
-    const apiUrl = `https://vision.googleapis.com/v1/images:annotate`;
-    const apiKey = "<%= ENV['GCLOUD_KEY'] %>";
-    const apiUser = "<%= ENV['GCLOUD_USER'] %>";
-
-    try {
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json, charset=utf-8',
-        'Authorization': `Bearer ${apiKey}`,
-        'x-goog-user-project': `${apiUser}`
-        },
-        body: JSON.stringify({
-          "requests": [
-            {
-            "image": {
-                "content": `${encodedImage}`
-              },
-            "features": [
-                {
-                  "type": "WEB_DETECTION"
-                }
-              ]
-            }
-          ]
-        })
-      });
-
-      const data = await response.json();
-      const webDetection = data.responses[0].webDetection;
-      const label = webDetection.bestGuessLabels[0].label;
-      const searchInput = document.getElementById("search-input");
-      const btnSearch = document.getElementById("btn-search");
-
-      if (searchInput) {
-        searchInput.value = label;
-        btnSearch.click()
-      }
-
-      console.log(webDetection.bestGuessLabels[0].label);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
-
-  // Lance la fonction au click sur le bouton captureButton
-  captureButton.addEventListener("click", async function() {
-    // Accéder à la caméra de l'utilisateur
-    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-      // ok, browser supports it
-    }
-    // Définit le format du retour vidéo de la camera
-    const constraints = {
-      video: {
-        width: {
-          min: 360,
-          ideal: 390,
-          max: 412,
-        },
-        height: {
-          min: 720,
-          ideal: 1080,
-          max: 1440,
-        },
-        facingMode: "environment"
-      },
-    }
-
-    // Selectionne le bloc video généré dans le DOM
-    const video = document.querySelector('#video')
-    // lance le stream de la camera en récupérant les paramêtres définits par les constraints
-    const videoStream = await navigator.mediaDevices.getUserMedia(constraints)
-    // Lance la caméra
-    video.srcObject = videoStream
-    video.classList.remove("hidden");
-    captureButton.classList.add("hidden")
-    captureImgButton.classList.remove("hidden")
-  });
-  // écoute le click sur le bouton captureImgButton
-  captureImgButton.addEventListener("click", async function() {
-    // Récupère le retour de l'image affichée dans une boite
-    const canvas = document.querySelector('#canvas')
-    canvas.width = video.videoWidth
-    canvas.height = video.videoHeight
-    canvas.getContext('2d').drawImage(video, 0, 0)
-
-    // Récupère et converti le format de l'image
-    const img = document.createElement('img')
-    img.src = canvas.toDataURL('image/png')
-    const encodedImage = img.src.match(/,(.*)$/)[1];
-    // Construit un bouton pour envoyer l'image vers l'API
-    const buttonValidate = document.createElement('button')
-
-    // Arrêt du flux de la caméra
-    const stream = video.srcObject
-    const tracks = stream.getTracks();
-
-    tracks.forEach((track) => {
-      track.stop();
-    });
-
-    video.srcObject = null;
-
-    // Gestion de l'affichage des boutons et envoi de la photo vers l'API
-    capturImgButton.classList.add("hidden");
-    sendImgButton.classList.remove("hidden");
-    sendImgButton.addEventListener("click", () => {
-      canvas.classList.add("hidden");
-      sendImgButton.classList.add("hidden");
-      captureButton.classList.remove("hidden");
-      getImgKeyWords(encodedImage);
-    });
-    video.classList.add("hidden");
-    canvas.classList.remove("hidden");
-  });
-});
-</script>
+<div id="lds-roller" class="d-none position-absolute top-50 start-50 translate-middle"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
