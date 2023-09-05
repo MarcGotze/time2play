@@ -127,13 +127,14 @@
   <div class="party-card card w-80%" id="<%= party.id %>">
     <% if party.end_time.nil? == false %>
       <div><%= cl_image_tag party.boardgame.photo.key, height: 20, width: 20, crop: :fit %></div>
-      <%#= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
+      <%#= link_to "Rejouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
       <div class="card-header">
-        <%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%>
+        <%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
         <% party.players.each do |player| %>
-          <p><%= player.user.username %> a marqué <%= player.score %> points</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= player.user.username %> a marqué <%= player.score %> points</li>
+          </ul>
         <% end %>
-      </div>
     <% end %>
   </div>
 <% end %>
