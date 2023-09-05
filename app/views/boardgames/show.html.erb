@@ -73,14 +73,15 @@
               <div class="party-card card w-80%">
                 <% if party.end_time.nil? == 'false' %>
                  <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
-                <% end %>
-                <% party.players.order(:score).reverse do |player| %>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
-                  </ul>
+                  <% party.players.order(:score).reverse do |player| %>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
+                    </ul>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
+          </div>
         </div>
       </div>
     </div>
