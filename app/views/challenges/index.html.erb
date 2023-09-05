@@ -3,7 +3,7 @@
   <% @challenges.order(:boardgame_id).each do |challenge| %>
     <% if challenge.boardgame.photo.key != previous_image_id %>
       <div class="card">
-        <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top' %>
+        <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top challenges-banner' %>
         <div class="card-body">
           <h5 class="card-title"><%= challenge.title %></h5>
           <p class="card-text"><%= challenge.description %></p>
