@@ -59,22 +59,22 @@ class PartiesController < ApplicationController
   def edit; end
 
   def update
-    params[:party][:players].split(',').each_slice(2) do |player|
-      p player
-      @player = Player.find(player[0])
-      @player.update(score: player[1])
-
+    if params[:scores] == 'true'
+      params[:party][:players].split(',').each_slice(2) do |player|
+        @player = Player.find(player[0])
+        @player.update(score: player[1])
+      end
+      @players = @party.players
+      respond_to do |format|
+        format.text { render(partial: 'parties/players_scores', locals: { players: @players }, formats: [:html])}
+      end
+    elsif params[:scores] != 'true' && @party.update(end_time: DateTime.current)
+      respond_to do |format|
+        format.text { render(partial: 'parties/partial_show', locals: { party: @party }, formats: [:html]) }
+      end
+    else
+      render 'parties/show', status: :unprocessable_entity
     end
-    ## tu vas récupérer les players dans les params
-    # @players = @party.players
-    ## et tu les updates
-    @party.update(end_time: DateTime.current)
-    render json: { toto: "coj" }
-    # if @party.save
-    #   redirect_to user_path(current_user)
-    # else
-    #   render 'parties/show', status: :unprocessable_entity
-    # end
   end
 
   def destroy
