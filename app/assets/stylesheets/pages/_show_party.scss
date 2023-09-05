@@ -27,7 +27,7 @@
   box-shadow : inset 5px 5px 12px black;
 }
 
-.avatar {
+.bounced {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
   animation: bounce 2s ease infinite;
   @keyframes bounce {
@@ -50,6 +50,7 @@
 #new_player {
   display: flex;
   margin: 1em auto;
+  align-items: end;
 }
 
 .add-btn {
@@ -74,7 +75,6 @@
 
 .flex-scores {
   display: flex;
-  border: solid red 1px;
 }
 
 .score-field {
