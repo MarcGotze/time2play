@@ -4,7 +4,7 @@
     <%= cl_image_tag current_user.avatar.key, height: 75, width: 75, crop: :fit, class: "avatar" %>
     <div class="d-flex flex-column line-height-none">
       <h2 class="animate-character">Hey <%= current_user.username %> !</h2>
-      <h4>Niveau 10</h4>
+      <h4>Niveau <%= current_user.level %></h4>
       <span class="xp"><em>2456xp</em></span>
     </div>
   </div>
@@ -98,11 +98,19 @@
   <p>Score total: 4549pts</p>
   <% if @parties.count >= 1 %>
     <p><%= @victories %> victoire / <%= @parties.count %> parties jouées</p>
-    <p>Taux de victoire : <%= (@victories / @parties.count) * 100 %> %</p>
+    <% victory = (@victories.to_f / @parties.count.to_f) * 100 %>
+    <p>Taux de victoire : <%= victory %> %</p>
   <% else %>
    <p>Tu n'as pas encore joué 😿</p>
   <% end %>
-  <p>Temps cumulé : X minutes</p>
+  <% @parties.each do |party| %>
+    <% if party.end_time && party.start_time != nil %>
+      <% @total_min += (party.end_time - party.start_time) / 60 %>
+      <% @total_hours += (party.end_time - party.start_time) / 3600 %>
+      <% @total_days += (party.end_time - party.start_time) / 86400 %>
+    <% end %>
+  <% end %>
+  <p>Temps cumulé : <%= @total_min.to_i %> minutes.</p>
 </div>
 
 <div class="container collection">
