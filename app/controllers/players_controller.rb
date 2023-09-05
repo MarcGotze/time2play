@@ -1,14 +1,18 @@
 class PlayersController < ApplicationController
   before_action :set_party, only: %i[new create update]
   before_action :set_player, only: %i[edit update destroy]
+  # after_action :add_achivements
 
   def new
     @player = Player.new
   end
 
   def create
+    @boardgame = @party.boardgame
+
     @player = Player.new(player_params)
     @player.party = @party
+
     if @player.save
       redirect_to party_path(@party)
     else
@@ -36,6 +40,12 @@ class PlayersController < ApplicationController
   end
 
   private
+
+  def add_achivements
+    @boardgame.challenges.each do |challenge|
+      Achievement.create(user: @player.user, challenge:)
+    end
+  end
 
   def set_party
     @party = Party.find(params[:party_id])

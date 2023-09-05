@@ -15,9 +15,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def boardgame_players(boardgame_id)
-    parties_ids = parties.where(boardgame_id: boardgame_id).pluck(:id)
+    parties_ids = parties.where(boardgame_id:).pluck(:id)
     user_ids    = Player.where(party_id: parties_ids).pluck(:user_id)
     User.where(id: user_ids)
   end
-
 end

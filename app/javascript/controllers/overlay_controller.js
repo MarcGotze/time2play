@@ -10,9 +10,6 @@ export default class extends Controller {
   static targets = ["overlay"]
 
   connect() {
-
-
-
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spin-btn");
     const finalValue = document.getElementById("final-value");
@@ -75,7 +72,7 @@ export default class extends Controller {
         //if the angleValue is between min and max then display it
         if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
           console.log(angleValue);
-          finalValue.innerHTML = `<p>${i.value}</p>`;
+          finalValue.innerHTML = `<p>&ensp;</p>`;
           spinBtn.disabled = false;
           break;
         }
