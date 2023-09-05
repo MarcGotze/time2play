@@ -19,4 +19,8 @@ class User < ApplicationRecord
     user_ids    = Player.where(party_id: parties_ids).pluck(:user_id)
     User.where(id: user_ids)
   end
+
+  def victories
+    parties.select { |party| party.players.order(:score).last.user == self }.count
+  end
 end
