@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center justify-content-between p-4" data-form-party-end-target="playersScores">
+  <div>
+    <% players.order(score: :desc).each do |player| %>
+      <div class="d-flex align-items-center">
+        <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+        <strong><%= player.user.username %></strong>&nbsp;:
+        <%= player.score || 0.0 %> points
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Modifier", "#", class: "btn btn-info me-2", data: { action: "click->form-party-end#displayFormParty" } %>
+</div>
