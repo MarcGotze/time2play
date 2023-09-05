@@ -4,7 +4,7 @@
     <%= cl_image_tag current_user.avatar.key, height: 75, width: 75, crop: :fit, class: "avatar" %>
     <div class="d-flex flex-column line-height-none">
       <h2 class="animate-character">Hey <%= current_user.username %> !</h2>
-      <h4>Niveau 10</h4>
+      <h4>Niveau <%= current_user.level %></h4>
       <span class="xp"><em>2456xp</em></span>
     </div>
   </div>
@@ -146,8 +146,8 @@
 <div class="container my-5 background-card">
   <p>Score total: 4549pts</p>
   <% if @parties.count >= 1 %>
-    <p><%= @victories %> victoire / <%= @parties.count %> parties jouées</p>
-    <p>Taux de victoire : <%= (@victories / @parties.count) * 100 %> %</p>
+    <p><%= current_user.victories %> victoire / <%= @parties.count %> parties jouées</p>
+    <p>Taux de victoire : <%= (current_user.victories / @parties.count) * 100 %> %</p>
   <% else %>
    <p>Tu n'as pas encore joué 😿</p>
   <% end %>
@@ -167,5 +167,3 @@
     <% end %>
   </ul>
 </div>
-
-<%= console %>
