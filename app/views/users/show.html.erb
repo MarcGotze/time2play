@@ -124,18 +124,17 @@
 <h2>Mes dernières parties</h2>
 
 <% @parties.take(5).each do |party| %>
-  <div class="party-card card w-80%">
-    <% if party.end_time.nil? == 'false' || party.players.nil? == 'false' %>
-      <%= cl_image_tag party.boardgame.photo.key, height: 40, width: 40, crop: :fit %>
-      <%#= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
-      <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
-      <% else %>
-      <%# <p>Tu n'as pas terminé ta dernière partie 🙈</p> %>
-    <% end %>
-    <% party.players.order(:score).reverse do |player| %>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
-      </ul>
+  <div class="party-card card w-80%" id="<%= party.id %>">
+    <% if party.end_time.nil? == false %>
+      <div><%= cl_image_tag party.boardgame.photo.key, height: 20, width: 20, crop: :fit %></div>
+      <%#= link_to "Rejouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
+      <div class="card-header">
+        <%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
+        <% party.players.each do |player| %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= player.user.username %> a marqué <%= player.score %> points</li>
+          </ul>
+        <% end %>
     <% end %>
   </div>
 <% end %>
@@ -154,16 +153,17 @@
   <% end %>
   <p>Temps cumulé : X minutes</p>
 </div>
-<%# Carte pour stat type de jeux pref %>
-<%# Carte pour stat jeu/temps passé %>
-<%# Carte pour stat jeu/victoire %>
 
 
 <h2>Mes badges et défis</h2>
 <div class="challenges-container">
   <ul class="mb-3">
     <% @challenges.each do |challenge| %>
-      <li class="challenge-card">🥷 <%= challenge.title %> à <%= challenge.boardgame.title %></li>
+      <% challenge.achievements.each do |achievement| %>
+        <% if achievement.completed == true %>
+          <li class="challenge-card">🥷 <%= challenge.title %> à <%= challenge.boardgame.title %></li>
+        <% end %>
+      <% end %>
     <% end %>
   </ul>
 </div>

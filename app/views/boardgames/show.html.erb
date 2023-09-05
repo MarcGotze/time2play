@@ -71,36 +71,21 @@
         <div class="accory.end_timebody accordion-background ">
           <% @parties.take(5).each do |party| %>
               <div class="party-card card w-80%">
-                <% if party.end_time.nil? == 'false' %>
+                <% if party.end_time.nil? == false %>
                  <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
-                <% end %>
-                <% party.players.order(:score).reverse do |player| %>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><%= player.user.username %> : <%= player.score %> points</li>
-                  </ul>
+                  <% party.players.order(:score).reverse.each do |player| %>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><%= player.user.username %> a marqué <%= player.score %> points</li>
+                    </ul>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <%# <h2 class="mt-3">Mes dernières parties</h2> %>
-  <%# <div class="party-container"> %>
-    <%# <i class="fa-regular fa-clock"></i> %>
-    <%# <p> Temps passé sur <%=  @boardgame.title %><%# </p> %>
-    <%# <% @parties.take(5).each do |party| %>
-      <%# <div class="party-card card w-80%"> %>
-        <%# <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%> <%# </div> %>
-        <%# <% party.players.order(:score).reverse do |player| %>
-          <%# <ul class="list-group list-group-flush"> %>
-            <%# <li class="list-group-item"><%= player.user.username %><%# : <%= player.score points</li> %>
-          <%# </ul> %>
-        <%# <% end %>
-      <%# </div> %>
-    <%# </div> %>
-  <%#  %>
 
   <%# ============= CHALLENGES SECTION =============%>
     <div class="accordion" id="accordionExample">
@@ -115,7 +100,7 @@
             <div class="challenges-container">
               <ul class="mb-3">
                 <% @boardgame.challenges.each do |challenge| %>
-                  <li class="challenge-card">🥷 <%= challenge.title %></li>
+                  <li class="challenge-card">🎯 <%= challenge.title %></li>
                   <%#= link_to 'Défi réalisé!', new_user_achievement_path(current_user) %>
                 <% end %>
               </ul>

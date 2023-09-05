@@ -37,8 +37,6 @@
           <div class="first-player">
             <li>Qui commence ?</li>
             <button data-action="click->overlay#display"><i class="fa-regular fa-circle-question"></i></button>
-            <%# <li>Lanceur de dès</li>
-            <li>Sablier</li> %>
         </ul>
             <div class="spin-overlay" data-overlay-target="overlay">
             <%= render "parties/roulette", players: @players %>
@@ -47,23 +45,18 @@
       <% end %>
     </div>
 
-    <%# =============== PARTIE FINIE CHALLENGES ===============%>
+    <%# =============== CHALLENGE BOARDGAME ===============%>
+
     <div class="container-challenges">
-      <h2 class="title-party">Tes défis pour <%= @boardgame.title %></h2>
+        <h2 class="title-party">Défis pour <%= @boardgame.title %></h2>
       <% @boardgame.challenges.each do |challenge| %>
-        <% challenge.achievements.each do |achievement| %>
           <ul>
-            <% if achievement.completed == 'true' %>
-                <li>✅ <%= achievement.challenge.title %></p>
-              <% else %>
-                <li>❌ <%= achievement.challenge.title %></li>
-            <% end %>
+            <li>🎯 <%= challenge.title %></p>
           </ul>
-        <% end %>
       <% end %>
     </div>
 
-      <%# =============== PARTIE FINIE ===============%>
+    <%# =============== PARTIE FINIE ===============%>
     <div class="container-scores">
       <h2 class="title-party">Scores:</h2>
       <div class= "flex-scores">
