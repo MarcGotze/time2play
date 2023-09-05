@@ -2,27 +2,29 @@
 
 // .container.party {
 //   width: 98%;
-//   border: solid red 1px;
 // }
 
 .title-party {
   padding-bottom: .5em;
   text-align: center;
-  font-variant-caps: small-caps;
+  font-size: 1.3em;
+  // font-variant-caps: small-caps;
   letter-spacing: .02em;
 }
 
-.section-selection, .container-go,.container-scores {
+.section-selection, .container-go,.container-scores,
+.container-challenges {
   width:90%;
   padding: 1em 0;
   margin: 2em auto;
   background-color: var(--middle-blue);
-  box-shadow: 2px 2px 8px var(--anthracite);
+  box-shadow : inset 4px 4px 14px var(--dark-blue);
 }
 
-//SECTION SELECTION JOUEURS
+//PLAYERS SECTION
 .player-container {
   background-color: var(--light-blue);
+  box-shadow : inset 5px 5px 12px black;
 }
 
 .avatar {
@@ -39,13 +41,58 @@
   }
 }
 
-//SECTION C'EST PARTI
+.add-player {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+#new_player {
+  display: flex;
+  margin: 1em auto;
+}
+
+.add-btn {
+  height: fit-content;
+
+}
+
+//PARTIE EN COURS
+
+.first-player {
+  display: flex;
+}
+
+.first-player li {
+  list-style-type: none;
+}
+
+//PARTIE FINIE CHALLENGES
 
 
-//SECTION SCORES
+//PARTIE FINIE
+
+.flex-scores {
+  display: flex;
+  border: solid red 1px;
+}
+
 .score-field {
   width: 15%;
 }
 
-//END
+//BTN RETURN
+.container-return-btn {
+  display: flex;
+  justify-content: center;
+}
 
+.return-game a {
+  color: black;
+  text-decoration: none;
+}
+
+
+#player_score {
+  width: 100px;
+}
