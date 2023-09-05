@@ -1,19 +1,32 @@
-<div class="mb-5">
+<div class="container challenges">
   <% previous_image_id = nil %>
   <% @challenges.order(:boardgame_id).each do |challenge| %>
     <% if challenge.boardgame.photo.key != previous_image_id %>
-      <div class="card">
-        <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top challenges-banner' %>
-        <div class="card-body">
-          <h5 class="card-title"><%= challenge.title %></h5>
+      <div class="card mt-4">
+        <div class="d-flex align-items-center challenge-card">
+          <div class="challenge-img">
+            <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top challenges-banner' %>
+          </div>
+          <div class="challenge-title">
+            <h3><%= challenge.boardgame.title %></h3>
+          </div>
+        </div>
+        <div class="card-body challenge-body">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i>
+            <h5 class="card-title"><%= challenge.title %></h5>
+          </div>
           <p class="card-text"><%= challenge.description %></p>
         </div>
       </div>
       <% previous_image_id = challenge.boardgame.photo.key %>
     <% else %>
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><%= challenge.title %></h5>
+        <div class="card-body challenge-body">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i>
+            <h5 class="card-title"><%= challenge.title %></h5>
+          </div>
           <p class="card-text"><%= challenge.description %></p>
         </div>
       </div>
