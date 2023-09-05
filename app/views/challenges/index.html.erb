@@ -1,14 +1,22 @@
-<h1>Tous les challenges</h1>
-<%# <h2>Badges</h2> %>
-<% @challenges.order(:boardgame_id).each do |challenge| %>
-  <div class=challenge-card>
-    <%= cl_image_tag challenge.boardgame.photo.key, height: 40, width: 40, crop: :fit %>
-    <%= challenge.title %>
-    <%= challenge.description %>
-    <%# <p>Participants : <%= challenge.user %>
-    <%# <%= button_to 'Participer', new_challenge_achievement_path(challenge) %>
-  </div>
-<% end %>
-<%# <h2>Challenges</h2> %>
-<%# <%= @user_challenges %>
-<%= console %>
+<div class="mb-5">
+  <% previous_image_id = nil %>
+  <% @challenges.order(:boardgame_id).each do |challenge| %>
+    <% if challenge.boardgame.photo.key != previous_image_id %>
+      <div class="card">
+        <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title"><%= challenge.title %></h5>
+          <p class="card-text"><%= challenge.description %></p>
+        </div>
+      </div>
+      <% previous_image_id = challenge.boardgame.photo.key %>
+    <% else %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= challenge.title %></h5>
+          <p class="card-text"><%= challenge.description %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
