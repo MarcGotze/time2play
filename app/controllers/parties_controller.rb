@@ -66,7 +66,7 @@ class PartiesController < ApplicationController
       end
       @players = @party.players
       respond_to do |format|
-        format.text { render(partial: 'parties/players_scores', locals: { players: @players }, formats: [:html])}
+        format.text { render(partial: 'parties/players_scores', locals: { players: @players }, formats: [:html]) }
       end
     elsif params[:scores] != 'true' && @party.update(end_time: DateTime.current)
       respond_to do |format|

@@ -4,12 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['playerForm', 'playerFormContainer', 'playersScores', 'hidden']
   connect() {
-    console.log(this.playerFormContainerTarget);
   }
 
   displayFormParty() {
     event.preventDefault();
-    console.log(this.playerFormContainerTarget);
     this.playerFormContainerTarget.classList.remove('d-none')
     this.playersScoresTarget.classList.add('d-none')
   }
@@ -29,14 +27,15 @@ export default class extends Controller {
     fetch(`${event.currentTarget.action}?scores=true`, {
       method: "PATCH",
       headers: {
-        "Accept": "plain/text"
+        "Accept": "text/plain"
       },
       body: formData
     })
       .then(response => response.text())
       .then((data) => {
-        console.log(data);
-        this.playerScoresTarget.innerHTML = data;
+        this.playersScoresTarget.innerHTML = data;
+        this.playersScoresTarget.classList.remove("d-none");
+        this.playerFormContainerTarget.classList.add("d-none")
       })
   }
 
