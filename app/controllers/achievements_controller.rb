@@ -32,7 +32,7 @@ class AchievementsController < ApplicationController
     if @achievement.save
       redirect_to user_path(@current_user)
     else
-      render 'users/show', status: :unprocessable_entity, notice: 'Ta partie a bien été lancée, amusez-vous bien!'
+      render 'users/show', status: :unprocessable_entity, notice: "Oupsii, ta réussite n'a pas pu être prise en compte 😿"
     end
   end
 

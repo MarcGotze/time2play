@@ -41,6 +41,21 @@
     <% end %>
   </div>
 
+  <%# =============== PARTIE FINIE ===============%>
+
+  <h2>Tes défis pour <%= @boardgame.title %></h2>
+  <% @boardgame.challenges.each do |challenge| %>
+    <% challenge.achievements.each do |achievement| %>
+      <ul>
+        <% if achievement.completed == 'true' %>
+            <li>✅ <%= achievement.challenge.title %></p>
+          <% else %>
+            <li>❌ <%= achievement.challenge.title %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+
     <%# =============== PARTIE FINIE ===============%>
   <div class="container-scores">
     <h2 class="title-party">scores:</h2>
@@ -59,3 +74,5 @@
       <button class="btn btn-info"><%= link_to "Retour au jeu", boardgame_path(@boardgame) %></button>
   </div>
 </div>
+
+<%= console %>

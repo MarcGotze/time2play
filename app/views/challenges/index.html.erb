@@ -1,13 +1,13 @@
 <h1>Tous les challenges</h1>
 <%# <h2>Badges</h2> %>
 <% @challenges.each do |challenge| %>
-<div class=challenge-card>
-  <%= cl_image_tag challenge.boardgame.photo.key, height: 40, width: 40, crop: :fit %>
-  <%= challenge.title %>
-  <%= challenge.description %>
-  <%# <p>Participants : <%= challenge.user %>
-  <%= button_to 'Participer', new_challenge_achievement_path(challenge) %>
-</div>
+  <div class=challenge-card>
+    <%= cl_image_tag challenge.boardgame.photo.key, height: 40, width: 40, crop: :fit %>
+    <%= challenge.title %>
+    <%= challenge.description %>
+    <%# <p>Participants : <%= challenge.user %>
+    <%# <%= button_to 'Participer', new_challenge_achievement_path(challenge) %>
+  </div>
 <% end %>
 <%# <h2>Challenges</h2> %>
 <%# <%= @user_challenges %>
