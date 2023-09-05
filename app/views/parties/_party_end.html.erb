@@ -1,0 +1,32 @@
+<%# <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> %>
+<h1>Récap de la partie</h1>
+<h2>Podium</h2>
+<% @players.order(:score).reverse.each do |player| %>
+  <div>
+    <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+    <p><%= player.score %> points</p>
+  </div>
+<% end %>
+<%# TODO: n'afficher que les challenge selon un title unique %>
+<h2>Bravo pour avoir complété ces challenges !</h2>
+<% @boardgame.challenges.each do |challenge| %>
+  <% challenge.achievements.each do |achievement| %>
+    <ul>
+      <% if achievement.completed == 'true' %>
+          <li>✅ <%= challenge.title %></p>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
+<%# Récupérer le nombre de victoires d'un user pour un jeu %>
+<%# Récupérer le score d'un user pour un jeu %>
+
+<%# Faire un score de 20 %>
+
+<%# <% @players.each do |player| %>
+  <%# <% if player.score == @achievement.challenge.score %> %>
+    <%# <p>Bravo <%= player.user.username %></p> %>
+    <%# <p>Tu as réussi le challenge <%= @boardgame.challenge.title %></p> %>
+  <%# <% end %> %>
+<%# <% end %> %> %>

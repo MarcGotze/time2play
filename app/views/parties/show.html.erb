@@ -41,19 +41,13 @@
     <% end %>
   </div>
 
-  <%# =============== PARTIE FINIE ===============%>
+  <%# =============== CHALLENGE BOARDGAME ===============%>
 
-  <h2>Tes défis pour <%= @boardgame.title %></h2>
+  <h2>Défis pour <%= @boardgame.title %></h2>
   <% @boardgame.challenges.each do |challenge| %>
-    <% challenge.achievements.each do |achievement| %>
       <ul>
-        <% if achievement.completed == 'true' %>
-            <li>✅ <%= achievement.challenge.title %></p>
-          <% else %>
-            <li>❌ <%= achievement.challenge.title %></li>
-        <% end %>
+        <li>🎯 <%= challenge.title %></p>
       </ul>
-    <% end %>
   <% end %>
 
     <%# =============== PARTIE FINIE ===============%>
@@ -66,13 +60,13 @@
         <%= f.hidden_field :players, data: { form_party_end_target: "hidden" } %>
         <%= f.submit "Terminer" %>
       <% end %>
-      <%# tu vas avoir un formulaire avec un hidden field de tes players avec leur score %>
     </div>
   </div>
 
-
-      <button class="btn btn-info"><%= link_to "Retour au jeu", boardgame_path(@boardgame) %></button>
-  </div>
+  <%# <div class="spin-overlay" data-overlay-target="overlay"> %>
+    <%= render "parties/party_end", parties: @party %>
+  <%# </div> %>
+  <button class="btn btn-info"><%= link_to "Retour au jeu", boardgame_path(@boardgame) %></button>
 </div>
 
 <%= console %>
