@@ -99,7 +99,7 @@
   <% if @parties.count >= 1 %>
     <p><%= @victories %> victoire / <%= @parties.count %> parties jouées</p>
     <p><%= current_user.victories %> victoire / <%= @parties.count %> parties jouées</p>
-    <p>Taux de victoire : <% (current_user.victories.to_f / @parties.count.to_f) * 100 %></p>
+    <p>Taux de victoire : <%= (current_user.victories.to_f / @parties.count.to_f) * 100 %> %</p>
   <% else %>
    <p>Tu n'as pas encore joué 😿</p>
   <% end %>
