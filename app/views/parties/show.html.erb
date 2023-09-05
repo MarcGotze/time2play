@@ -7,7 +7,7 @@
   <%# =============== PLAYERS SECTION ===============%>
   <div class="container-party">
     <div class="section-selection">
-      <h2 class="title-party mt-3">sélection des joueurs:</h2>
+      <h2 class="title-party mt-3">Sélection des joueurs:</h2>
       <div class="player-container">
         <% @players.each do |player| %>
           <%# <h5><%= player.user.username %>
@@ -18,55 +18,61 @@
         <% end %>
       <% end %>
       </div>
+      <div class="add-player">
       <%= simple_form_for [@party, @player] do |f| %>
         <%= f.association :user, label: 'Nouveau joueur', label_method: :username, value_method: :id, width: 20 %>
-        <%= f.submit "Ajouter", class: "btn btn-info" %>
+        <%= f.submit "Ajouter", class: "btn btn-info add-btn" %>
+      </div>
       <% end %>
     </div>
   </div>
   <%# =============== PARTIE EN COURS ===============%>
 
   <div class="container-go">
-    <h2 class="title-party">c'est parti!</h2>
+    <h2 class="title-party">C'est parti!</h2>
     <% if @players.count >= 2 %>
       <ul>
-        <li>Qui commence ? </li>
-        <button data-action="click->overlay#display"><i class="fa-regular fa-circle-question"></i></button>
-        <%# <li>Lanceur de dès</li>
-        <li>Sablier</li> %>
+        <div class="first-player">
+          <li>Qui commence ?</li>
+          <button data-action="click->overlay#display"><i class="fa-regular fa-circle-question"></i></button>
+          <%# <li>Lanceur de dès</li>
+          <li>Sablier</li> %>
       </ul>
-      <div class="spin-overlay" data-overlay-target="overlay">
-        <%= render "parties/roulette", players: @players %>
-      </div>
+          <div class="spin-overlay" data-overlay-target="overlay">
+          <%= render "parties/roulette", players: @players %>
+          </div>
+        </div>
     <% end %>
   </div>
 
   <%# =============== CHALLENGE BOARDGAME ===============%>
 
-  <h2>Défis pour <%= @boardgame.title %></h2>
-  <% @boardgame.challenges.each do |challenge| %>
-      <ul>
-        <li>🎯 <%= challenge.title %></p>
-      </ul>
-  <% end %>
+  <div class="container-challenges">
+      <h2 class="title-party">Défis pour <%= @boardgame.title %></h2>
+    <% @boardgame.challenges.each do |challenge| %>
+        <ul>
+          <li>🎯 <%= challenge.title %></p>
+        </ul>
+    <% end %>
+  </div>
 
     <%# =============== PARTIE FINIE ===============%>
   <div class="container-scores">
-    <h2 class="title-party">scores:</h2>
-    <div data-controller='form-party-end' >
-      <%= render 'players/form_party', players: @player %>
-      <%# <%= render 'form_end_party', parties: @party %>
-      <%= simple_form_for [@party], data: { action: "submit->form-party-end#endParty" } do |f| %>
-        <%= f.hidden_field :players, data: { form_party_end_target: "hidden" } %>
-        <%= f.submit "Terminer" %>
-      <% end %>
+    <h2 class="title-party">Scores:</h2>
+    <div class= "flex-scores">
+      <div data-controller='form-party-end' >
+        <%= render 'players/form_party', players: @player %>
+        <%# <%= render 'form_end_party', parties: @party %>
+        <%= simple_form_for [@party], data: { action: "submit->form-party-end#endParty" } do |f| %>
+          <%= f.hidden_field :players, data: { form_party_end_target: "hidden" } %>
+          <%= f.submit "Terminer" %>
+        <% end %>
+        <%# tu vas avoir un formulaire avec un hidden field de tes players avec leur score %>
+      </div>
     </div>
   </div>
-
-  <%# <div class="spin-overlay" data-overlay-target="overlay"> %>
+  <div class="container-return-btn">
+    <button class="btn btn-info return-game"><%= link_to "Retour au jeu", boardgame_path(@boardgame) %></button>
+  </div>
     <%= render "parties/party_end", parties: @party %>
-  <%# </div> %>
-  <button class="btn btn-info"><%= link_to "Retour au jeu", boardgame_path(@boardgame) %></button>
 </div>
-
-<%= console %>
