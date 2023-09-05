@@ -7,9 +7,15 @@
 .title-party {
   padding-bottom: .5em;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.4em;
+  font-weight: 500;
   // font-variant-caps: small-caps;
-  letter-spacing: .02em;
+  letter-spacing: .05em;
+  font-family: 'Raleway', sans-serif;
+  border-bottom: 1px solid #ffcd39;
+  width: 90%;
+  margin: 0 auto 1em auto;
+  color: var(--light-font);
 }
 
 .section-selection, .container-go,.container-scores,
@@ -17,8 +23,11 @@
   width:90%;
   padding: 1em 0;
   margin: 2em auto;
+  // background: linear-gradient(30deg, var(--middle-blue), var(--dark-blue));
   background-color: var(--middle-blue);
-  box-shadow : inset 4px 4px 14px var(--dark-blue);
+  // box-shadow : inset 4px 4px 14px var(--dark-blue);
+  border-radius: 10px;
+  filter: drop-shadow(0 0 0.3em var(--dark-blue));
 }
 
 //PLAYERS SECTION
@@ -28,7 +37,6 @@
 }
 
 .bounced {
-  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
   animation: bounce 2s ease infinite;
   @keyframes bounce {
     70% { transform:translateY(0%); }
@@ -62,10 +70,16 @@
 
 .first-player {
   display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
 
-.first-player li {
+.first-player li, .challenges li {
   list-style-type: none;
+}
+
+.spin-icon {
+  font-size: 2em;
 }
 
 //PARTIE FINIE CHALLENGES
