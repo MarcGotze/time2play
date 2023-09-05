@@ -298,7 +298,7 @@ patrick = URI.open("https://static1.purebreak.com/articles/5/20/05/85/@/728213-p
 user = User.create(
   username: "Patrick",
   email: "patrick@gmail.com",
-  password: "azerty",
+  password: "password",
 )
 user.avatar.attach(io: patrick, filename: "728213-patrick-l-etoile-de-mer-sera-la-star-du-diapo-2.jpg", content_type: "image/jpg")
 puts user.username
@@ -307,7 +307,7 @@ sandy = URI.open("https://costumesheaven.b-cdn.net/wp-content/uploads/2022/02/sa
 user = User.create(
   username: "Sandy",
   email: "sandy@gmail.com",
-  password: "azerty",
+  password: "password",
 )
 user.avatar.attach(io: sandy, filename: "sandycheeks_1.jpg", content_type: "image/jpg")
 puts user.username
@@ -316,7 +316,7 @@ carlo = URI.open("https://static.wikia.nocookie.net/bob-leponge/images/0/05/Squi
 user = User.create(
   username: "Carlo",
   email: "carlo@gmail.com",
-  password: "azerty",
+  password: "password",
 )
 user.avatar.attach(io: carlo, filename: "carlo.jpg", content_type: "image/jpg")
 puts user.username
@@ -325,7 +325,7 @@ krabs = URI.open("https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs
 user = User.create(
   username: "Krabs",
   email: "krabs@gmail.com",
-  password: "azerty",
+  password: "password",
 )
 user.avatar.attach(io: krabs, filename: "1200px-Mr._Krabs.svg.png", content_type: "image/png")
 puts user.username
@@ -334,7 +334,7 @@ plancton = URI.open("https://static.wikia.nocookie.net/villains-fr/images/6/6b/E
 user = User.create(
   username: "Plancton",
   email: "plancton@gmail.com",
-  password: "azerty",
+  password: "password",
 )
 user.avatar.attach(io: plancton, filename: "plancton.png", content_type: "image/png")
 puts user.username
@@ -343,7 +343,7 @@ kenshiro = URI.open("https://static.wikia.nocookie.net/hokuto-no-ken-le-survivan
 user = User.create(
   username: "Kenshiro",
   email: "kenshiro@gmail.com",
-  password: "azerty",
+  password: "password",
 )
 user.avatar.attach(io: kenshiro, filename: "kenshiro.png", content_type: "image/png")
 puts user.username
@@ -352,7 +352,7 @@ bob = URI.open("https://casoar.org/wp-content/uploads/2020/10/Bob-leponge.png")
 user = User.create(
   username: "Bob",
   email: "bob@gmail.com",
-  password: "azerty",
+  password: "password",
 )
 user.avatar.attach(io: bob, filename: "Bob-leponge.png", content_type: "image/png")
 puts user.username

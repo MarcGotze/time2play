@@ -4,7 +4,7 @@
     <%= cl_image_tag current_user.avatar.key, height: 75, width: 75, crop: :fit, class: "avatar" %>
     <div class="d-flex flex-column line-height-none">
       <h2 class="animate-character">Hey <%= current_user.username %> !</h2>
-      <h4>Niveau 10</h4>
+      <h4>Niveau <%= current_user.level %></h4>
       <span class="xp"><em>2456xp</em></span>
     </div>
   </div>
@@ -97,13 +97,60 @@
 <div class="container my-5 background-card">
   <p>Score total: 4549pts</p>
   <% if @parties.count >= 1 %>
-    <p>Parties jouées: <%= @parties.count %></p>
+    <p><%= current_user.victories %> victoire / <%= @parties.count %> parties jouées</p>
+    <p>Taux de victoire : <%= (current_user.victories.to_f / @parties.count.to_f) * 100 %> %</p>
   <% else %>
    <p>Tu n'as pas encore joué 😿</p>
   <% end %>
-  <%# ====================== %>
-  <p>Parties Gagnées : <%= @victories %></p>
-  <%# ====================== %>
+  <% @parties.each do |party| %>
+    <% if party.end_time && party.start_time != nil %>
+      <% @total_min += (party.end_time - party.start_time) / 60 %>
+      <% @total_hours += (party.end_time - party.start_time) / 3600 %>
+      <% @total_days += (party.end_time - party.start_time) / 86400 %>
+    <% end %>
+  <% end %>
+  <p>Temps cumulé : <%= @total_min.to_i %> minutes.</p>
+</div>
+
+<div class="container collection">
+  <h3>Mes badges et défis: </h3>
+</div>
+<div class="challenges-container my-4">
+  <ul class="mb-3">
+    <li><em>Vous n'avez pas encore remporté de défi.</em></li>
+    <% @challenges.each do |challenge| %>
+      <% challenge.achievements.each do |achievement| %>
+        <% if achievement.completed == true %>
+          <li class="challenge-card">🥷 <%= challenge.title %> à <%= challenge.boardgame.title %></li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<div class="container collection">
+  <h3>Mes dernières parties: </h3>
+</div>
+<div class="accordion accordion-flush my-4" id="accordionFlushExample">
+  <% @parties.take(5).each do |party| %>
+    <% if party.end_time.nil? == false %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-<%= party.id %>" aria-expanded="false" aria-controls="flush-<%= party.id %>">
+          <%= party.boardgame.title %>
+        </button>
+      </h2>
+      <div id="flush-<%= party.id %>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          <%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%>
+          <% party.players.each do |player| %>
+            <p><%= player.user.username %> a marqué <%= player.score %> points</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="container collection">
@@ -115,57 +162,6 @@
         </div>
       <% end %>
   </div>
-  <%= render "shared/logout" %>
 </div>
 
-
-<%# ==================== WORK IN PROGRESS FOR PROFILE ================== %>
-
-<h2>Mes dernières parties</h2>
-
-<% @parties.take(5).each do |party| %>
-  <div class="party-card card w-80%" id="<%= party.id %>">
-    <% if party.end_time.nil? == false %>
-      <div><%= cl_image_tag party.boardgame.photo.key, height: 20, width: 20, crop: :fit %></div>
-      <%#= link_to "Rejouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
-      <div class="card-header">
-        <%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
-        <% party.players.each do |player| %>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><%= player.user.username %> a marqué <%= player.score %> points</li>
-          </ul>
-        <% end %>
-    <% end %>
-  </div>
-<% end %>
-
-<p>Voir toute ma collection</p>
-<%# DROP DOWN POUR AFFICHER LA COLLECTION COMPLETE %>
-
-<h2>Mes stats de jeu</h2>
-<div class="container my-5 background-card">
-  <p>Score total: 4549pts</p>
-  <% if @parties.count >= 1 %>
-    <p><%= @victories %> victoire / <%= @parties.count %> parties jouées</p>
-    <p>Taux de victoire : <%= (@victories / @parties.count) * 100 %> %</p>
-  <% else %>
-   <p>Tu n'as pas encore joué 😿</p>
-  <% end %>
-  <p>Temps cumulé : X minutes</p>
-</div>
-
-
-<h2>Mes badges et défis</h2>
-<div class="challenges-container">
-  <ul class="mb-3">
-    <% @challenges.each do |challenge| %>
-      <% challenge.achievements.each do |achievement| %>
-        <% if achievement.completed == true %>
-          <li class="challenge-card">🥷 <%= challenge.title %> à <%= challenge.boardgame.title %></li>
-        <% end %>
-      <% end %>
-    <% end %>
-  </ul>
-</div>
-
-<%= console %>
+<%= render "shared/logout" %>

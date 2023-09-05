@@ -14,7 +14,7 @@
   align-items: center;
   flex-direction: column;
   background-color: var(--light-blue);
-  padding: 12px 0px 0px 20px;
+  padding: 12px;
   text-align: center;
   border-bottom: 1px solid white;
   border-top: 1px solid white;
@@ -48,6 +48,10 @@
 
 .line-height-none {
   line-height: 0;
+}
+
+.accordion-button {
+  background-color: var(--middle-blue);
 }
 
 .animate-character

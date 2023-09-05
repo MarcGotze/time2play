@@ -98,4 +98,5 @@ class PartiesController < ApplicationController
   def party_params
     params.require(:party).permit(:start_time, :end_time, :boardgame_id, :player_id, :score)
   end
+
 end
