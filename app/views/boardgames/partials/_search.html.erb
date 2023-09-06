@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="row justify-content-center">
-    <div class="d-flex my-3"  data-controller="search">
+    <div id="search-container" class="d-flex my-3"  data-controller="search">
       <%= form_with url: boardgames_path, method: :get, class: "d-flex flex-grow-1" do %>
         <%= text_field_tag :query,
               params[:query],
@@ -17,7 +17,7 @@
         data-lens-gcloudk-value="<%= ENV['GCLOUD_KEY'] %>"
         data-lens-gcloudu-value="<%= ENV['GCLOUD_USER'] %>"
         data-controller="lens"
-        class="video-view ms-2">
+        class="video-view">
         <video autoplay id="video" class="hidden"></video>
         <button id="captureButton" class="btn btn-dark btn-large">
           <i class="fa-solid fa-camera" style="color: #000000;"></i>

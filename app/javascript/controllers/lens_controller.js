@@ -12,6 +12,7 @@ export default class extends Controller {
     const capturImgButton = document.getElementById("captureImgButton");
     const sendImgButton = document.getElementById("sendImgButton")
     const loadingAnimation = document.getElementById("lds-roller");
+    const searchContainer = document.getElementById("search-container");
 
     const getImgKeyWords = async (encodedImage) => {
       const apiUrl = `https://vision.googleapis.com/v1/images:annotate`;
@@ -61,6 +62,7 @@ export default class extends Controller {
     }
 
     captureButton.addEventListener("click", async function() {
+      searchContainer.classList.add("flex-column")
       // Accéder à la caméra de l'utilisateur
       if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
         // ok, browser supports it
@@ -121,6 +123,7 @@ export default class extends Controller {
       capturImgButton.classList.add("hidden");
       sendImgButton.classList.remove("hidden");
       sendImgButton.addEventListener("click", () => {
+        searchContainer.classList.remove("flex-column")
         loadingAnimation.classList.remove('d-none');
         canvas.classList.add("hidden");
         sendImgButton.classList.add("hidden");
