@@ -7,7 +7,7 @@
     <div class="d-flex flex-column line-height-none">
       <h2 class="animate-character">Hey <%= current_user.username %> !</h2>
       <h4>Niveau <%= current_user.level %></h4>
-      <span class="xp"><em>2456xp</em></span>
+      <span class="xp"><em><%= rand(100..9999) %>xp</em></span>
     </div>
   </div>
 
@@ -172,7 +172,7 @@
 
 <%# =====COLLECTION===== %>
 <div class="container collection">
-  <h3>Collection: </h3>
+  <h3>Collection </h3>
   <div class="cards">
       <% current_user.boardgames.each do |boardgame| %>
         <div>
