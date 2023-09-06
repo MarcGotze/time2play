@@ -13,7 +13,7 @@
             <% end %>
           </div>
           <div class="challenge-title">
-            <h3><%= challenge.boardgame.title %></h3>
+            <h4><%= challenge.boardgame.title %></h4>
           </div>
         </div>
         <div class="card-body challenge-body">
@@ -21,7 +21,6 @@
             <i class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i>
             <h5 class="card-title"><%= challenge.title %></h5>
           </div>
-          <p class="card-text"><%= challenge.description %></p>
         </div>
       </div>
       <% previous_image_id = challenge.boardgame.photo.key %>
@@ -32,7 +31,6 @@
             <i class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i>
             <h5 class="card-title"><%= challenge.title %></h5>
           </div>
-          <p class="card-text"><%= challenge.description %></p>
         </div>
       </div>
     <% end %>
