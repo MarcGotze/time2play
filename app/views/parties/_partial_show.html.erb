@@ -1,9 +1,6 @@
 <% if @party.end_time.present? %>
   <p>Terminée !!</p>
 <% else %>
-  <div class="container">
-    <h1 class="title-page">Nouvelle partie</h1>
-  </div>
   <div data-controller="overlay"
       data-overlay-labels-value="<%= @labels %>"
       data-overlay-data-value="<%= @data %>"
@@ -28,8 +25,9 @@
         </div>
         <div class="add-player">
         <%= simple_form_for [@party, @player] do |f| %>
-          <%= f.association :user, label: 'Nouveau joueur', label_method: :username, value_method: :id, width: 20 %>
-          <%= f.submit "Ajouter", class: "btn btn-dark btn-sm add-btn" %>
+          <%= f.label "Nouveau joueur :" %>
+          <%= f.collection_select(:user_id, @users, :id, :username, {})%>
+          <%= f.submit "Ajouter", class: "btn btn-dark add-btn" %>
         </div>
         <% end %>
       </div>
