@@ -120,14 +120,11 @@
     <% if current_user.challenge_ids == [] %>
       <li><em>Vous n'avez pas encore remporté de défi.</em></li>
     <% end %>
-    <% current_user.challenges.each do |challenge| %>
-      <% challenge.achievements.each do |achievement| %>
+      <% @achievements.each do |achievement| %>
         <% if achievement.completed == true %>
-          <li class="challenge-card">🥷 <%= challenge.title %> à <%= challenge.boardgame.title %></li>
-          <%= raise %>
+          <li class="challenge-card">🥷 <%= achievement.challenge.title %> à <%= achievement.challenge.boardgame.title %></li>
         <% end %>
       <% end %>
-    <% end %>
   </ul>
 </div>
 
