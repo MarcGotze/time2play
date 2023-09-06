@@ -11,8 +11,12 @@
     <% end %>
   </div>
   <% if current_user.achievements.where('updated_at > ?', DateTime.now - 2.minute).where(completed: true).present? %>
-    <p>Bravo <%= current_user.username %> ! Tu as réussi ce défi :</p>
-    <%= current_user.achievements.where('updated_at > ?', DateTime.now - 2.minute).where(completed: true).first.challenge.title  %>
+    <p>Bravo <%= current_user.username %> ! Tu as réussi ce(s) défi(s) :</p>
+    <% current_user.achievements.where('updated_at > ?', DateTime.now - 2.minute).where(completed: true).take(3).each do |achievement| %>
+      <ul>
+        <li><%= achievement.challenge.title %></li>
+      </ul>
+    <% end %>
     <p>Tu as atteint le niveau <%= current_user.level %> !</p>
   <% end %>
 
