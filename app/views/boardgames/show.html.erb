@@ -95,20 +95,20 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingThree">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Challenges
+            Défis
           </button>
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-          <div class="accordion-body accordion-background ">
+          <div class="accordion-body accordion-background">
             <div class="challenges-container">
-              <ul class="mb-3">
+              <ul class="mb-3 ms-0 p-0">
                 <% @boardgame.challenges.each do |challenge| %>
                   <li class="challenge-card">🎯 <%= challenge.title %></li>
                   <%#= link_to 'Défi réalisé!', new_user_achievement_path(current_user) %>
                 <% end %>
               </ul>
               <% if user_signed_in? %>
-              <h3>Proposer un défi</h3>
+                <p><strong>Proposer un nouveau défi</strong></p>
                 <%= render 'challenges/new_form', challenges: @challenge %>
               <% end %>
             </div>

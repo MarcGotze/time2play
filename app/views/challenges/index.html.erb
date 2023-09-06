@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="title-page">Challenges</h1>
+  <h1 class="title-page">Défis</h1>
 </div>
 <div class="container challenges">
   <% previous_image_id = nil %>
@@ -8,7 +8,9 @@
       <div class="card mt-4">
         <div class="d-flex align-items-center challenge-card">
           <div class="challenge-img">
-            <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top challenges-banner' %>
+            <%= link_to boardgame_path(challenge.boardgame) do %>
+              <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top challenges-banner' %>
+            <% end %>
           </div>
           <div class="challenge-title">
             <h3><%= challenge.boardgame.title %></h3>

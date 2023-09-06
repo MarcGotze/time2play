@@ -7,10 +7,11 @@
     <div class="d-flex flex-column line-height-none">
       <h2 class="animate-character">Hey <%= current_user.username %> !</h2>
       <h4>Niveau <%= current_user.level %></h4>
-      <span class="xp"><em>2456xp</em></span>
+      <span class="xp"><em><%= rand(100..9999) %>xp</em></span>
     </div>
   </div>
 
+<%# =====BADGES===== %>
   <div class="d-flex align-items-center mt-5">
     <svg data-bs-toggle="modal" data-bs-target="#cards-badge" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -96,6 +97,7 @@
   </div>
 </div>
 
+<%# =====SCORE TOTAL===== %>
 <div class="container my-5 background-card">
   <p>Score total: 4549pts</p>
   <% if @parties.count >= 1 %>
@@ -114,24 +116,37 @@
   <p>Temps cumulé : <%= @total_min.to_i %> minutes.</p>
 </div>
 
+<%# =====DEFIS REMPORTES===== %>
 <div class="container collection">
-  <h3>Défi(s) remporté(s): </h3>
+  <h3>Défi(s) remporté(s) </h3>
 </div>
 <div class="challenges-container my-4">
-  <ul class="mb-3">
-    <% if current_user.challenge_ids == [] %>
-      <li><em>Vous n'avez pas encore remporté de défi.</em></li>
+  <% if current_user.challenge_ids == [] %>
+    <li><em>Vous n'avez pas encore remporté de défi.</em></li>
+  <% end %>
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <% @achievements.each do |boardgame, achievements| %>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-heading<%= boardgame.id %>">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= boardgame.id %>" aria-expanded="false" aria-controls="flush-collapse<%= boardgame.id %>">
+            <%= boardgame.title %>
+          </button>
+        </h2>
+        <div id="flush-collapse<%= boardgame.id %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= boardgame.id %>" data-bs-parent="#accordionFlushExample">
+          <ul class="mb-3 p-3">
+            <% achievements.each do |a| %>
+                <li class="challenge-card"><i class="fa-solid fa-check" style="color: #27dd5e;"></i> <%= a.challenge.title %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     <% end %>
-      <% @achievements.each do |achievement| %>
-        <% if achievement.completed == true %>
-          <li class="challenge-card">🥷 <%= achievement.challenge.title %> à <%= achievement.challenge.boardgame.title %></li>
-        <% end %>
-      <% end %>
-  </ul>
+  </div>
 </div>
 
+<%# =====MES DERNIERES PARTIES===== %>
 <div class="container collection">
-  <h3>Mes dernières parties: </h3>
+  <h3>Mes dernières parties </h3>
 </div>
 <div class="accordion accordion-flush my-4" id="accordionFlushExample">
   <% @parties.take(5).each do |party| %>
@@ -155,8 +170,9 @@
   <% end %>
 </div>
 
+<%# =====COLLECTION===== %>
 <div class="container collection">
-  <h3>Collection: </h3>
+  <h3>Collection </h3>
   <div class="cards">
       <% current_user.boardgames.each do |boardgame| %>
         <div>
@@ -166,4 +182,5 @@
   </div>
 </div>
 
+<%# =====LOGOUT===== %>
 <%= render "shared/logout" %>

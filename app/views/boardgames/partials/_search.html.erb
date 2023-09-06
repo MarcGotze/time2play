@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="row justify-content-center">
-    <div class="d-flex my-3"  data-controller="search">
+    <div id="search-container" class="d-flex my-3"  data-controller="search">
       <%= form_with url: boardgames_path, method: :get, class: "d-flex flex-grow-1" do %>
         <%= text_field_tag :query,
               params[:query],
@@ -9,7 +9,7 @@
               data: {action: 'keyup->search#handleSubmit', target: 'search.query'},
               id: 'search-input'
           %>
-        <%= link_to "#", class: "btn btn-dark ms-2", id: "btn-search" do %>
+        <%= button_tag "Chercher", name: "", class: "btn btn-dark ms-2", id: "btn-search" do %>
           <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
         <% end %>
       <% end %>

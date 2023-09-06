@@ -1,7 +1,7 @@
 <%# =============== PARTIE FINIE ===============%>
 
 <% if @party.end_time.present? %>
-  <div>
+  <div class="container">
     <h1 class="title-page">Partie terminée!</h1>
     <div class="finish-container">
     </div>
@@ -19,6 +19,9 @@
   <%= button_to "Rejouer", boardgame_parties_path(@boardgame) %>
 <%# =========================================%>
 <% else %>
+  <div class="container">
+    <h1 class="title-page">Lancer une partie</h1>
+  </div>
   <div data-controller="overlay"
       data-overlay-labels-value="<%= @labels %>"
       data-overlay-data-value="<%= @data %>"
@@ -45,7 +48,7 @@
         <%= simple_form_for [@party, @player] do |f| %>
           <%= f.label "Nouveau joueur :" %>
           <%= f.collection_select(:user_id, @users, :id, :username, {})%>
-          <%= f.submit "Ajouter", class: "btn btn-dark add-btn" %>
+          <%= f.submit "Ajouter", class: "btn btn-dark btn-sm ms-3 add-btn" %>
         </div>
         <% end %>
       </div>
@@ -91,7 +94,7 @@
           <div class="d-flex justify-content-center">
             <%= simple_form_for [@party], data: { action: "submit->form-party-end#endParty" } do |f| %>
               <%= f.hidden_field :players, data: { form_party_end_target: "hidden" } %>
-              <%= f.submit "Terminer", class: "btn btn-dark" %>
+              <%= f.submit "Terminer", class: "btn btn-dark btn-sm" %>
             <% end %>
           </div>
           <%# tu vas avoir un formulaire avec un hidden field de tes players avec leur score %>

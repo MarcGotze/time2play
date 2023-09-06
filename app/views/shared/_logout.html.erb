@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center justify-content-center mt-5">
   <%= link_to "Déconnexion",
   destroy_user_session_path,
-  class: "nav-link btn-action logout #{ 'hidden' if user_signed_in? == false }",
+  class: " btn btn-info btn-sm logout #{ 'hidden' if user_signed_in? == false }",
   data: {turbo_method: :delete}%>
 </div>
