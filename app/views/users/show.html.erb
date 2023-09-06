@@ -133,7 +133,7 @@
           </button>
         </h2>
         <div id="flush-collapse<%= boardgame.id %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= boardgame.id %>" data-bs-parent="#accordionFlushExample">
-          <ul class="mb-3">
+          <ul class="mb-3 p-3">
             <% achievements.each do |a| %>
                 <li class="challenge-card"><i class="fa-solid fa-check" style="color: #27dd5e;"></i> <%= a.challenge.title %></li>
             <% end %>
