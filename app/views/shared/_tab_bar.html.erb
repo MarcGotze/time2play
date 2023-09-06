@@ -1,6 +1,5 @@
 <div data-controller="tabbar-active" class="tab-bar d-flex align-items-center justify-content-center justify-content-evenly">
-  <%= link_to boardgames_path, data: { action: "click->tabbar-active#touch",
-  tabbar_active_target: "tab1" } do %>
+  <%= link_to boardgames_path, data: { tabbar_active_target: "tab1" } do %>
     <i class="fa-solid fa-indent fa-xl"></i>
   <% end %>
    <%= link_to challenges_path, data: { tabbar_active_target: "tab2" } do %>

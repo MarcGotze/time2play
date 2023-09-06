@@ -19,7 +19,7 @@ export default class extends Controller {
           this.tab3Target.classList.remove("inactive");
           this.tab3Target.classList.add("active");
         }
-        if (this.hasTab3Target) {
+        if (this.hasTab4Target) {
           this.tab4Target.classList.remove("inactive");
           this.tab4Target.classList.add("active");
         }

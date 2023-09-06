@@ -99,7 +99,6 @@
 
 <%# =====SCORE TOTAL===== %>
 <div class="container my-5 background-card">
-  <p>Score total: 4549pts</p>
   <% if @parties.count >= 1 %>
     <p><%= current_user.victories %> victoire(s) / <%= @parties.count %> parties jouée(s)</p>
     <p>Taux de victoire : <%= sprintf("%0.0f", (current_user.victories.to_f / @parties.count.to_f) * 100) %> %</p>
