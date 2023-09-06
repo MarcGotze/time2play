@@ -1,16 +1,7 @@
-<%= render "boardgames/partials/search" %>
-
-<div
-  data-lens-gcloudk-value="<%= ENV['GCLOUD_KEY'] %>"
-  data-lens-gcloudu-value="<%= ENV['GCLOUD_USER'] %>"
-  data-controller="lens"
-  class="container video-view d-flex align-items-center flex-column">
-  <video autoplay id="video" class="hidden"></video>
-  <button id="captureButton" class="btn btn-info btn-large">Recherche photo</button>
-  <button id="captureImgButton" class="btn btn-info btn-large camera-btn hidden mt-3"><i class="fa-solid fa-camera" style="color: #ffffff;"></i></i></button>
-  <canvas id="canvas" class="hidden"></canvas>
-  <button id="sendImgButton" class="btn btn-info btn-large camera-btn hidden mt-3"><i class="fa-solid fa-share-from-square" style="color: #ffffff;"></i></button>
+<div class="container">
+  <h1 class="title-page">Bibliothèque</h1>
 </div>
+<%= render "boardgames/partials/search" %>
 
 <div class="container">
   <div class="cards">
