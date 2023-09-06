@@ -99,8 +99,8 @@
 <div class="container my-5 background-card">
   <p>Score total: 4549pts</p>
   <% if @parties.count >= 1 %>
-    <p><%= current_user.victories %> victoire / <%= @parties.count %> parties jouées</p>
-    <p>Taux de victoire : <%= (current_user.victories.to_f / @parties.count.to_f) * 100 %> %</p>
+    <p><%= current_user.victories %> victoire(s) / <%= @parties.count %> parties jouée(s)</p>
+    <p>Taux de victoire : <%= sprintf("%0.0f", (current_user.victories.to_f / @parties.count.to_f) * 100) %> %</p>
   <% else %>
    <p>Tu n'as pas encore joué 😿</p>
   <% end %>
@@ -115,18 +115,18 @@
 </div>
 
 <div class="container collection">
-  <h3>Mes badges et défis: </h3>
+  <h3>Défi(s) remporté(s): </h3>
 </div>
 <div class="challenges-container my-4">
   <ul class="mb-3">
-    <li><em>Vous n'avez pas encore remporté de défi.</em></li>
-    <% @challenges.each do |challenge| %>
-      <% challenge.achievements.each do |achievement| %>
+    <% if current_user.challenge_ids == [] %>
+      <li><em>Vous n'avez pas encore remporté de défi.</em></li>
+    <% end %>
+      <% @achievements.each do |achievement| %>
         <% if achievement.completed == true %>
-          <li class="challenge-card">🥷 <%= challenge.title %> à <%= challenge.boardgame.title %></li>
+          <li class="challenge-card">🥷 <%= achievement.challenge.title %> à <%= achievement.challenge.boardgame.title %></li>
         <% end %>
       <% end %>
-    <% end %>
   </ul>
 </div>
 

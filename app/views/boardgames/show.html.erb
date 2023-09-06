@@ -12,12 +12,12 @@
           <i class="fa-solid fa-circle-minus" style="color: #707070;"></i>
           <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
         <% end %>
-        <p class="grey">Ajouté au profil</p>
+        <p class="grey">Supprimer de ma collection</p>
         <% else %>
           <%= link_to boardgame_game_to_users_path(@boardgame), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :post} do %>
           <i class="fa-solid fa-circle-plus" style="color: #ffcd39;--fa-animation-duration: 2s; --fa-fade-opacity: 0.6;"></i>
         <% end %>
-        <p>Ajouter le jeu à mon profil</p>
+        <p>Ajouter le jeu à ma collection</p>
       <% end %>
       </div>
     <% end %>
