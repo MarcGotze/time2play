@@ -14,6 +14,7 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = Challenge.new(challenge_params)
+    @challenge.boardgame = Boardgame.find(params[:boardgame_id])
     if @challenge.save
       Challenge.create(boardgame: @boardgame)
       redirect_to boardgame_path(@boardgame)
