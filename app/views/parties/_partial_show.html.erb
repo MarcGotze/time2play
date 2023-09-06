@@ -5,7 +5,10 @@
       data-overlay-labels-value="<%= @labels %>"
       data-overlay-data-value="<%= @data %>"
       data-overlay-rotation-value="<%= @players.count > 1 ? @rotation_values.to_json : "" %>"
-    >
+  >
+    <div class="spin-overlay" data-overlay-target="overlay">
+      <%= render "parties/roulette", players: @players %>
+    </div>
     <%# =============== PLAYERS SECTION ===============%>
     <div class="container-party">
       <div class="section-selection">
@@ -36,12 +39,12 @@
         <ul>
           <div class="first-player">
             <li>Qui commence ?	&nbsp;&nbsp;</li>
-            <div class="spin-icon" data-action="click->overlay#display"><i class="fa-regular fa-life-ring fa-spin" style="color: #ffcd39;"></i></i></div>
-        </ul>
-            <div class="spin-overlay" data-overlay-target="overlay">
-            <%= render "parties/roulette", players: @players %>
+            <div class="spin-icon" data-action="click->overlay#display">
+              <i class="fa-regular fa-life-ring fa-spin" style="color: #ffcd39;"></i>
             </div>
           </div>
+        </ul>
+
       <% end %>
     </div>
 
