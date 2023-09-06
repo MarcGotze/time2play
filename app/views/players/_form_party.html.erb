@@ -17,6 +17,6 @@
     </div>
     <%= simple_form_for [@party], data: { action: "submit->form-party-end#updateParty" } do |f| %>
       <%= f.hidden_field :players, data: { form_party_end_target: "hidden" } %>
-      <%= f.submit "Confirmer", class: "btn btn-dark" %>
+      <%= f.submit "Confirmer", class: "btn btn-dark btn-sm" %>
     <% end %>
   </div>
