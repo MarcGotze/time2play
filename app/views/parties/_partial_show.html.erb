@@ -2,7 +2,7 @@
 
 <% if @party.end_time.present? %>
   <div class="container">
-    <h1 class="title-page">Partie terminée!</h1>
+    <h1 class="title-page">Partie terminée</h1>
     <div class="finish-container">
     </div>
     <% party.players.order(:score).reverse.each do |player| %>
@@ -10,9 +10,9 @@
       <p><%= player.user.username %> a marqué <%= player.score %> points</p>
     <% end %>
   </div>
-  <% if current_user.achievements.where('updated_at > ?', DateTime.now - 2.minute).where(completed: true).present? %>
+  <% if current_user.achievements.where('updated_at > ?', DateTime.now - 1.minute).where(completed: true).present? %>
     <p>Bravo <%= current_user.username %> ! Tu as réussi ce(s) défi(s) :</p>
-    <% current_user.achievements.where('updated_at > ?', DateTime.now - 2.minute).where(completed: true).take(3).each do |achievement| %>
+    <% current_user.achievements.where('updated_at > ?', DateTime.now - 1.minute).where(completed: true).take(3).each do |achievement| %>
       <ul>
         <li><i class="fa-solid fa-check" style="color: #27dd5e;"></i> <%= achievement.challenge.title %></li>
       </ul>
@@ -21,10 +21,11 @@
   <% end %>
 
   <%= button_to "Rejouer", boardgame_parties_path(@boardgame) %>
+  <%= render "shared/tab_bar" %>
 <%# =========================================%>
 <% else %>
   <div class="container">
-    <h1 class="title-page">Lancer une partie</h1>
+    <h1 class="title-page">Partie en cours</h1>
   </div>
   <div data-controller="overlay"
       data-overlay-labels-value="<%= @labels %>"
@@ -80,7 +81,7 @@
         <h2 class="title-party">Défis</h2>
       <% @boardgame.challenges.each do |challenge| %>
           <ul class="challenges">
-            <li>🎯 <%= challenge.title %></p>
+            <li><i class="fa-solid fa-bullseye" style="color: #e60a0a;"></i> <%= challenge.title %></li>
           </ul>
       <% end %>
     </div>
