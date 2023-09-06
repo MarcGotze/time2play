@@ -1,9 +1,23 @@
+<%# =============== PARTIE FINIE ===============%>
+
 <% if @party.end_time.present? %>
   <div>
     <h1 class="title-page">Partie terminée!</h1>
     <div class="finish-container">
     </div>
+    <% party.players.order(:score).reverse.each do |player| %>
+      <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+      <p><%= player.user.username %> a marqué <%= player.score %> points</p>
+    <% end %>
   </div>
+  <% if current_user.achievements.where('updated_at > ?', DateTime.now - 2.minute).where(completed: true).present? %>
+    <p>Bravo <%= current_user.username %> ! Tu as réussi ce défi :</p>
+    <%= current_user.achievements.where('updated_at > ?', DateTime.now - 2.minute).where(completed: true).first.challenge.title  %>
+    <p>Tu as atteint le niveau <%= current_user.level %> !</p>
+  <% end %>
+
+  <%= button_to "Rejouer", boardgame_parties_path(@boardgame) %>
+<%# =========================================%>
 <% else %>
   <div data-controller="overlay"
       data-overlay-labels-value="<%= @labels %>"
