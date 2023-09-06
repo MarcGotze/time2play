@@ -1,5 +1,9 @@
 <% if @party.end_time.present? %>
-  <p>Terminée !!</p>
+  <div>
+    <h1 class="title-page">Partie terminée!</h1>
+    <div class="finish-container">
+    </div>
+  </div>
 <% else %>
   <div data-controller="overlay"
       data-overlay-labels-value="<%= @labels %>"
