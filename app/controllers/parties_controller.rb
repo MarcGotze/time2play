@@ -61,6 +61,7 @@ class PartiesController < ApplicationController
   def edit; end
 
   def update
+    @boardgame = @party.boardgame
     if params[:scores] == 'true'
       params[:party][:players].split(',').each_slice(2) do |player|
         @player = Player.find(player[0])
