@@ -37,6 +37,8 @@ class PartiesController < ApplicationController
         value: @players.second.user.username
       }
     end
+    users_players = @players.map(&:user)
+    @users = User.all.reject { |user| users_players.include? user }
   end
 
   def new
