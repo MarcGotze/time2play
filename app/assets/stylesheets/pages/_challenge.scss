@@ -1,21 +1,27 @@
 .challenge-title {
-  text-align: center;
-  margin: auto;
+  padding-left: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: var(--light-font)
 }
 
 .challenge-card {
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+  background-color: var(--dark-blue);
+  filter: drop-shadow(0 0 0.3em var(--dark-blue));
+  padding-bottom: .8em;
 }
 
 .challenge-img {
   img {
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
   }
 }
 
 .challenge-body {
+  background-color: var(--middle-blue);
+  filter: drop-shadow(0 0 0.3em var(--dark-blue));
   i {
     margin-bottom: 3px;
     margin-right: 3px;
@@ -24,6 +30,6 @@
 
 .challenges {
   .card {
-    border-radius: 15px;
+    border-radius: 10px;
   }
 }
