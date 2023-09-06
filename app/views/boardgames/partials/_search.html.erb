@@ -9,7 +9,7 @@
               data: {action: 'keyup->search#handleSubmit', target: 'search.query'},
               id: 'search-input'
           %>
-        <%= link_to "#", class: "btn btn-dark ms-2", id: "btn-search" do %>
+        <%= button_tag "Chercher", name: "", class: "btn btn-dark ms-2", id: "btn-search" do %>
           <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
         <% end %>
       <% end %>
@@ -17,7 +17,7 @@
         data-lens-gcloudk-value="<%= ENV['GCLOUD_KEY'] %>"
         data-lens-gcloudu-value="<%= ENV['GCLOUD_USER'] %>"
         data-controller="lens"
-        class="video-view">
+        class="video-view ms-2">
         <video autoplay id="video" class="hidden"></video>
         <button id="captureButton" class="btn btn-dark btn-large">
           <i class="fa-solid fa-camera" style="color: #000000;"></i>
