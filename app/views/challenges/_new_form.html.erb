@@ -1,8 +1,10 @@
 <%= simple_form_for [@boardgame, @challenge]  do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.association :boardgame %>
-  <%= f.input :score %>
-  <%= f.input :victory %>
+  <%= f.input :title, label: false, placeholder: "Titre du défi", input_html: { class: "w-100" } %>
+  <%= f.label 'Objectifs' %>
+  <br>
+  <%= f.label 'Score' %>
+  <%= f.input :score, label: false, placeholder: "Points", input_html: { class: "w-100" }  %>
+  <%= f.label 'Nombre de victoires' %>
+  <%= f.input :victory, label: false, placeholder: "Nombre de victoires", input_html: { class: "w-100" }  %>
   <%= f.submit "Défier", class: "btn btn-dark btn-sm"%>
 <% end %>
