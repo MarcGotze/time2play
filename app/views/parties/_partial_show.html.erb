@@ -31,11 +31,11 @@
       <%= @party.players.order(:score).reverse.third.score %>pts
     </div>
   </div>
-    <% if current_user.achievements.where('updated_at > ?', DateTime.now - 1.minute).where(completed: true).present? %>
+    <% if current_user.achievements.where('updated_at > ?', DateTime.now - 100.minute).where(completed: true).present? %>
       <div class="results mt-5">
         <p>Bravo <%= current_user.username %> ! Tu as réussi ce(s) défi(s) :</p>
-        <% current_user.achievements.where('updated_at > ?', DateTime.now - 1.minute).where(completed: true).take(3).each do |achievement| %>
-          <ul>
+        <% current_user.achievements.where('updated_at > ?', DateTime.now - 100.minute).where(completed: true).take(3).each do |achievement| %>
+          <ul class="challenge-completed">
             <li><i class="fa-solid fa-check" style="color: #27dd5e;"></i> <%= achievement.challenge.title %></li>
           </ul>
         <% end %>
