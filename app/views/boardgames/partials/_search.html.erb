@@ -14,8 +14,10 @@
         <% end %>
       <% end %>
       <div
-        data-lens-gcloudk-value="<%= ENV['GCLOUD_KEY'] %>"
-        data-lens-gcloudu-value="<%= ENV['GCLOUD_USER'] %>"
+        data-lens-gcloud-id-value="<%= ENV['GCLOUD_CLIENT_ID'] %>"
+        data-lens-gcloud-secret-value="<%= ENV['GCLOUD_CLIENT_SECRET'] %>"
+        data-lens-gcloud-refresh-value="<%= ENV['GCLOUD_REFRESH_TOKEN'] %>"
+        data-lens-gcloud-project-value="<%= ENV['GCLOUD_QUOTA_PROJECT'] %>"
         data-controller="lens"
         class="video-view ms-2">
         <video autoplay id="video" class="hidden"></video>
