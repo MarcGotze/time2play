@@ -3,7 +3,9 @@
 <% if @party.end_time.present? %>
   <div class="container">
     <h1 class="title-page">Partie terminée</h1>
-    <div class="finish-container">
+    <div class="finish-container" id="confetti-container" data-controller="confetti">
+    <button data-action="click->confetti#connect">Bravo !</button>
+
     </div>
     <% party.players.order(:score).reverse.each do |player| %>
       <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
