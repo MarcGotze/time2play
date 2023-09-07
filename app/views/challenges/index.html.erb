@@ -6,7 +6,7 @@
   <% @challenges.order(:boardgame_id).each do |challenge| %>
     <% if challenge.boardgame.photo.key != previous_image_id %>
       <div class="card mt-4">
-        <div class="d-flex align-items-center challenge-card">
+        <div class="d-flex align-items-center challenge-card-index">
           <div class="challenge-img">
             <%= link_to boardgame_path(challenge.boardgame) do %>
               <%= cl_image_tag challenge.boardgame.photo.key, class: 'card-img-top challenges-banner' %>
