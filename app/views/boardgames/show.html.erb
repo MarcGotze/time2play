@@ -77,7 +77,6 @@
         <div class="accordion-body accordion-background">
           <% if @parties == [] %>
             <em>Pas de parties pour le moment.</em>
-            <%= raise %>
           <% else %>
             <% @parties.take(5).each do |party| %>
               <div class="party-card card w-80%">
