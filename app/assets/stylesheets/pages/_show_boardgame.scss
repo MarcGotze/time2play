@@ -7,7 +7,7 @@
   .category {
     background-color: #212738;
     color: var(--light-font);
-    padding: 0.3em;
+    padding: .3em .6em;
     list-style: none;
   }
 }
@@ -22,6 +22,7 @@
     background-color: var(--dark-blue);
     padding: 0.5em;
     width: 10em;
+    letter-spacing: .08em;
     text-align: center;
     border-radius: 5px;
     color: var(--light-font);
@@ -75,6 +76,18 @@
 
 }
 
-// .game-description {
-//   text-align: justify;
-// }
+.card-header, .list-group-item {
+  background-color: var(--light-back) !important;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+.new-challenge {
+  font-size: 1.1em;
+}
+
+.ask-new-challenge {
+  border: 1px solid var(--anthracite);
+  padding: 1em;
+  border-radius: 5px;
+}

@@ -10,7 +10,7 @@
         <% if current_user.boardgame_ids.include?(@boardgame.id) %>
         <%= link_to game_to_user_path(GameToUser.find_by(user:current_user, boardgame:@boardgame)), class: "remove-submit-btn-style btn-validate", data: {turbo_method: :delete} do %>
           <i class="fa-solid fa-circle-minus" style="color: #707070;"></i>
-          <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info" %>
+          <%= link_to "Jouer", boardgame_parties_path(@boardgame), data: {turbo_method: :post}, class: "new-game btn btn-info fw-bold" %>
         <% end %>
         <p class="grey">Supprimer de ma collection</p>
         <% else %>
@@ -105,19 +105,22 @@
             Défis
           </button>
         </h2>
-      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body accordion-background">
-          <div class="challenges-container">
-            <ul class="mb-3 ms-0 p-0">
-              <% @boardgame.challenges.each do |challenge| %>
-                <li class="challenge-card">🎯 <%= challenge.title %></li>
-                <%#= link_to 'Défi réalisé!', new_user_achievement_path(current_user) %>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body accordion-background">
+            <div class="challenges-container">
+              <ul class="mb-3 ms-0 p-0">
+                <% @boardgame.challenges.each do |challenge| %>
+                  <li class="challenge-card no-bg">🎯 <%= challenge.title %></li>
+                  <%#= link_to 'Défi réalisé!', new_user_achievement_path(current_user) %>
+                <% end %>
+              </ul>
+              <div class="ask-new-challenge">
+              <% if user_signed_in? %>
+                <p><strong class="new-challenge">Proposer un nouveau défi</strong></p>
+                <%= render 'challenges/new_form', challenges: @challenge %>
               <% end %>
-            </ul>
-            <% if user_signed_in? %>
-              <p><strong>Proposer un nouveau défi</strong></p>
-              <%= render 'challenges/new_form', challenges: @challenge %>
-            <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
