@@ -36,46 +36,53 @@
     </div>
   </div>
 
+<%# =============== PLAYERS SECTION ===============%>
 <div class="boardgame-action">
-  <%# =============== PLAYERS SECTION ===============%>
-  <div class="accordion" id="accordionExample">
+  <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
           Ils y jouent
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body d-flex accordion-background ">
-          <% @players.take(3).each do |player| %>
-          <div>
-            <%# <h5><%= player.user.username %></h5>
-            <% if player.user.avatar.attached? %>
-              <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
-            <% else %>
-                <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body accordion-background d-flex">
+          <% if @players == [] %>
+            <em>Pas de joueurs pour le moment.</em>
+          <% else %>
+            <% @players.take(3).each do |player| %>
+              <div>
+                <% if player.user.avatar.attached? %>
+                  <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+                <% else %>
+                    <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
+                <% end %>
+              </div>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 
   <%# =============== PARTIES SECTION ===============%>
-  <div class="accordion" id="accordionExample">
+  <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
           Mes dernières parties
         </button>
       </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accory.end_timebody accordion-background ">
-          <% @parties.take(5).each do |party| %>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body accordion-background">
+          <% if @parties == [] %>
+            <em>Pas de parties pour le moment.</em>
+            <%= raise %>
+          <% else %>
+            <% @parties.take(5).each do |party| %>
               <div class="party-card card w-80%">
                 <% if party.end_time.nil? == false %>
-                 <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
+                  <div class="card-header"><%= party.end_time.strftime("Partie jouée le : %d/%m/%Y")%></div>
                   <% party.players.order(:score).reverse.each do |player| %>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item"><%= player.user.username %> a marqué <%= player.score %> points</li>
@@ -84,48 +91,50 @@
                 <% end %>
               </div>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 
   <%# ============= CHALLENGES SECTION =============%>
-    <div class="accordion" id="accordionExample">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
             Défis
           </button>
         </h2>
-        <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-          <div class="accordion-body accordion-background">
-            <div class="challenges-container">
-              <ul class="mb-3 ms-0 p-0">
-                <% @boardgame.challenges.each do |challenge| %>
-                  <li class="challenge-card">🎯 <%= challenge.title %></li>
-                  <%#= link_to 'Défi réalisé!', new_user_achievement_path(current_user) %>
-                <% end %>
-              </ul>
-              <% if user_signed_in? %>
-                <p><strong>Proposer un nouveau défi</strong></p>
-                <%= render 'challenges/new_form', challenges: @challenge %>
+      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body accordion-background">
+          <div class="challenges-container">
+            <ul class="mb-3 ms-0 p-0">
+              <% @boardgame.challenges.each do |challenge| %>
+                <li class="challenge-card">🎯 <%= challenge.title %></li>
+                <%#= link_to 'Défi réalisé!', new_user_achievement_path(current_user) %>
               <% end %>
-            </div>
+            </ul>
+            <% if user_signed_in? %>
+              <p><strong>Proposer un nouveau défi</strong></p>
+              <%= render 'challenges/new_form', challenges: @challenge %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
   <%# ============= TAGS =============%>
-    <div class="accordion boardgame-actions" id="accordionExample">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+        <h2 class="accordion-header" id="flush-headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
             Tags
           </button>
         </h2>
-        <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-          <div class="accordion-body accordion-background ">
+      <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body accordion-background">
+          <div class="challenges-container">
             <ul class="category-container">
               <% @boardgame.category.split(',').each do |element|  %>
                 <span class="category"><%= element %></span>
