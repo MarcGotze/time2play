@@ -51,7 +51,7 @@
   <div class="container">
     <h1 class="title-page">Partie en cours</h1>
   </div>
-  <div data-controller="overlay"
+  <div data-controller="overlay dice"
       data-overlay-labels-value="<%= @labels %>"
       data-overlay-data-value="<%= @data %>"
       data-overlay-rotation-value="<%= @players.count > 1 ? @rotation_values.to_json : "" %>"
@@ -59,6 +59,7 @@
     <div class="spin-overlay" data-overlay-target="overlay">
       <%= render "parties/roulette", players: @players %>
     </div>
+
     <%# =============== PLAYERS SECTION ===============%>
     <div class="container-party">
       <div class="section-selection">
@@ -88,15 +89,28 @@
       <h2 class="title-party">C'est parti!</h2>
       <% if @players.count >= 2 %>
         <ul>
-          <div class="first-player">
-            <li>Qui commence ?	&nbsp;&nbsp;</li>
-            <div class="spin-icon" data-action="click->overlay#display">
-              <i class="fa-regular fa-life-ring fa-spin" style="color: #ffcd39;"></i>
+          <div class="first-player d-flex flex-column">
+            <div class="option-element d-flex align-items-center justify-content-around">
+              <li>Qui commence ? &nbsp;&nbsp;</li>
+              <div class="spin-icon mb-2" data-action="click->overlay#display">
+                <i class="fa-regular fa-life-ring fa-spin" style="color: #ffcd39;"></i>
+              </div>
+            </div>
+            <div class="option-element d-flex align-items-center">
+              <li>Lancer les dés &nbsp;&nbsp;</li>
+              <div class="mb-2" data-action="click->dice#display">
+                <i class="fa-solid fa-dice-two fa-2xl fa-spin" style="color: #ffcd39;"></i>
+              </div>
             </div>
           </div>
         </ul>
-
       <% end %>
+    </div>
+
+    <div >
+      <div class="dice-overlay" data-dice-target="overlay">
+        <%= render "parties/dice" %>
+      </div>
     </div>
 
     <%# =============== CHALLENGE BOARDGAME ===============%>
