@@ -8,27 +8,27 @@
   <div class="podium d-flex align-items-end justify-content-center gap-3">
     <div class="podium-player d-flex flex-column align-items-center">
       <div class="podium-info-2 d-flex flex-column align-items-center">
-        <%= party.players.order(:score).reverse.second.user.username %>
+        <%= @party.players.order(:score).reverse.second.user.username %>
         <%= cl_image_tag party.players.order(:score).reverse.second.user.avatar.key, class: "podium-avatar" %>
       </div>
       <div class="podium-second"></div>
-      <%= party.players.order(:score).reverse.second.score %>pts
+      <%= @party.players.order(:score).reverse.second.score %>pts
     </div>
     <div class="podium-player d-flex flex-column align-items-center">
       <div class="podium-info-1 d-flex flex-column align-items-center">
-        <%= party.players.order(:score).reverse.first.user.username %>
+        <%= @party.players.order(:score).reverse.first.user.username %>
         <%= cl_image_tag party.players.order(:score).reverse.first.user.avatar.key, class: "podium-avatar podium-animation" %>
       </div>
       <div class="podium-first"></div>
-      <%= party.players.order(:score).reverse.first.score %>pts
+      <%= @party.players.order(:score).reverse.first.score %>pts
     </div>
     <div class="podium-player d-flex flex-column align-items-center">
       <div class="podium-info-3 d-flex flex-column align-items-center">
-        <%= party.players.order(:score).reverse.third.user.username %>
-        <%= cl_image_tag party.players.order(:score).reverse.third.user.avatar.key, class: "podium-avatar" %>
+        <%= @party.players.order(:score).reverse.third.user.username %>
+        <%= cl_image_tag @party.players.order(:score).reverse.third.user.avatar.key, class: "podium-avatar" %>
       </div>
       <div class="podium-third"></div>
-      <%= party.players.order(:score).reverse.third.score %>pts
+      <%= @party.players.order(:score).reverse.third.score %>pts
     </div>
   </div>
   <% if current_user.achievements.where('updated_at > ?', DateTime.now - 1.minute).where(completed: true).present? %>
