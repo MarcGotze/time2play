@@ -1,8 +1,9 @@
 body {
   min-height: 100vh;
-  background: linear-gradient(var(--middle-blue), var(--dark-blue));
+  // background: linear-gradient(var(--middle-blue), var(--dark-blue));
+  background: linear-gradient(var(--middle-blue), var(--dark-blue) 90%);
   color: var(--light-font);
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
   padding-bottom: 100px;
 }
 
@@ -42,7 +43,12 @@ body p {
   border-bottom: 1px solid #ffcd39;
   // width: 90%;
   margin: auto;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-variant-caps: small-caps;
-  letter-spacing: .05em;
+  letter-spacing: .07em;
+}
+
+//boutons
+.btn {
+  font-weight: bold;
 }
