@@ -51,7 +51,12 @@
 }
 
 .accordion-button {
-  background-color: var(--middle-blue);
+  background-color: var(--title-accordeon);
+  color: var(--light-font);
+  font-size: .7em;
+  letter-spacing: .03em;
+  font-family: 'Roboto','sans-serif';
+  padding: .6em;
 }
 
 .animate-character

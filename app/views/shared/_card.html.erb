@@ -1,5 +1,4 @@
 <%= link_to boardgame_path(boardgame), class: "text-decoration-none" do %>
   <div class="card-trip" style="background-image: url('<%= cl_image_path(boardgame.photo.key, crop: :fit) %>')">
-    <p class="game-name"><%= boardgame.title %></p>
   </div>
 <% end %>

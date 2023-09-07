@@ -1,14 +1,19 @@
-.challenge-title {
-  padding-left: 1em;
-  font-family: 'Raleway', sans-serif;
-  color: var(--light-font)
+.challenge-title h4 {
+  padding-left: .6em;
+  // font-family: 'Raleway', sans-serif;
+  // font-family: 'Roboto', sans-serif;
+  color: var(--light-font);
+  font-weight: 600;
+  letter-spacing: .07;
+  font-size: 1.2em;
 }
 
 .challenge-card {
   border-radius: 10px 10px 0px 0px;
-  background-color: var(--dark-blue);
-  filter: drop-shadow(0 0 0.3em var(--dark-blue));
-  padding-bottom: .8em;
+  // background-color: var(--turquoise);
+  background: linear-gradient(#495579, var(--middle-blue));
+  // filter: drop-shadow(0 0 0.3em var(--dark-blue));
+  // padding-bottom: .8em;
 }
 
 .challenge-img {
@@ -20,8 +25,11 @@
 }
 
 .challenge-body {
-  background-color: var(--middle-blue);
-  filter: drop-shadow(0 0 0.3em var(--dark-blue));
+  background-color: var(--light-back);
+  font-weight: 700;
+  color: black;
+  border-radius: 0 0 10px 10px;
+  // filter: drop-shadow(0 0 0.3em var(--light-back));
   i {
     margin-bottom: 3px;
     margin-right: 3px;

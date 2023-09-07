@@ -5,7 +5,8 @@
   flex-wrap: wrap;
   justify-content: center;
   .category {
-    background-color: var(--orange-thumbnail);
+    background-color: #212738;
+    color: var(--light-font);
     padding: 0.3em;
     list-style: none;
   }
@@ -55,11 +56,23 @@
 }
 
 .accordion-background {
-  background-color: var(--middle-blue);
+  background-color: var(--light-back);
+  color: black;
 }
 
 .select {
   width: 90%;
+}
+
+.accordion-button {
+  background-color: var(--title-accordeon);
+  font-weight: bold;
+}
+
+.accordion-button:not(.collapsed) {
+  color: white !important;
+  background-color: var(--title-accordeon) !important;
+
 }
 
 // .game-description {
