@@ -3,7 +3,8 @@
 <% if @party.end_time.present? %>
   <div class="container">
     <h1 class="title-page">Partie terminée</h1>
-    <div class="finish-container">
+    <div class="finish-container" id="confetti-container" data-controller="confetti">
+    <button data-action="click->confetti#connect">Bravo !</button>>
   </div>
   <div class="podium d-flex align-items-end justify-content-center gap-3">
     <div class="podium-player d-flex flex-column align-items-center">
