@@ -27,8 +27,8 @@ export default class extends Controller {
     const data = this.dataValue;
     //background color for each piece
     var pieColors = [
-      "#8b35bc",
-      "#b163da",
+      "#586D95",
+      "#749BC2",
     ];
     //Create chart
     let myChart = new Chart(wheel, {
