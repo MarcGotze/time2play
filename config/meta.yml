@@ -1,0 +1,5 @@
+meta_product_name: "Time2Play"
+meta_title: "Time2Play - Des souvenirs inoubiables à chaque partie"
+meta_description: "Time2Play garde la trace de vos parties de jeux de société"
+meta_image: "favicon.ico" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
