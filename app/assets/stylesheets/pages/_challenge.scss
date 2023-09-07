@@ -14,6 +14,11 @@
   background: linear-gradient(#0c1c38, var(--dark-blue));
   // filter: drop-shadow(0 0 0.3em var(--dark-blue));
   // padding-bottom: .8em;
+  &.no-bg {
+    background: transparent !important;
+    font-weight: 700;
+    font-size: 1.1em;
+  }
 }
 
 .challenge-img {

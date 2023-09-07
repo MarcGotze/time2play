@@ -9,7 +9,7 @@
               data: {action: 'keyup->search#handleSubmit', target: 'search.query'},
               id: 'search-input'
           %>
-        <%= button_tag "Chercher", name: "", class: "btn btn-dark ms-2", id: "btn-search" do %>
+        <%= button_tag "Chercher", name: "", class: "btn btn-light ms-2", id: "btn-search" do %>
           <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
         <% end %>
       <% end %>
@@ -19,7 +19,7 @@
         data-controller="lens"
         class="video-view ms-2">
         <video autoplay id="video" class="hidden"></video>
-        <button id="captureButton" class="btn btn-dark btn-large">
+        <button id="captureButton" class="btn btn-light btn-large">
           <i class="fa-solid fa-camera" style="color: #000000;"></i>
         </button>
         <button id="captureImgButton" class="btn btn-info btn-large camera-btn hidden mt-3"><i class="fa-solid fa-camera" style="color: #ffffff;"></i></i></button>

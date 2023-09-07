@@ -3,7 +3,7 @@
     <% party.players.each do |player| %>
       <%= simple_form_for [party, player]  do |f| %>
         <%= f.input :score %>
-        <%= f.submit "Valider", class: "btn btn-info"%>
+        <%= f.submit "Valider", class: "btn btn-info fw-bold"%>
       <% end %>
     <% end %>
   <% end %>

@@ -38,7 +38,7 @@
     <%# =============== PLAYERS SECTION ===============%>
     <div class="container-party">
       <div class="section-selection">
-        <h2 class="title-party mt-3">Sélection des joueurs</h2>
+        <h2 class="title-party ">Sélection des joueurs</h2>
         <div class="player-container">
           <% @players.each do |player| %>
             <%# <h5><%= player.user.username %>
@@ -51,7 +51,7 @@
         </div>
         <div class="add-player">
         <%= simple_form_for [@party, @player] do |f| %>
-          <%= f.label "Nouveau joueur :" %>
+          <%= f.label "Nouveau joueur :", class: "fw-bold" %>
           <%= f.collection_select(:user_id, @users, :id, :username, {})%>
           <%= f.submit "Ajouter", class: "btn btn-dark btn-sm ms-3 add-btn" %>
         </div>
@@ -67,7 +67,7 @@
           <div class="first-player">
             <li>Qui commence ?	&nbsp;&nbsp;</li>
             <div class="spin-icon" data-action="click->overlay#display">
-              <i class="fa-regular fa-life-ring fa-spin" style="color: #ffcd39;"></i>
+              <i class="fa-regular fa-life-ring fa-spin" style="color: #0A090C;"></i>
             </div>
           </div>
         </ul>
@@ -99,7 +99,7 @@
           <div class="d-flex justify-content-center">
             <%= simple_form_for [@party], data: { action: "submit->form-party-end#endParty" } do |f| %>
               <%= f.hidden_field :players, data: { form_party_end_target: "hidden" } %>
-              <%= f.submit "Terminer", class: "btn btn-dark btn-sm" %>
+              <%= f.submit "Terminer", class: "btn btn-info fw-bold" %>
             <% end %>
           </div>
           <%# tu vas avoir un formulaire avec un hidden field de tes players avec leur score %>
@@ -107,7 +107,7 @@
       </div>
     </div>
     <div class="container-return-btn">
-      <button class="btn btn-info return-game"><%= link_to "Retour au jeu", boardgame_path(@boardgame) %></button>
+      <button class="btn btn-dark btn-sm return-game"><%= link_to "Retour au jeu", boardgame_path(@boardgame) %></button>
     </div>
   </div>
 <% end %>
