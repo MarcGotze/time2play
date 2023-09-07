@@ -1,6 +1,4 @@
-import { ConfettiController } from 'confetti.js';
 import { Application } from "@hotwired/stimulus"
-
 
 const application = Application.start()
 
