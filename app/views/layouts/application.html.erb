@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <!-- Chart JS Plugin for displaying text over chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +24,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= render 'shared/ios_pwa_links' %>
+    <%= favicon_link_tag %>
   </head>
 
   <body>

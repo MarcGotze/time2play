@@ -121,7 +121,6 @@
 </div>
 <div class="challenges-container my-4">
   <% if current_user.challenge_ids == [] %>
-    <li><em>Vous n'avez pas encore remporté de défi.</em></li>
   <% end %>
   <div class="accordion accordion-flush" id="accordionFlushExample">
     <% @achievements.each do |boardgame, achievements| %>

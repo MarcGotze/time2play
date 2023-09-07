@@ -4,23 +4,47 @@
   <div class="container">
     <h1 class="title-page">Partie terminée</h1>
     <div class="finish-container">
-    </div>
-    <% party.players.order(:score).reverse.each do |player| %>
-      <%= cl_image_tag player.user.avatar.key, height: 40, width: 40, crop: :fit, class: "avatar" %>
-      <p><%= player.user.username %> a marqué <%= player.score %> points</p>
-    <% end %>
   </div>
-  <% if current_user.achievements.where('updated_at > ?', DateTime.now - 1.minute).where(completed: true).present? %>
-    <p>Bravo <%= current_user.username %> ! Tu as réussi ce(s) défi(s) :</p>
-    <% current_user.achievements.where('updated_at > ?', DateTime.now - 1.minute).where(completed: true).take(3).each do |achievement| %>
-      <ul>
-        <li><i class="fa-solid fa-check" style="color: #27dd5e;"></i> <%= achievement.challenge.title %></li>
-      </ul>
+  <div class="podium d-flex align-items-end justify-content-center gap-3">
+    <div class="podium-player d-flex flex-column align-items-center">
+      <div class="podium-info-2 d-flex flex-column align-items-center">
+        <%= @party.players.order(:score).reverse.second.user.username %>
+        <%= cl_image_tag party.players.order(:score).reverse.second.user.avatar.key, class: "podium-avatar" %>
+      </div>
+      <div class="podium-second"></div>
+      <%= @party.players.order(:score).reverse.second.score %>pts
+    </div>
+    <div class="podium-player d-flex flex-column align-items-center">
+      <div class="podium-info-1 d-flex flex-column align-items-center">
+        <%= @party.players.order(:score).reverse.first.user.username %>
+        <%= cl_image_tag party.players.order(:score).reverse.first.user.avatar.key, class: "podium-avatar podium-animation" %>
+      </div>
+      <div class="podium-first"></div>
+      <%= @party.players.order(:score).reverse.first.score %>pts
+    </div>
+    <div class="podium-player d-flex flex-column align-items-center">
+      <div class="podium-info-3 d-flex flex-column align-items-center">
+        <%= @party.players.order(:score).reverse.third.user.username %>
+        <%= cl_image_tag @party.players.order(:score).reverse.third.user.avatar.key, class: "podium-avatar" %>
+      </div>
+      <div class="podium-third"></div>
+      <%= @party.players.order(:score).reverse.third.score %>pts
+    </div>
+  </div>
+    <% if current_user.achievements.where('updated_at > ?', DateTime.now - 100.minute).where(completed: true).present? %>
+      <div class="results mt-5">
+        <p>Bravo <%= current_user.username %> ! Tu as réussi ce(s) défi(s) :</p>
+        <% current_user.achievements.where('updated_at > ?', DateTime.now - 100.minute).where(completed: true).take(3).each do |achievement| %>
+          <ul class="challenge-completed">
+            <li><i class="fa-solid fa-check" style="color: #27dd5e;"></i> <%= achievement.challenge.title %></li>
+          </ul>
+        <% end %>
+        <p>Tu as atteint le <span class="animate-character">niveau <%= current_user.level %></span> !</p>
+      </div>
     <% end %>
-    <p>Tu as atteint le niveau <%= current_user.level %> !</p>
-  <% end %>
-
-  <%= button_to "Rejouer", boardgame_parties_path(@boardgame) %>
+  <div class="d-flex justify-content-center mt-5">
+    <%= button_to "Rejouer", boardgame_parties_path(@boardgame), class: "btn btn-info" %>
+  </div>
   <%= render "shared/tab_bar" %>
 <%# =========================================%>
 <% else %>
