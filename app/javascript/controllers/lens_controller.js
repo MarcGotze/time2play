@@ -3,11 +3,12 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="lens"
 export default class extends Controller {
   static values = {
-    gcloudk: String,
-    gcloudu: String
+    gcloudId: String,
+    gcloudSecret: String,
+    gcloudRefresh: String,
+    gcloudProject: String
   }
   connect() {
-    this.gcloudkValue
     const captureButton = document.getElementById("captureButton");
     const capturImgButton = document.getElementById("captureImgButton");
     const sendImgButton = document.getElementById("sendImgButton")
@@ -16,36 +17,55 @@ export default class extends Controller {
 
     const getImgKeyWords = async (encodedImage) => {
       const apiUrl = `https://vision.googleapis.com/v1/images:annotate`;
-      const apiKey = this.gcloudkValue;
-      const apiUser = this.gclouduValue;
+      const gcloudId = this.gcloudIdValue
+      const gcloudSecret = this.gcloudSecretValue
+      const gcloudRefresh = this.gcloudRefreshValue
+      const gcloudProject = this.gcloudProjectValue
+      
+      const apiKey = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "client_id": `${gcloudId}`,
+        "client_secret": `${gcloudSecret}`,
+        "refresh_token": `${gcloudRefresh}`,
+        "quota_project_id": `${gcloudProject}`,
+        "grant_type": "refresh_token"
+      })
+      })
+      .then(response => response.json())
+      .then(data => data.access_token)
 
       try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json, charset=utf-8',
-          'Authorization': `Bearer ${apiKey}`,
-          'x-goog-user-project': `${apiUser}`
-          },
-          body: JSON.stringify({
-            "requests": [
-              {
-              "image": {
-                  "content": `${encodedImage}`
-                },
-              "features": [
-                  {
-                    "type": "WEB_DETECTION"
-                  }
-                ]
-              }
-            ]
-          })
-        });
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json, charset=utf-8',
+            'Authorization': `Bearer ${apiKey}`,
+            'x-goog-user-project': 'gca-supply-web-app'
+            },
+            body: JSON.stringify({
+              "requests": [
+                {
+                  "image": {
+                      "content": `${encodedImage}`
+                    },
+                  "features": [
+                    {
+                      "type": "WEB_DETECTION"
+                    }
+                  ]
+                }
+              ]
+            })
+          });
 
         const data = await response.json();
         const webDetection = data.responses[0].webDetection;
         const label = webDetection.bestGuessLabels[0].label;
+
         const searchInput = document.getElementById("search-input");
         const btnSearch = document.getElementById("btn-search");
         loadingAnimation.classList.add('d-none');
