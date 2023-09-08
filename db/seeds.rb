@@ -282,7 +282,7 @@ puts "==========================================================================
 
 patrick = URI.open("https://static1.purebreak.com/articles/5/20/05/85/@/728213-patrick-l-etoile-de-mer-sera-la-star-du-diapo-2.jpg")
 user = User.create(
-  username: "Patrick",
+  username: "Sarah",
   email: "patrick@gmail.com",
   password: "password",
 )
@@ -291,7 +291,7 @@ puts user.username
 
 sandy = URI.open("https://costumesheaven.b-cdn.net/wp-content/uploads/2022/02/sandycheeks_1.jpg")
 user = User.create(
-  username: "Sandy",
+  username: "Marc",
   email: "sandy@gmail.com",
   password: "password",
 )
@@ -336,7 +336,7 @@ puts user.username
 
 bob = URI.open("https://casoar.org/wp-content/uploads/2020/10/Bob-leponge.png")
 user = User.create(
-  username: "Bob",
+  username: "Elé",
   email: "bob@gmail.com",
   password: "password",
 )
