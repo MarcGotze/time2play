@@ -10,6 +10,7 @@ require "open-uri"
 Boardgame.destroy_all
 User.destroy_all
 Party.destroy_all
+Achievement.destroy_all
 
 puts "=========================================================================="
 puts "Creating games..."
