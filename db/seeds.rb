@@ -277,20 +277,6 @@ puts "Boardgames completed !"
 puts "=========================================================================="
 
 puts "=========================================================================="
-puts "Creating parties..."
-puts "=========================================================================="
-10.times do
-  Party.create!(
-    start_time: Faker::Time.between(from: DateTime.now - 10, to: DateTime.now),
-    end_time: Faker::Time.between(from: DateTime.now - 5, to: DateTime.now),
-    boardgame: Boardgame.all.shuffle.first
-  )
-end
-puts "=========================================================================="
-puts "Parties completed !"
-puts "=========================================================================="
-
-puts "=========================================================================="
 puts "Creating players..."
 puts "=========================================================================="
 
@@ -359,44 +345,4 @@ puts user.username
 
 puts "=========================================================================="
 puts "players completed !"
-puts "=========================================================================="
-
-puts "=========================================================================="
-puts "Creating challenges..."
-puts "=========================================================================="
-
-challenge = Challenge.create(
-  title: "Gagner 10 parties",
-  category: "Badge",
-  boardgame: Boardgame.all.sample,
-  description: "ceci est une super description"
-)
-puts challenge.title
-
-challenge = Challenge.create(
-  title: "Gagner 5 parties",
-  category: "Badge",
-  boardgame: Boardgame.all.sample,
-  description: "ceci est une super description"
-)
-puts challenge.title
-
-challenge = Challenge.create(
-  title: "Gagner 3 parties",
-  category: "Badge",
-  boardgame: Boardgame.all.sample,
-  description: "ceci est une super description"
-)
-puts challenge.title
-
-challenge = Challenge.create(
-  title: "Gagner 5 fois de suite",
-  category: "Badge",
-  boardgame: Boardgame.all.sample,
-  description: "ceci est une super description"
-)
-puts challenge.title
-
-puts "=========================================================================="
-puts "challenges completed !"
 puts "=========================================================================="
